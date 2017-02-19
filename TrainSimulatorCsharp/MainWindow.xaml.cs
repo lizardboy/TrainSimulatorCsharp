@@ -120,9 +120,89 @@ namespace TrainSimulatorCsharp
 
 
         //Game Data Variables
-        static double velocity = 8; 
+
+
+        // throttle variables
+        static double throttle_deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int throttlePosition = 0;
-        static int dynamicPosition = 0;
+        static double actual_throttle_1_pos;     // keep track of actual position 1 reading for calibration use
+       
+        // setup throttle sector positions 
+        // input actual readings from phidgets app here for all positions 
+
+        static double throttle_position_0 = 630;
+        static double throttle_position_1 = 588;
+        static double throttle_position_2 = 536;
+        static double throttle_position_3 = 483;
+        static double throttle_position_4 = 434;
+        static double throttle_position_5 = 384;
+        static double throttle_position_6 = 338;
+        static double throttle_position_7 = 293;
+        static double throttle_position_8 = 256;
+
+        // calculate throttle notch positions based on position 1 value 
+
+        static double throttle_offset_0 = throttle_position_0 - throttle_position_1;
+        static double throttle_offset_1 = throttle_position_1 - throttle_position_1;
+        static double throttle_offset_2 = throttle_position_2 - throttle_position_1;
+        static double throttle_offset_3 = throttle_position_3 - throttle_position_1;
+        static double throttle_offset_4 = throttle_position_4 - throttle_position_1;
+        static double throttle_offset_5 = throttle_position_5 - throttle_position_1;
+        static double throttle_offset_6 = throttle_position_6 - throttle_position_1;
+        static double throttle_offset_7 = throttle_position_7 - throttle_position_1;
+        static double throttle_offset_8 = throttle_position_8 - throttle_position_1;
+
+
+        static double throttle_calibration_value = throttle_position_1 - throttle_deadzone;  // store what the one position on the throttle is during preflight
+       
+        
+
+
+
+
+        static double velocity = 8;
+      
+        static double MaxVelocity = 65;                // set maximum train velocity (MPH)
+        static double MinVelocity = 7;                 // Set Minimum Train Velocity (MPH)
+
+        // Dynamic Brake variables
+
+        static double dynamic_deadzone = 25;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
+        static int dynamicPosition = 0;                //
+        static double actual_dynamic_1_pos;     // keep track of actual dynamic selector pos 1 value for calibration during preflight
+
+        // setup dynamic brake sector positions 
+        // input actual readings from phidgets app here for all positions 
+
+        static double dynamic_position_0 = 658;
+        static double dynamic_position_1 = 582;
+        static double dynamic_position_2 = 504;
+        static double dynamic_position_3 = 428;
+        
+
+        // calculate dynamic selector  notch positions based on position 1 value 
+
+        static double dynamic_offset_0 = dynamic_position_0 - dynamic_position_1;
+        static double dynamic_offset_1 = dynamic_position_1 - dynamic_position_1;
+        static double dynamic_offset_2 = dynamic_position_2 - dynamic_position_1;
+        static double dynamic_offset_3 = dynamic_position_3 - dynamic_position_1;
+        
+
+
+        static double dynamic_calibration_value = dynamic_position_1 - dynamic_deadzone;  // store what the one position on the throttle is during preflight
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         //Pneumatics Globals
@@ -286,9 +366,9 @@ namespace TrainSimulatorCsharp
         static int descriptionPosition = 0;
         static int scrollPix = 0;
 
-        //static CachedSound engineStartup = new CachedSound();
+       // static CachedSound engineStartup = new CachedSound();
 
-        //Application Startup
+        //Application Startup//////////////////////////////////////////////////////////////////////
 
 
         public MainWindow()
@@ -311,27 +391,24 @@ namespace TrainSimulatorCsharp
             my8_8_8 = new InterfaceKit();
             myAnalogOut = new Analog();
 
-            my16_16_0.open(468344);
-            ////my16_16_0.open(344671);
-            //// my8_8_8.open(327859);
-                 my8_8_8.open(451950);
-            //// myAnalogOut.open(282774);
+
+//////////open the interface boards by serial number////////////////////
+            my16_16_0.open(468344);      ////revelstoke //(344671);
+            my8_8_8.open(451950);        ////revelstoke //(327859);
 
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
-          ///  myAnalogOut.waitForAttachment(3000);
+            ////  myAnalogOut.waitForAttachment(3000);
 
-          ////  myAnalogOut.outputs[0].Enabled = true;
-          ////  myAnalogOut.outputs[1].Enabled = true;
-        ///   myAnalogOut.outputs[0].Voltage = 0;
-        ///    myAnalogOut.outputs[1].Voltage = 0;
+            ////  myAnalogOut.outputs[0].Enabled = true;
+            ////  myAnalogOut.outputs[1].Enabled = true;
+            ///   myAnalogOut.outputs[0].Voltage = 0;
+            ///    myAnalogOut.outputs[1].Voltage = 0;
             my8_8_8.SensorChange += new SensorChangeEventHandler(myPotChanged);
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
             this.Focus();
-            StartupLeverPositions();
-            
-
+           
             my16_16_0.outputs[6] = true;
             my16_16_0.outputs[7] = true;
             my16_16_0.outputs[8] = true;
@@ -371,101 +448,7 @@ namespace TrainSimulatorCsharp
 
         }
 
-        private void StartupLeverPositions()
-        {
-            this.Dispatcher.Invoke(new Action(delegate()
-           {
-
-        ///           if (my8_8_8.sensors[6].Value >= 605)
-        ///           {
-                       throttlePosition = 0;
-       ///            }
-        ///           else if (my8_8_8.sensors[6].Value >= 563)
-         ///          {
-       ///                throttlePosition = 1;
-        ///           }
-      ///             else if (my8_8_8.sensors[6].Value >= 511)
-       ///            {
-      ///                 throttlePosition = 2;
-     ///              }
-     ///              else if (my8_8_8.sensors[6].Value >= 458)
-     ///              {
-      ///                 throttlePosition = 3;
-     ///              }
-      ///             else if (my8_8_8.sensors[6].Value >= 409)
-     ///              {
-      ///                 throttlePosition = 4;
-     ///              }
-     ///              else if (my8_8_8.sensors[6].Value >= 359)
-     ///              {
-     ///                  throttlePosition = 5;
-      ///             }
-      ///             else if (my8_8_8.sensors[6].Value >= 313)
-      ///             {
-     ///                  throttlePosition = 6;
-      ///             }
-      ///             else if (my8_8_8.sensors[6].Value >= 268)
-      ///             {
-     ///                  throttlePosition = 7;
-     ///              }
-    ///               else if (my8_8_8.sensors[6].Value >= 231)
-    ///               {
-    ///                   throttlePosition = 8;
-   ///                }
-    ///               else if (my8_8_8.sensors[6].Value <231)
-    ///               {
-    ///                   throttlePosition = 9;
-   ///                }
-
-   ///                if (my8_8_8.sensors[7].Value >= 623)
-    ///               {
-                       dynamicPosition = 0;
-///                    }
-///                   else if (my8_8_8.sensors[7].Value >= 547)
- ///                  {
- ///                      dynamicPosition = 1;
- ///                  }
- ///                  else if (my8_8_8.sensors[7].Value >= 469)
- ///                  {
-  ///                     dynamicPosition = 2;
- ///                  }
- ///                  else if (my8_8_8.sensors[7].Value >= 393)
- ///                  {
- ///                      dynamicPosition = 3;
- ///                  }
- ///                  else if (my8_8_8.sensors[7].Value < 393)
- ///                  {
- ///                      dynamicPosition = 4;
- ///                  }
-
-
-
-  ///                 if (my8_8_8.inputs[1] == true)
-  ///                 {
-                      indPosition = 0;
- ///                  }
-///                   else if (my8_8_8.inputs[2] == true)
- ///                  {
- ///                      indPosition = 1;
- ///                  }
-///                   else if (my8_8_8.inputs[3] == true)
- ///                  {
- ///                      indPosition = 2;
- ///                  }
-///                   else
- ///                  {
- ///                      indPosition = 3;
- ///                  }
-                      outWindow.indPositionLabel.Content = "Ind Position: " + Convert.ToString(indPosition);
-
-                      
-
-                   outWindow.dynamicPositionLabel.Content = "Dynamic Position: " + Convert.ToString(dynamicPosition);
-                   outWindow.throttlePositionLabel.Content = "Throttle Position: " + Convert.ToString(throttlePosition);
-           }));
-                   
-
-        }
+       
 
         private void ScreenSaver(object sender, EventArgs e)
         {
@@ -475,6 +458,7 @@ namespace TrainSimulatorCsharp
                 TranslateTheMediaElement(0, 0, -648, -528, 50000, 0.3, 0.3, outWindow.forst1);
                 TranslateTheMediaElement(0, 0, 648, -528, 50000, 0.3, 0.3, outWindow.forst2);
                 TranslateTheMediaElement(0, 0, -648, 528, 50000, 0.3, 0.3, outWindow.forst3);
+                TranslateTheMediaElement(0, 0, -648, 528, 50000, 0.3, 0.3, outWindow.cpsd402);
                 ssFwd = false;
             }
             else
@@ -483,6 +467,7 @@ namespace TrainSimulatorCsharp
                 TranslateTheMediaElement(-648, -528, 0, 0, 50000, 0.3, 0.3, outWindow.forst1);
                 TranslateTheMediaElement(648, -528, 0, 0, 50000, 0.3, 0.3, outWindow.forst2);
                 TranslateTheMediaElement(-648, 528, 0, 0, 50000, 0.3, 0.3, outWindow.forst3);
+                TranslateTheMediaElement(0, 0, -648, 528, 50000, 0.3, 0.3, outWindow.cpsd402);
                 ssFwd = true;
             }
 
@@ -1034,11 +1019,18 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement( 0, 1, outWindow.forst3, 3000);
                     FadeTheMediaElement( 1, 0, outWindow.forst2, 3000);
                 }
+                //else if (currentImage == "forst3")
+                //{
+                //    currentImage = "cpsd402";
+                //    FadeTheMediaElement(0, 1, outWindow.cpsd402, 3000);
+                //    FadeTheMediaElement(1, 0, outWindow.forst3, 3000);
+                //}
+
                 else if (currentImage == "forst3")
                 {
                     currentImage = "forst1";
                     FadeTheMediaElement(0, 1, outWindow.forst1, 3000);
-                    FadeTheMediaElement(1, 0, outWindow.forst3, 3000);
+                    FadeTheMediaElement(1, 0, outWindow.cpsd402, 3000);
                 }
 
             }
@@ -1072,6 +1064,12 @@ namespace TrainSimulatorCsharp
                 {
                     FadeTheMediaElement(1, 0, outWindow.forst3, 3000);
                 }
+
+
+                //if (currentImage == "cpsd402")
+                //{
+                //    FadeTheMediaElement(1, 0, outWindow.Cpsd402, 3000);
+                //}
                 currentImage = "none";
                 faderTimer.Tick -= new EventHandler(ScreenSaverFader);
                 screenSaver.Tick -= new EventHandler(ScreenSaver);
@@ -1092,6 +1090,12 @@ namespace TrainSimulatorCsharp
             gameState = "trackSelection";
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
         }
+
+
+      ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      /// animation routines and objexts
+      ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
         public static void TranslateTheMediaElement(double startX, double startY, double endX, double endY, int timeSpanMilli, double acceleration, double deceleration, UIElement myMediaElement)
         {
@@ -1207,9 +1211,18 @@ namespace TrainSimulatorCsharp
 
         }
 
+
+        ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        ///preflight checks of control positions
+        ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
         private void preflightChecks( int iter , bool throttlePage)
         {
-            if (my8_8_8.inputs[1] == false && iter == 0)
+
+            //// AUTOMATIC BRAKE CHECK POSITION
+
+            if (my8_8_8.inputs[1] == false && iter == 0)                /// if independant brake position <>0 
             {
                 
                 TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
@@ -1256,6 +1269,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
             
+                    ////check throttle position
             
             else if (throttlePosition != 1 && iter == 0)
             {
@@ -1266,6 +1280,8 @@ namespace TrainSimulatorCsharp
                 instructionsLabel.Content = "Set Throttle To Idle!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
+
+               
             }
 
 
@@ -1280,9 +1296,31 @@ namespace TrainSimulatorCsharp
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
                     TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
-                }
+                    
+                 }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+
+
+                //// Calibrate throttle position "1"
+                
+                  if ( throttle_calibration_value + throttle_deadzone != actual_throttle_1_pos)
+                    {
+                    if (throttle_calibration_value + throttle_deadzone < actual_throttle_1_pos)
+                    { throttle_calibration_value = throttle_calibration_value + 1; }
+                
+                    else if (throttle_calibration_value + throttle_deadzone > actual_throttle_1_pos)
+                     {
+                        throttle_calibration_value = throttle_calibration_value - 1; }
+                
+                
+                  outWindow.throttlePositionLabel.Content = "throttle_calibration_value: " + Convert.ToString(throttle_calibration_value);
+                   }
+
+
+
+
+
             }
 
 
@@ -1313,6 +1351,24 @@ namespace TrainSimulatorCsharp
                 }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+
+                
+
+                if (dynamic_calibration_value + dynamic_deadzone != actual_dynamic_1_pos)
+                {
+                    if (dynamic_calibration_value + dynamic_deadzone < actual_dynamic_1_pos)
+                    { dynamic_calibration_value = dynamic_calibration_value + 1; }
+
+                    else if (dynamic_calibration_value + dynamic_deadzone > actual_dynamic_1_pos)
+                    {
+                        dynamic_calibration_value = dynamic_calibration_value - 1;
+                    }
+
+
+                       outWindow.dynamicPositionLabel.Content = "dynamic_calibration_value: " + Convert.ToString(dynamic_calibration_value);
+                }
+
+
             }
 
 
@@ -1330,7 +1386,7 @@ namespace TrainSimulatorCsharp
             else if (my16_16_0.inputs[13] == false && iter == 5)
             {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
-                if (throttlePosition != 1 || dynamicPosition == 0)
+                if (throttlePosition != 1 || dynamicPosition == 1)////0
                 {
                     instructionsSupLabel.Content = "(Throttle Must be in Idle Position)";
                     instructionsSupLabel.Opacity = 1;
@@ -1370,7 +1426,7 @@ namespace TrainSimulatorCsharp
         {
             TimedAction.ExecuteWithDelay(new Action(delegate { TrainSimulatorLogo.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, 0, 500, 0, 1, TrainSimulatorLogo); }), TimeSpan.FromMilliseconds(200));
             TimedAction.ExecuteWithDelay(new Action(delegate { fuelBarBackground.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, 0, 500, 0, 1, fuelBarBackground); }), TimeSpan.FromMilliseconds(0));
-TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibility.Visible; updateFuelBar(1500); toggleDisplayLights(false); }), TimeSpan.FromMilliseconds(800));
+            TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibility.Visible; updateFuelBar(1500); toggleDisplayLights(false); }), TimeSpan.FromMilliseconds(800));
             
             gameState = "inGame";
 
@@ -1471,8 +1527,8 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
             TimedAction.ExecuteWithDelay(new Action(delegate { my16_16_0.outputs[0] = false; my16_16_0.outputs[2] = false; }), TimeSpan.FromMilliseconds(30000));
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[1].Voltage = 0;
-                myAnalogOut.outputs[0].Voltage = 0;
+       /////         myAnalogOut.outputs[1].Voltage = 0;
+       ////         myAnalogOut.outputs[0].Voltage = 0;
             }));
             penaltyBrake = false;
             penaltyBrakeCountDown = 0;
@@ -1658,13 +1714,13 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
             //Throttle, Brake, Independant brake, Dynamic Brake, Grade, Friction, Current Speed, Max speed
             velocity = velocity + (65-velocity)/(65)*(0.09 * (throttlePosition - 1) - (( 0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds)) + (0.07))));
 
-            if (velocity > 65)
+            if (velocity > MaxVelocity)
             {
-                velocity = 65;
+                velocity = MaxVelocity;
             }
-            if (velocity < 8)
+            if (velocity < MinVelocity)
             {
-                velocity = 8;
+                velocity = MinVelocity;
             }
         }
 
@@ -1878,7 +1934,7 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
             
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[0].Voltage = outVoltage;
+            ////    myAnalogOut.outputs[0].Voltage = outVoltage;
             }));
         }
 
@@ -1898,7 +1954,7 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
 
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[1].Voltage = outVoltage;
+    ////            myAnalogOut.outputs[1].Voltage = outVoltage;
             }));
         }
 
@@ -2606,45 +2662,56 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
            }));
        }
 
-       private void myPotChanged(object sender, SensorChangeEventArgs e) 
+
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        // analog inputs throttle and dynamic selector values are claibrated here values are compared to "1" position
+        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+        private void myPotChanged(object sender, SensorChangeEventArgs e) 
        {
            this.Dispatcher.Invoke(new Action(delegate()
            {
                if (e.Index == 6)
                {
-                   if (e.Value >= 605)
+                   if (e.Value >= throttle_calibration_value + throttle_offset_0)              ///       ///605
                    {
-                       throttlePosition = 0;
+                       throttlePosition = 0;        
                    }
-                   else if (e.Value >= 563)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_1)         ///           ///563
                    {
                        throttlePosition = 1;
+
+                       actual_throttle_1_pos = e.Value;             // keep track of this value for 
+                                                                    //calibrating the throttle during preflight
+
                    }
-                   else if (e.Value >= 511)
+                   else if (e.Value >= throttle_calibration_value +throttle_offset_2)          ///          ///511
                    {
                        throttlePosition = 2;
                    }
-                   else if (e.Value >= 458)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_3)          ///         ///458
                    {
                        throttlePosition = 3;
                    }
-                   else if (e.Value >= 409)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_4)          ///         ///409
                    {
                        throttlePosition = 4;
                    }
-                   else if (e.Value >= 359)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_5)          ///         ///359
                    {
                        throttlePosition = 5;
                    }
-                   else if (e.Value >= 313)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_6)          ///         ///313
                    {
                        throttlePosition = 6;
                    }
-                   else if (e.Value >= 268)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_7)          ///         ///268
                    {
                        throttlePosition = 7;
                    }
-                   else if (e.Value >= 231)
+                   else if (e.Value >= throttle_calibration_value + throttle_offset_8)          ///         ///231
                    {
                        throttlePosition = 8;
                    }
@@ -2653,23 +2720,26 @@ TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibili
                        throttlePosition = 9;
                    }
                    outWindow.throttlePositionLabel.Content = "Throttle Position: " + Convert.ToString(throttlePosition);
+                  
                }
 
                if (e.Index == 7)
                {
-                   if (e.Value >= 623)
+                   if (e.Value >= dynamic_calibration_value + dynamic_offset_0)             //623)
                    {
                        dynamicPosition = 0;
                    }
-                   else if (e.Value >= 547)
+                   else if (e.Value >= dynamic_calibration_value + dynamic_offset_1)        // 547)
                    {
                        dynamicPosition = 1;
+                       actual_dynamic_1_pos = e.Value;             // keep track of this value for 
+                                                                    //calibrating the dynamic selector during preflight
                    }
-                   else if (e.Value >= 469)
+                   else if (e.Value >= dynamic_calibration_value + dynamic_offset_2)        //469)
                    {
                        dynamicPosition = 2;
                    }
-                   else if (e.Value >= 393)
+                   else if (e.Value >= dynamic_calibration_value + dynamic_offset_3)        //393)
                    {
                        dynamicPosition = 3;
                    }

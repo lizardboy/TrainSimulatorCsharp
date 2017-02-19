@@ -110,6 +110,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VideoOutputWindow.xaml.cs">
       <DependentUpon>VideoOutputWindow.xaml</DependentUpon>
     </Compile>
@@ -121,15 +124,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="C:\Users\Dar\Desktop\Liveride Train simulator\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-      <Link>MainWindow.xaml.cs</Link>
-    </Compile>
-    <Page Include="F:\VideoOutputWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="VideoOutputWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <Link>VideoOutputWindow.xaml</Link>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +147,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="cpsd402.jpg" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -165,10 +163,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Revelstoke Train Museum Splash Screen-01.tif" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="forst1.jpg" />
+    <Resource Include="Revelstoke Train Museum Splash Screen-01.tif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="forst2.jpg" />
