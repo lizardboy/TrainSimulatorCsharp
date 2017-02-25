@@ -24,8 +24,8 @@ namespace TrainSimulatorCsharp
 
         private void testMediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            goldenToFieldVideo.Position = new TimeSpan(0);
-            goldenToFieldVideo.Play();
+            CabFootageVideo.Position = new TimeSpan(0);
+            CabFootageVideo.Play();
         }
 
     }

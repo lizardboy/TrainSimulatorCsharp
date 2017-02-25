@@ -75,7 +75,7 @@ namespace TrainSimulatorCsharp
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer lightFlahser = new System.Windows.Threading.DispatcherTimer();
 
-
+      
         static string currentImage = "none";
         static int currentFaderIteration = 0;
         static string gameState = "screenSaver";
@@ -160,14 +160,14 @@ namespace TrainSimulatorCsharp
 
 
 
-        static double velocity = 8;
+        static double velocity = 8;                    // initial velocity
       
         static double MaxVelocity = 65;                // set maximum train velocity (MPH)
         static double MinVelocity = 7;                 // Set Minimum Train Velocity (MPH)
 
         // Dynamic Brake variables
 
-        static double dynamic_deadzone = 25;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
+        static double dynamic_deadzone = 35;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int dynamicPosition = 0;                //
         static double actual_dynamic_1_pos;     // keep track of actual dynamic selector pos 1 value for calibration during preflight
 
@@ -382,8 +382,8 @@ namespace TrainSimulatorCsharp
             
             startGameTimer();
             outWindow.Show();
-            outWindow.goldenToFieldVideo.Stop();
-            outWindow.goldenToFieldVideo.Opacity = 0;
+            outWindow.CabFootageVideo.Stop();
+            outWindow.CabFootageVideo.Opacity = 0;
             //EngageScreenSaver();
            //// Mouse.OverrideCursor = Cursors.None;
             WindowState = WindowState.Maximized;
@@ -784,7 +784,7 @@ namespace TrainSimulatorCsharp
                 }
 
                 startLocation = startLocation - 1348;
-                outWindow.goldenToFieldVideo.Visibility = Visibility.Visible;
+                outWindow.CabFootageVideo.Visibility = Visibility.Visible;
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, -12, -1296, 0, 200, 0.5, 0.5, curLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-909, -46, -2000, -46, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
@@ -1087,6 +1087,12 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(800));
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
+
+/// attempt new window
+/// 
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+
+
             gameState = "trackSelection";
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
         }
@@ -1314,7 +1320,7 @@ namespace TrainSimulatorCsharp
                         throttle_calibration_value = throttle_calibration_value - 1; }
                 
                 
-                  outWindow.throttlePositionLabel.Content = "throttle_calibration_value: " + Convert.ToString(throttle_calibration_value);
+                  outWindow.ThrottleCalibrationpositionlabel.Content = "throttle cal: " + Convert.ToString(throttle_calibration_value);
                    }
 
 
@@ -1352,7 +1358,9 @@ namespace TrainSimulatorCsharp
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
 
-                
+       
+                /// calibrate dynamic selector position 1
+                         
 
                 if (dynamic_calibration_value + dynamic_deadzone != actual_dynamic_1_pos)
                 {
@@ -1365,7 +1373,7 @@ namespace TrainSimulatorCsharp
                     }
 
 
-                       outWindow.dynamicPositionLabel.Content = "dynamic_calibration_value: " + Convert.ToString(dynamic_calibration_value);
+                       outWindow.DynamicCalibrationpositionlabel.Content = "dynamic_cal: " + Convert.ToString(dynamic_calibration_value);
                 }
 
 
@@ -1432,56 +1440,56 @@ namespace TrainSimulatorCsharp
 
             if (selectedSegment == "selectGolden")
             {
-                outWindow.goldenToFieldVideo.Position = TimeSpan.FromSeconds(0);
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(0);
                 velocity = 12;
                 bendIndex = 0;
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.goldenToFieldVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.goldenToFieldVideo.Play();
+                outWindow.CabFootageVideo.Play();
             }
             else if (selectedSegment == "selectGlenogle")
             {
-                outWindow.goldenToFieldVideo.Play();
-                //outWindow.goldenToFieldVideo.Pause();
-                outWindow.goldenToFieldVideo.Position = TimeSpan.FromSeconds(324);
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(324);
                 velocity = 20;
                 bendIndex = 18;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.goldenToFieldVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.goldenToFieldVideo.Play();
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
 
             }
             else if (selectedSegment == "selectPalliser")
             {
-                outWindow.goldenToFieldVideo.Play();
-                //outWindow.goldenToFieldVideo.Pause();
-                outWindow.goldenToFieldVideo.Position = TimeSpan.FromSeconds(896);
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(896);
                 velocity = 26;
                 bendIndex = 50;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.goldenToFieldVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.goldenToFieldVideo.Play();
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
             }
             else if (selectedSegment == "selectLeanchoil")
             {
-                outWindow.goldenToFieldVideo.Play();
-                //outWindow.goldenToFieldVideo.Pause();
-                outWindow.goldenToFieldVideo.Position = TimeSpan.FromSeconds(1408);
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(1408);
                 velocity = 28;
                 bendIndex = 78;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.goldenToFieldVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                //outWindow.goldenToFieldVideo.Play();
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                //outWindow.CabFootageVideo.Play();
             }
             else if (selectedSegment == "selectOttertail")
             {
-                outWindow.goldenToFieldVideo.Play();
-                //outWindow.goldenToFieldVideo.Pause();
-                outWindow.goldenToFieldVideo.Position = TimeSpan.FromSeconds(2208);
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2208);
                 velocity = 35;
                 bendIndex = 98;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.goldenToFieldVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
             }
 
             
@@ -1495,9 +1503,9 @@ namespace TrainSimulatorCsharp
         {
             gameTimer.Tick -= new EventHandler(continueCountDown);
 
-            outWindow.goldenToFieldVideo.SpeedRatio = 1;
-            FadeTheMediaElement(0.5, 0, outWindow.goldenToFieldVideo, 1000);
-            TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.goldenToFieldVideo.Position = new TimeSpan(0); outWindow.goldenToFieldVideo.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(1200));
+            outWindow.CabFootageVideo.SpeedRatio = 1;
+            FadeTheMediaElement(0.5, 0, outWindow.CabFootageVideo, 1000);
+            TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Position = new TimeSpan(0); outWindow.CabFootageVideo.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(1200));
             fuelBar.Visibility = Visibility.Hidden;
             FadeTheMediaElement(1, 0, continueScreenLabel, 500);
             FadeTheMediaElement(1, 0, continueCountdownLabel, 500);
@@ -1537,7 +1545,7 @@ namespace TrainSimulatorCsharp
 
         private void reachedFieldLoop(object sender, EventArgs e)
         {
-            if (outWindow.goldenToFieldVideo.SpeedRatio > 1)
+            if (outWindow.CabFootageVideo.SpeedRatio > 1)
             {
                 if (iterCounter < 5)
                 {
@@ -1547,11 +1555,11 @@ namespace TrainSimulatorCsharp
                 else
                 {
                     iterCounter = 0;
-                    outWindow.goldenToFieldVideo.SpeedRatio -= 0.1;
+                    outWindow.CabFootageVideo.SpeedRatio -= 0.1;
                 }
             }
 
-            double displayMPH = velocity - (Convert.ToDouble(outWindow.goldenToFieldVideo.Position.TotalSeconds) - 2750) * velocityDec;
+            double displayMPH = velocity - (Convert.ToDouble(outWindow.CabFootageVideo.Position.TotalSeconds) - 2750) * velocityDec;
             if (displayMPH >= 0)
             {
                 updateSpeedometer(displayMPH);
@@ -1561,19 +1569,19 @@ namespace TrainSimulatorCsharp
                 updateSpeedometer(0);
             }
 
-            outWindow.playbackSpeedratioLabel.Content = "Playback Speed: " + outWindow.goldenToFieldVideo.SpeedRatio;
+            outWindow.playbackSpeedratioLabel.Content = "Playback Speed: " + outWindow.CabFootageVideo.SpeedRatio;
             outWindow.videoTrackSpeedLabel.Content = "Video MPH: " + displayMPH;
 
-            if (outWindow.goldenToFieldVideo.Position >= System.TimeSpan.FromSeconds(2875))
+            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(2875))
             {
                 gameTimer.Tick -= new EventHandler(reachedFieldLoop);
                 updateSpeedometer(0);
-                FadeTheMediaElement(1, 0, outWindow.goldenToFieldVideo, 1000);
+                FadeTheMediaElement(1, 0, outWindow.CabFootageVideo, 1000);
                 if (timeLeft < 120 )
                 {
                     timeLeft = 120;
                 }
-                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.goldenToFieldVideo.Position = TimeSpan.FromMilliseconds(0); }), TimeSpan.FromMilliseconds(1000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Position = TimeSpan.FromMilliseconds(0); }), TimeSpan.FromMilliseconds(1000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { selectionScreenBackground.Visibility = Visibility.Visible; LoadInButtons(); }), TimeSpan.FromMilliseconds(1000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { 
                     TrainSimulatorLogo.Visibility = Visibility.Hidden; 
@@ -1596,8 +1604,8 @@ namespace TrainSimulatorCsharp
             }
             else if (gameState == "continueScreen")
             {
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0.5, 1, outWindow.goldenToFieldVideo, 500); }), TimeSpan.FromMilliseconds(2000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.goldenToFieldVideo.Play(); }), TimeSpan.FromMilliseconds(2000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0.5, 1, outWindow.CabFootageVideo, 500); }), TimeSpan.FromMilliseconds(2000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Play(); }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameState = "inGame"; continueCountdownLabel.Visibility = Visibility.Hidden; continueScreenLabel.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(2000));
                 timeLeft += secondsPerDollar * 2;
@@ -1642,7 +1650,7 @@ namespace TrainSimulatorCsharp
 
             updateControlStandOutputs();
 
-            int bendStateTemp = getBendState(outWindow.goldenToFieldVideo.Position.TotalSeconds);
+            int bendStateTemp = getBendState(outWindow.CabFootageVideo.Position.TotalSeconds);
 
             if (bendState == 0 && bendStateTemp != 0)
             {
@@ -1668,7 +1676,7 @@ namespace TrainSimulatorCsharp
             updateFuelBar(0);
             updateSpeedometer(velocity);
             updatePneumatics();
-            if (outWindow.goldenToFieldVideo.Position >= System.TimeSpan.FromSeconds(2750))
+            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(2750))
             {
                 velocityDec = velocity / 122;
                 gameTimer.Tick -= new EventHandler(gameLoop);
@@ -1676,10 +1684,10 @@ namespace TrainSimulatorCsharp
                 //apply the brakes
                 
             }
-            outWindow.videoTrackSpeedLabel.Content = "Video MPH: " + getVideoMPH(Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds));
-            outWindow.playbackSpeedratioLabel.Content = "Playback Speed: " + outWindow.goldenToFieldVideo.SpeedRatio;
-            outWindow.videoPositionLabel.Content = "Video Position: " + Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds);
-            outWindow.gradeLabel.Content = "Uphill Grade: " + getGrade(Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds));
+            outWindow.videoTrackSpeedLabel.Content = "Video MPH: " + getVideoMPH(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds));
+            outWindow.playbackSpeedratioLabel.Content = "Playback Speed: " + outWindow.CabFootageVideo.SpeedRatio;
+            outWindow.videoPositionLabel.Content = "Video Position: " + Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds);
+            outWindow.gradeLabel.Content = "Uphill Grade: " + getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds));
             outWindow.bendStateLabel.Content = "Bend State: " + bendState;
             outWindow.PenaltyBrakeLabel.Content = "Penalty Brake: " + penaltyBrake;
             outWindow.PenaltyCountdownLabel.Content = "Penalty Countdown: " + penaltyBrakeCountDown;
@@ -1688,21 +1696,21 @@ namespace TrainSimulatorCsharp
 
         private void updatePlaybackSpeed()
         {
-            double newPlaybackSpeed = Math.Round(velocity / getVideoMPH(Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds)), 1);
+            double newPlaybackSpeed = Math.Round(velocity / getVideoMPH(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds)), 1);
 
-            if (outWindow.goldenToFieldVideo.SpeedRatio != newPlaybackSpeed)
+            if (outWindow.CabFootageVideo.SpeedRatio != newPlaybackSpeed)
             {
                 if (newPlaybackSpeed >= 3)
                 {
-                    outWindow.goldenToFieldVideo.SpeedRatio = 2.9;
+                    outWindow.CabFootageVideo.SpeedRatio = 2.9;
                 }
                 else if (newPlaybackSpeed < 0)
                 {
-                    outWindow.goldenToFieldVideo.SpeedRatio = 0;
+                    outWindow.CabFootageVideo.SpeedRatio = 0;
                 }
                 else
                 {
-                    outWindow.goldenToFieldVideo.SpeedRatio = newPlaybackSpeed;
+                    outWindow.CabFootageVideo.SpeedRatio = newPlaybackSpeed;
                 }
                 
             }
@@ -1712,7 +1720,7 @@ namespace TrainSimulatorCsharp
         private void calculateVelocity()
         {
             //Throttle, Brake, Independant brake, Dynamic Brake, Grade, Friction, Current Speed, Max speed
-            velocity = velocity + (65-velocity)/(65)*(0.09 * (throttlePosition - 1) - (( 0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.goldenToFieldVideo.Position.TotalSeconds)) + (0.07))));
+            velocity = velocity + (MaxVelocity-velocity)/(MaxVelocity)*(0.09 * (throttlePosition - 1) - (( 0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds)) + (0.07))));
 
             if (velocity > MaxVelocity)
             {
@@ -1911,9 +1919,9 @@ namespace TrainSimulatorCsharp
                 gameTimer.Tick -= new EventHandler(gameLoop);
                 gameTimer.Tick += new EventHandler(continueCountDown);
                 gameState = "continueScreen";
-                FadeTheMediaElement(1, 0.5, outWindow.goldenToFieldVideo, 500);
+                FadeTheMediaElement(1, 0.5, outWindow.CabFootageVideo, 500);
                 continueTimeLeft += 24;
-                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.goldenToFieldVideo.Pause(); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Pause(); }), TimeSpan.FromMilliseconds(500));
 
 
             }

@@ -11,6 +11,9 @@
         <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
         <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png"  />
         <Image x:Name="goldenToFieldText" Margin="1296,496,-962,460" Source="goldenToFieldText.png" />
+        <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" />
+
+
         <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,641,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0"/>
         <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
         <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
@@ -32,14 +35,19 @@
         <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8"/>
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4"/>
-        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="goldenToFieldIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack" MouseDown="highlightButton"/>
-        <MediaElement x:Name="DescriptionScreenFootage" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\DescriptionScreenFootage.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack" MouseDown="highlightButton"/>
 
-        <MediaElement x:Name="GoldenEx" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
-        <MediaElement x:Name="GlenogleEx" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
-        <MediaElement x:Name="PalliserEx" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
-        <MediaElement x:Name="LeanchoilEx" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
-        <MediaElement x:Name="OttertailEx" Source="C:\Users\sim\Desktop\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
+        <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack" MouseDown="highlightButton"/>
+
+
+
+        <MediaElement x:Name="DescriptionScreenFootage" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\DescriptionScreenFootage.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <MediaElement x:Name="GoldenEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
+        <MediaElement x:Name="GlenogleEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
+        <MediaElement x:Name="PalliserEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
+        <MediaElement x:Name="LeanchoilEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
+        <MediaElement x:Name="OttertailEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded"/>
 
         <Rectangle x:Name="goldenCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="86,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="33" Opacity="0" Panel.ZIndex="3"/>
         <Rectangle x:Name="glenogleCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="306,935,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0"/>
