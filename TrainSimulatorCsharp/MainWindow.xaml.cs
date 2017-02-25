@@ -499,6 +499,9 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(1146, 0, 0, 0, 400, 1, 0, selectATrackText); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
+
+
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1183, 0, 300, 0, 1, exampleVideoContainer); }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1173, 0, 300, 0, 1, selectedTextDivider); }), TimeSpan.FromMilliseconds(700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1129, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
@@ -568,7 +571,11 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(900));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
+
+                // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
+                //display second icon trail to nelson
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
@@ -1084,16 +1091,18 @@ namespace TrainSimulatorCsharp
         private void LoadInButtons()
         {
             //FadeTheMediaElement(1, 0, splashLogo, 300);
+
+            // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
+            // display "select a track" text
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(800));
-            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
-
-/// attempt new window
-/// 
-            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
-
-
+            // Display first track icon Golden to Field
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 341, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
+            // display  second track icon Trail to Nelson
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 785, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+            // Change gamestate variable to track sellection
             gameState = "trackSelection";
+            // make the buttons clickable
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
         }
 
