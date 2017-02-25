@@ -272,6 +272,27 @@
   <ItemGroup>
     <Resource Include="TrailToNelsonIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throttle_everything.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throttle_UP_label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Throttle_Down_label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="trailtonelsontext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Reverser_label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dynamic_brake_APPLY_label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dynamic_brake_RELEASE_label.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

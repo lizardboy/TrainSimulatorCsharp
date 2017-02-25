@@ -565,13 +565,13 @@ namespace TrainSimulatorCsharp
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
             {
                 backLabel.Opacity = 1;
+                //Make buttons unclickable while they are sliding into position
                 UIbuttonsClickable = false;
-
+                //move elements off screen 
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(201, 0, 0, 0, 300, 1, 0, backLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(900));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
-
                 // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
                 //display second icon trail to nelson
@@ -1097,9 +1097,9 @@ namespace TrainSimulatorCsharp
             // display "select a track" text
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(800));
             // Display first track icon Golden to Field
-            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 341, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
             // display  second track icon Trail to Nelson
-            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 785, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
             // Change gamestate variable to track sellection
             gameState = "trackSelection";
             // make the buttons clickable
@@ -1290,13 +1290,21 @@ namespace TrainSimulatorCsharp
             {
                 if (throttlePage == false)
                 {
-                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructions);
+                    if (throttlePosition > 1)
+                    {
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);
+                    }
+
+                    if (throttlePosition < 1)
+
+                    {
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);
+
+                    }
                 }
                 instructionsLabel.Content = "Set Throttle To Idle!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
-
-               
             }
 
 
@@ -1310,44 +1318,41 @@ namespace TrainSimulatorCsharp
             {
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
-                    
-                 }
+                  // if throttle is at idle but the main brake or ind brake is still not released
+                  // then remove the throttle instructions and run preflight checks again 
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
+                    ///////// new idea
+                    throttlePage = false;
+                }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+                        }
 
-
-                //// Calibrate throttle position "1"
-                
-                  if ( throttle_calibration_value + throttle_deadzone != actual_throttle_1_pos)
-                    {
-                    if (throttle_calibration_value + throttle_deadzone < actual_throttle_1_pos)
-                    { throttle_calibration_value = throttle_calibration_value + 1; }
-                
-                    else if (throttle_calibration_value + throttle_deadzone > actual_throttle_1_pos)
-                     {
-                        throttle_calibration_value = throttle_calibration_value - 1; }
-                
-                
-                  outWindow.ThrottleCalibrationpositionlabel.Content = "throttle cal: " + Convert.ToString(throttle_calibration_value);
-                   }
-
-
-
-
-
-            }
-
+            //look at dynamic selector
 
             else if (dynamicPosition != 1 && iter == 0)
             {
                 if (throttlePage == false)
                 {
-                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructions);
+
+                    if (dynamicPosition > 1)
+                    {
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionrelease);
+                    }
+
+                    if (dynamicPosition < 1)
+
+                    {
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionapply);
+                    }
                 }
-                instructionsLabel.Content = "Set Dynamic Selector to 1!";
+                instructionsLabel.Content = "Set Dynamic Selector to Off!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(4, true); }), TimeSpan.FromMilliseconds(500));
+                ////////// new idea 
+
+                throttlePage = true;
             }
 
 
@@ -1362,28 +1367,16 @@ namespace TrainSimulatorCsharp
             {
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
+                    //if dynamic is correct but brakes are not released remove dynamic instructions and run preflight again
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
+
                 }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
 
        
-                /// calibrate dynamic selector position 1
-                         
-
-                if (dynamic_calibration_value + dynamic_deadzone != actual_dynamic_1_pos)
-                {
-                    if (dynamic_calibration_value + dynamic_deadzone < actual_dynamic_1_pos)
-                    { dynamic_calibration_value = dynamic_calibration_value + 1; }
-
-                    else if (dynamic_calibration_value + dynamic_deadzone > actual_dynamic_1_pos)
-                    {
-                        dynamic_calibration_value = dynamic_calibration_value - 1;
-                    }
-
-
-                       outWindow.DynamicCalibrationpositionlabel.Content = "dynamic_cal: " + Convert.ToString(dynamic_calibration_value);
-                }
+              
 
 
             }
@@ -1393,10 +1386,10 @@ namespace TrainSimulatorCsharp
             {
                 if (throttlePage == false)
                 {
-                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructions);
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, reverserinstructions);
                 }
                 instructionsLabel.Content = "Set Reverser to Forward!";
-                FadeTheMediaElement(0, 1, instructionsLabel, 300);
+                FadeTheMediaElement(0, 1, reverserinstructions, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
             }
 
@@ -1405,18 +1398,38 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
                 if (throttlePosition != 1 || dynamicPosition == 1)////0
                 {
-                    instructionsSupLabel.Content = "(Throttle Must be in Idle Position)";
+                   
+                        if (throttlePosition > 1)
+                        {
+                            TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);
+                        }
+
+                    if (throttlePosition < 1)
+
+                    {
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);
+                    }
+
+
+                        instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
                     instructionsSupLabel.Opacity = 1;
                 }
 
             }
-
+            //if reverser is in fwd position 
             else if (my16_16_0.inputs[13] == true && iter == 5)
             {
                 instructionsSupLabel.Opacity = 0;
+                //if main brake or ind brake are set but reverser is in fwd
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
+                    //remove reverserinstructions 
+
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
+
+                    //////new idea
+                    throttlePage = false;
+
                 }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
@@ -1426,17 +1439,50 @@ namespace TrainSimulatorCsharp
             {
                 if (throttlePage == true)
                 {
+
                     TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
                 }
+                //////calibrate throttle and dynamic brake
+                //// Calibrate throttle position "1"
+
+                if (throttle_calibration_value + throttle_deadzone != actual_throttle_1_pos)
+                {
+                    if (throttle_calibration_value + throttle_deadzone < actual_throttle_1_pos)
+                    {
+                        throttle_calibration_value = throttle_calibration_value + 1;
+                    }
+                    else if (throttle_calibration_value + throttle_deadzone > actual_throttle_1_pos)
+                    {
+                        throttle_calibration_value = throttle_calibration_value - 1;
+                    }
+                    outWindow.ThrottleCalibrationpositionlabel.Content = "throttle cal: " + Convert.ToString(throttle_calibration_value);
+                }
+
+                //// Calibrate dynamic brake off position "1"
+
+                if (dynamic_calibration_value + dynamic_deadzone != actual_dynamic_1_pos)
+                {
+                    if (dynamic_calibration_value + dynamic_deadzone < actual_dynamic_1_pos)
+                    {
+                        dynamic_calibration_value = dynamic_calibration_value + 1;
+                    }
+
+                    else if (dynamic_calibration_value + dynamic_deadzone > actual_dynamic_1_pos)
+                    {
+                        dynamic_calibration_value = dynamic_calibration_value - 1;
+                    }
+
+
+                    outWindow.DynamicCalibrationpositionlabel.Content = "dynamic cal: " + Convert.ToString(dynamic_calibration_value);
+                }
+
                 LaunchGame();
                 instructionsLabel.Opacity = 0;
+
+////// add other opacity controls for other clips?
+
             }
-            
-
         }
-
-
-
 
         //Game Control
         private void LaunchGame()
