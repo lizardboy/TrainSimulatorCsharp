@@ -32,7 +32,7 @@ namespace TrainSimulatorCsharp
         //Globals, sounds, and Timers
 
         static int secondsPerDollar = 240;
-        static bool demonstrationMode = false;
+       
 
 
 
@@ -117,10 +117,13 @@ namespace TrainSimulatorCsharp
         static bool bellPlaying = false;
         static bool brakeSoundPlaying = false;
         static bool sandingPlaying = false;
-        static bool DynamicPage = false;
+        static bool DynamicPageRELEASE = false;
+        static bool DynamicPageAPPLY = false;
         static bool ReverserPage = false;
         static bool ReverserThrottlePageUP = false;
         static bool ReverserThrottlePageDOWN = false;
+        static bool ThrottlePageUP = false;
+        static bool ThrottlePageDOWN = false;
         //Game Data Variables
 
 
@@ -128,7 +131,8 @@ namespace TrainSimulatorCsharp
         static double throttle_deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int throttlePosition = 0;
         static double actual_throttle_1_pos;     // keep track of actual position 1 reading for calibration use
-
+        static double Throttle_Idle_Position = 1;
+        static double Dynamic_Off_Position = 1;
         // setup throttle sector positions 
         // input actual readings from phidgets app here for all positions 
 
@@ -1218,9 +1222,9 @@ namespace TrainSimulatorCsharp
                 AccelerationRatio = acceleration,
                 DecelerationRatio = deceleration,
             };
-////////////////////////////////////////////////////wht is this//////////////////////
+            ////////////////////////////////////////////////////wht is this//////////////////////
 
-            scaleTrans.CenterX = myMediaElement.Width / 2;          ////////////////
+            scaleTrans.CenterX = myMediaElement.Width /2;          ////////////////
             scaleTrans.CenterY = myMediaElement.Height / 2;         ////////////////
 
             myMediaElement.Margin = new Thickness(newMarginX, newMarginY, 0, 0);
@@ -1236,10 +1240,10 @@ namespace TrainSimulatorCsharp
         ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-        private void preflightChecks(int iter, bool ThrottlePage)
+        private void preflightChecks(int iter, bool throttlepage)
         {
 
-            //// AUTOMATIC BRAKE CHECK POSITION
+            //// independant  BRAKE CHECK POSITION
 
             if (my8_8_8.inputs[1] == false && iter == 0)                /// if independant brake position <>0 
             {
@@ -1264,7 +1268,7 @@ namespace TrainSimulatorCsharp
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
-
+            ////main brake position
 
             else if (my16_16_0.inputs[3] == false && iter == 0)
             {
@@ -1288,27 +1292,42 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
 
+
+
+
             ////////////  ////check throttle position
 
-            else if (throttlePosition != 1 && iter == 0)
+            else if (throttlePosition != Throttle_Idle_Position && iter == 0)
             {
-                if (ThrottlePage == false)
+
+                if (throttlePosition > Throttle_Idle_Position && ThrottlePageDOWN != true)
                 {
-                    if (throttlePosition > 1)
+                    if (ThrottlePageUP == true)
                     {
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);
-                        //////newidea
-                        ThrottlePage = true;
-                    }
-                    if (throttlePosition < 1)
-                    {
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                        ThrottlePageUP = false;
+                    }    ///remove up instructions
 
-                        //////newidea
-                        ThrottlePage = true;
-
-                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      /// post down instructions  
+                    //////newidea
+                    ThrottlePageDOWN = true;
                 }
+                if (throttlePosition < Throttle_Idle_Position && ThrottlePageUP != true)
+                {
+                    if (ThrottlePageDOWN == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);        /// remove down instructions
+                        ThrottlePageDOWN = false;
+                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);        ///post up instructions
+                    ThrottlePageUP = true;
+                    
+
+                }
+
+
+
+
 
                 instructionsLabel.Content = "Set Throttle To Idle!";
                 ////////////// fade instruction label
@@ -1319,55 +1338,64 @@ namespace TrainSimulatorCsharp
             }
 
 
-            else if (throttlePosition != 1 && iter == 3)
+            else if (throttlePosition != Throttle_Idle_Position && iter == 3)
             {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
             }
 
 
-            else if (throttlePosition == 1 && iter == 3)
+            else if (throttlePosition == Throttle_Idle_Position && iter == 3)
             {
-                if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-                {
+             //   if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
+             //   {
 
                     ////do checks again????
 
-                }
+               // }
                 /////////fade instruction
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
-                ThrottlePage = false;
-
+                if (ThrottlePageUP == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup); }
+                if (ThrottlePageDOWN == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown); }
+                ThrottlePageUP = false;
+                ThrottlePageDOWN = false;
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
             }
 
-            //look at dynamic selector
+            //////////  dynamic selector
 
-            else if (dynamicPosition != 1 && iter == 0)
+            else if (dynamicPosition != Dynamic_Off_Position && iter == 0)
             {
-                if (DynamicPage == false)
+                if (dynamicPosition > Dynamic_Off_Position && DynamicPageAPPLY != true)
                 {
+                    if (DynamicPageRELEASE == true)
+                    { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
+                        DynamicPageRELEASE = false;
 
-                    if (dynamicPosition > 1)
-                    {
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionrelease);
                     }
-
-                    if (dynamicPosition < 1)
-
-                    {
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionapply);
-                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionapply);
+                    DynamicPageAPPLY = true;
                 }
+
+                if (dynamicPosition < Dynamic_Off_Position && DynamicPageRELEASE != true)
+
+                {
+                    if (DynamicPageAPPLY == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
+                        DynamicPageAPPLY = false;
+                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionrelease);
+                    DynamicPageRELEASE = true;
+                }
+
                 instructionsLabel.Content = "Set Dynamic Selector to Off!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(4, true); }), TimeSpan.FromMilliseconds(500));
-                ////////// new idea 
 
-                DynamicPage = true;
             }
 
 
@@ -1380,125 +1408,137 @@ namespace TrainSimulatorCsharp
 
             else if (dynamicPosition == 1 && iter == 4)
             {
-                if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-                {
+                //if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
+                //{
 
-                    ///do preflight checks again ????
-                }
+                //    ///do preflight checks again ????
+                //}
+
                 //if dynamic is correct  remove dynamic instructions
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
+                if (DynamicPageRELEASE == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease); }
+                if (DynamicPageAPPLY == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply); }
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
-
+                DynamicPageRELEASE = false;
+                DynamicPageAPPLY = false;
 
             }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             ///////////////check reverser
 
-            else if (my16_16_0.inputs[13] == false && iter == 0 && throttlePosition==1)
+            else if (my16_16_0.inputs[13] == false && iter == 0 && throttlePosition == Throttle_Idle_Position)
             {
+                if (ReverserThrottlePageUP == true)
+                {
+                    ///remove any throttleUP instructions
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                    instructionsSupLabel.Opacity = 0;   ///remove secondary label just in case
+
+                    ReverserThrottlePageUP = false;
+                    ReverserPage = false;
+                }
+                if (ReverserThrottlePageDOWN == true)
+                {
+                    ///remove any throttleDOWN instructions
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
+                    instructionsSupLabel.Opacity = 0;   ///remove secondary label just in case
+
+                    ReverserThrottlePageDOWN = false;
+                    ReverserPage = false;
+                }
+
+
                 if (ReverserPage == false)
                 {
-                    if (ReverserThrottlePageUP == true)
-                    {
-                        ///remove any throttleUP instructions
-                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
-                        
-                        ReverserThrottlePageUP = false;
-                    }
-                    if (ReverserThrottlePageDOWN == true)
-                    {
-                        ///remove any throttleDOWN instructions
-                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
-
-                        ReverserThrottlePageDOWN = false;
-                    }
                     ///post reverser instructions
                     TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, reverserinstructions);
                     ReverserPage = true;
                 }
                 instructionsLabel.Content = "Set Reverser to Forward!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
                 instructionsSupLabel.Opacity = 0;   ///remove secondary label just in case
-
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
             }
-
-////////////////////////////////////////////////
 
             else if (my16_16_0.inputs[13] == false && iter == 5)
             {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
-
-                if (throttlePosition != 1)
-                {
-                    if (throttlePosition > 1 && ReverserThrottlePageDOWN == false)
-                    {
-                        if (ReverserPage == true)
-                        {
-                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);  ///reomove reverser instructions
-                            ReverserPage = false;  
-                        }
-                        /////////////if throttle page up is displayed remove it
-                        if (ReverserThrottlePageUP == true)
-                        {
-                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);   ///remove up 
-                            ReverserThrottlePageUP = false;
-                        }
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
-                        ReverserThrottlePageDOWN = true;
-                    }
-                    if (throttlePosition < 1 && ReverserThrottlePageUP == false)
-
-                    {
-                        if (ReverserPage == true)
-                        {
-                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
-                            ReverserPage = false;
-                        }
-                        /////////////if throttle page down is displayed remove it
-                        if (ReverserThrottlePageDOWN == true)
-                        {
-                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);   ///remove down 
-                            ReverserThrottlePageDOWN = false;
-                        }
-                      
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);  ////post up
-                        
-                        ReverserThrottlePageUP = true;
-                    }
-                    instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
-                    instructionsSupLabel.Opacity = 1;
-                }
-               // instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
-               // instructionsSupLabel.Opacity = 1;
-            //////}
-
             }
 
-//////////////////////////////
 
-           ////If reverser is okay
-            else if (my16_16_0.inputs[13] == true && iter == 5)
+            ////////////////////////////////////////////////
+
+            else if (my16_16_0.inputs[13] == false && iter == 5)
+            {
+                if (throttlePosition != Throttle_Idle_Position && throttlePosition > Throttle_Idle_Position && ReverserThrottlePageDOWN == false)
+                {
+                    if (ReverserPage == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);  ///reomove reverser instructions
+                        ReverserPage = false;
+                    }
+                    /////////////if throttle page up is displayed remove it
+                    if (ReverserThrottlePageUP == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);   ///remove up 
+                        ReverserThrottlePageUP = false;
+                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
+                    ReverserThrottlePageDOWN = true;
+                }
+                if (throttlePosition != Throttle_Idle_Position && throttlePosition < Throttle_Idle_Position && ReverserThrottlePageUP == false)
+
+                {
+                    /// if reverser is up remove it
+                    if (ReverserPage == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
+                        ReverserPage = false;
+                    }
+                    /////////////if throttle page down is displayed remove it
+                    if (ReverserThrottlePageDOWN == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);   ///remove down 
+                        ReverserThrottlePageDOWN = false;
+                    }
+
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);  ////post up
+
+                    ReverserThrottlePageUP = true;
+                }
+                instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
+                instructionsSupLabel.Opacity = 1;
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(6, true); }), TimeSpan.FromMilliseconds(500));
+            }
+
+            else if (my16_16_0.inputs[13] == false && iter == 6)
+            {
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(6, true); }), TimeSpan.FromMilliseconds(500));
+            }
+
+            //////////////////////////////
+
+            ////If reverser is okay
+            else if (my16_16_0.inputs[13] == true && iter == 6)
             {
                 instructionsSupLabel.Opacity = 0;
-                //if main brake or ind brake are set but reverser is in fwd
-               /// if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-              //  {
-                  ////  go back to preflight
-             //   }
-               
-                //remove reverserinstructions 
 
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);//// remove reverser instructions
-                ReverserPage = false;
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);   ////remove throttle up
-                ReverserThrottlePageUP = false;
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown); //// remove throttle down
-                ReverserThrottlePageDOWN = false;
+                //remove instructions 
+                if (ReverserPage == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions); } //// remove reverser instructions                    
+                if (ReverserThrottlePageUP == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup); }   ////remove throttle up
+                if (ReverserThrottlePageDOWN == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown); } //// remove throttle down
+               
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+                ReverserPage = false;
+                ReverserThrottlePageUP = false;
+                ReverserThrottlePageDOWN = false;
+                ReverserThrottlePageDOWN = false;
             }
 
             else
@@ -1508,10 +1548,10 @@ namespace TrainSimulatorCsharp
 
                     TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
                     ReverserPage = false;
-   
+
                 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
                 //////calibrate throttle and dynamic brake
                 //// Calibrate throttle position "1"
@@ -1550,7 +1590,7 @@ namespace TrainSimulatorCsharp
                 LaunchGame();
                 instructionsLabel.Opacity = 0;
 
-////// add other opacity controls for other clips?
+                ////// add other opacity controls for other clips?
 
             }
         }
