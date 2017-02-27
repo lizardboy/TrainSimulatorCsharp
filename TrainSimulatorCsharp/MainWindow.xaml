@@ -58,7 +58,7 @@
 
         <Rectangle Fill="#FF83A0A9" HorizontalAlignment="Left" Height="1016" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="-1"/>
 
-        <Image x:Name="trainSimulatorLogo" Margin="290,552,292,2" Source="trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3"/>
+        <Image x:Name="TrainSimulatorLogo" Margin="290,552,292,2" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3"/>
         <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A" HorizontalAlignment="Left" Height="133" Margin="0,883,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden"/>
         <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,883,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden"/>
 
