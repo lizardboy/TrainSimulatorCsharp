@@ -75,10 +75,10 @@
         <Label x:Name="instructionsLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="10,10,10,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
         <Label x:Name="instructionsSupLabel" Content="ExampleText" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="40" Margin="-4,101,24,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
         <Image x:Name="throttleInstructions" Margin="1467,191,-882,8" Source="Throttle_everything.png"/>
-        <Image x:Name="throttleInstructionsup" Margin="1467,191,-882,8" Source="Throttle_up_label.png"/>
-        <Image x:Name="throttleInstructionsdown" Margin="1467,191,-882,8" Source="throttle_down_label.png"/>
-        <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_apply_label.png"/>
-        <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="Dynamic_brake_release_label.png"/>
+        <Image x:Name="throttleInstructionsup" Margin="1467,191,-882,8" Source="Throttle_UP_label.png"/>
+        <Image x:Name="throttleInstructionsdown" Margin="1467,191,-882,8" Source="throttle_DOWN_label.png"/>
+        <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_APPLY_label.png"/>
+        <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="dynamic_brake_RELEASE_label.png"/>
         <Image x:Name="reverserinstructions" Margin="1467,191,-882,8" Source="reverser_label.png"/>
         <Image   Margin="1318,382,-190,609" Source="START.png" Stretch="Fill"/>
         <Label x:Name="startLabel" Content="START" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-186,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="147" FontFamily="nevis" d:IsHidden="True"/>

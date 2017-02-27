@@ -64,7 +64,7 @@ namespace TrainSimulatorCsharp
         static CachedSound coinSound = new CachedSound("CoinSound.wav");
 
 
-        
+
 
         static VideoOutputWindow outWindow = new VideoOutputWindow();
 
@@ -75,7 +75,7 @@ namespace TrainSimulatorCsharp
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer lightFlahser = new System.Windows.Threading.DispatcherTimer();
 
-      
+
         static string currentImage = "none";
         static int currentFaderIteration = 0;
         static string gameState = "screenSaver";
@@ -83,14 +83,14 @@ namespace TrainSimulatorCsharp
         static bool UIbuttonsClickable = false;
         static string selectedSegment = "none";
         static string selectedTrack = "none";
-        
+
         //Rolling up to Field Vars
         static int iterCounter = 0;
-        static double velocityDec = 0; 
-        
+        static double velocityDec = 0;
 
 
-        
+
+
         //Control Stand Input Devices
         private InterfaceKit my16_16_0;
         private InterfaceKit my8_8_8;
@@ -117,8 +117,10 @@ namespace TrainSimulatorCsharp
         static bool bellPlaying = false;
         static bool brakeSoundPlaying = false;
         static bool sandingPlaying = false;
-
-
+        static bool DynamicPage = false;
+        static bool ReverserPage = false;
+        static bool ReverserThrottlePageUP = false;
+        static bool ReverserThrottlePageDOWN = false;
         //Game Data Variables
 
 
@@ -126,7 +128,7 @@ namespace TrainSimulatorCsharp
         static double throttle_deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int throttlePosition = 0;
         static double actual_throttle_1_pos;     // keep track of actual position 1 reading for calibration use
-       
+
         // setup throttle sector positions 
         // input actual readings from phidgets app here for all positions 
 
@@ -154,14 +156,14 @@ namespace TrainSimulatorCsharp
 
 
         static double throttle_calibration_value = throttle_position_1 - throttle_deadzone;  // store what the one position on the throttle is during preflight
-       
-        
+
+
 
 
 
 
         static double velocity = 8;                    // initial velocity
-      
+
         static double MaxVelocity = 65;                // set maximum train velocity (MPH)
         static double MinVelocity = 7;                 // Set Minimum Train Velocity (MPH)
 
@@ -178,7 +180,7 @@ namespace TrainSimulatorCsharp
         static double dynamic_position_1 = 582;
         static double dynamic_position_2 = 504;
         static double dynamic_position_3 = 428;
-        
+
 
         // calculate dynamic selector  notch positions based on position 1 value 
 
@@ -186,7 +188,7 @@ namespace TrainSimulatorCsharp
         static double dynamic_offset_1 = dynamic_position_1 - dynamic_position_1;
         static double dynamic_offset_2 = dynamic_position_2 - dynamic_position_1;
         static double dynamic_offset_3 = dynamic_position_3 - dynamic_position_1;
-        
+
 
 
         static double dynamic_calibration_value = dynamic_position_1 - dynamic_deadzone;  // store what the one position on the throttle is during preflight
@@ -216,85 +218,85 @@ namespace TrainSimulatorCsharp
         static int penaltyBrakeCountDown;
 
 
-        
+
         //Bend Globals
         static int bendState;
         static int bendIndex = 0;
-        static int[,] bendList = { 
+        static int[,] bendList = {
             { 0, 0 },
-            { 100, 2 }, 
-            { 115, 0 }, 
-            { 135, 3 }, 
-            { 154, 0 }, 
-            { 162, 2 }, 
+            { 100, 2 },
+            { 115, 0 },
+            { 135, 3 },
+            { 154, 0 },
+            { 162, 2 },
             { 169, 0 },
-            { 173, 3 }, 
+            { 173, 3 },
             { 192, 0 },
-            { 198, 2 }, 
+            { 198, 2 },
             { 219, 0 },
-            { 223, 2 }, 
+            { 223, 2 },
             { 247, 0 },
-            { 260, 2 }, 
+            { 260, 2 },
             { 273, 0 },
-            { 278, 1 }, 
+            { 278, 1 },
             { 293, 0 },
-            { 308, 2 }, 
+            { 308, 2 },
             { 317, 0 },
-            { 341, 1 }, 
+            { 341, 1 },
             { 366, 0 },
-            { 373, 1 }, 
+            { 373, 1 },
             { 386, 0 },
-            { 417, 2 }, 
+            { 417, 2 },
             { 433, 0 },
-            { 437, 2 }, 
+            { 437, 2 },
             { 445, 0 },
-            { 472, 1 }, 
+            { 472, 1 },
             { 496, 0 },
-            { 565, 2 }, 
+            { 565, 2 },
             { 581, 0 },
-            { 589, 1 }, 
+            { 589, 1 },
             { 606, 0 },
-            { 625, 2 }, 
+            { 625, 2 },
             { 637, 0 },
-            { 677, 1 }, 
+            { 677, 1 },
             { 692, 0 },
-            { 702, 1 }, 
+            { 702, 1 },
             { 716, 0 },
-            { 760, 1 }, 
+            { 760, 1 },
             { 764, 0 },
-            { 781, 2 }, 
+            { 781, 2 },
             { 789, 0 },
-            { 805, 3 }, 
+            { 805, 3 },
             { 830, 0 },
-            { 838, 2 }, 
+            { 838, 2 },
             { 851, 0 },
-            { 856, 1 }, 
+            { 856, 1 },
             { 866, 0 },
-            { 872, 2 }, 
+            { 872, 2 },
             { 895, 0 },
-            { 900, 3 }, 
+            { 900, 3 },
             { 908, 0 },
-            { 925, 2 }, 
+            { 925, 2 },
             { 943, 0 },
-            { 949, 2 }, 
+            { 949, 2 },
             { 980, 0 },
-            { 995, 1 }, 
+            { 995, 1 },
             { 1015, 0 },
-            { 1019, 1 }, 
+            { 1019, 1 },
             { 1028, 0 },
             { 1035, 1 },
             { 1056, 0 },
-            { 1095, 1 }, 
+            { 1095, 1 },
             { 1106, 0 },
-            { 1128, 1 }, 
+            { 1128, 1 },
             { 1134, 0 },
-            { 1146, 1 }, 
+            { 1146, 1 },
             { 1166, 0 },
-            { 1174, 1 }, 
+            { 1174, 1 },
             { 1188, 0 },
-            { 1193, 1 }, 
+            { 1193, 1 },
             { 1218, 0 },
-            { 1243, 2 }, 
+            { 1243, 2 },
             { 1248, 0 },
             { 1265, 1 },
             { 1281, 0 },
@@ -302,71 +304,71 @@ namespace TrainSimulatorCsharp
             { 1407, 0 },
             { 1450, 1 },
             { 1490, 0 },
-            { 1520, 2 }, 
+            { 1520, 2 },
             { 1540, 0 },
-            { 1779, 1 }, 
+            { 1779, 1 },
             { 1816, 0 },
-            { 1999, 1 }, 
+            { 1999, 1 },
             { 2006, 0 },
-            { 2022, 1 }, 
+            { 2022, 1 },
             { 2026, 0 },
-            { 2034, 1 }, 
+            { 2034, 1 },
             { 2040, 0 },
-            { 2092, 1 }, 
+            { 2092, 1 },
             { 2098, 0 },
-            { 2119, 2 }, 
+            { 2119, 2 },
             { 2138, 0 },
-            { 2144, 3 }, 
+            { 2144, 3 },
             { 2155, 0 },
-            { 2173, 2 }, 
+            { 2173, 2 },
             { 2187, 0 },
-            { 2217, 2 }, 
+            { 2217, 2 },
             { 2232, 0 },
-            { 2238, 2 }, 
+            { 2238, 2 },
             { 2279, 0 },
-            { 2288, 2 }, 
+            { 2288, 2 },
             { 2298, 0 },
-            { 2308, 1 }, 
+            { 2308, 1 },
             { 2318, 0 },
-            { 2360, 3 }, 
+            { 2360, 3 },
             { 2369, 0 },
-            { 2380, 1 }, 
+            { 2380, 1 },
             { 2397, 0 },
-            { 2420, 1 }, 
+            { 2420, 1 },
             { 2433, 0 },
-            { 2439, 2 }, 
+            { 2439, 2 },
             { 2458, 0 },
-            { 2465, 3 }, 
+            { 2465, 3 },
             { 2474, 0 },
-            { 2492, 2 }, 
+            { 2492, 2 },
             { 2502, 0 },
-            { 2509, 1 }, 
+            { 2509, 1 },
             { 2519, 0 },
-            { 2520, 2 }, 
+            { 2520, 2 },
             { 2534, 0 },
-            { 2540, 1 }, 
+            { 2540, 1 },
             { 2549, 0 },
-            { 2555, 1 }, 
+            { 2555, 1 },
             { 2563, 0 },
-            { 2573, 2 }, 
+            { 2573, 2 },
             { 2590, 0 },
-            { 2601, 1 }, 
+            { 2601, 1 },
             { 2607, 0 },
-            { 2647, 1 }, 
+            { 2647, 1 },
             { 2662, 0 },
-            { 2678, 2 }, 
+            { 2678, 2 },
             { 2690, 0 },
-            { 2764, 1 }, 
+            { 2764, 1 },
             { 2771, 0 }
             };
 
-        static int continueTimeLeft = 0; 
+        static int continueTimeLeft = 0;
         static int timeLeft = 1500;  ///0;
 
         static int descriptionPosition = 0;
         static int scrollPix = 0;
 
-       // static CachedSound engineStartup = new CachedSound();
+        // static CachedSound engineStartup = new CachedSound();
 
         //Application Startup//////////////////////////////////////////////////////////////////////
 
@@ -379,20 +381,20 @@ namespace TrainSimulatorCsharp
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            
+
             startGameTimer();
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
             //EngageScreenSaver();
-           //// Mouse.OverrideCursor = Cursors.None;
+            //// Mouse.OverrideCursor = Cursors.None;
             WindowState = WindowState.Maximized;
             my16_16_0 = new InterfaceKit();
             my8_8_8 = new InterfaceKit();
             myAnalogOut = new Analog();
 
 
-//////////open the interface boards by serial number////////////////////
+            //////////open the interface boards by serial number////////////////////
             my16_16_0.open(468344);      ////revelstoke //(344671);
             my8_8_8.open(451950);        ////revelstoke //(327859);
 
@@ -408,7 +410,7 @@ namespace TrainSimulatorCsharp
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
             this.Focus();
-           
+
             my16_16_0.outputs[6] = true;
             my16_16_0.outputs[7] = true;
             my16_16_0.outputs[8] = true;
@@ -417,7 +419,7 @@ namespace TrainSimulatorCsharp
             my16_16_0.outputs[11] = true;
             my16_16_0.outputs[12] = true;
             my16_16_0.outputs[13] = true;
-           my16_16_0.outputs[14] = true;
+            my16_16_0.outputs[14] = true;
             my16_16_0.outputs[15] = true;
 
             descriptionTextContainer.Visibility = Visibility.Hidden;
@@ -442,13 +444,13 @@ namespace TrainSimulatorCsharp
 
             //AudioPlaybackEngine.Instance.PlaySound(engine0);
 
-           // HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
-          //  HwndTarget hwndTarget = hwndSource.CompositionTarget;
-          //  hwndTarget.RenderMode = RenderMode.SoftwareOnly;
+            // HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+            //  HwndTarget hwndTarget = hwndSource.CompositionTarget;
+            //  hwndTarget.RenderMode = RenderMode.SoftwareOnly;
 
         }
 
-       
+
 
         private void ScreenSaver(object sender, EventArgs e)
         {
@@ -513,7 +515,7 @@ namespace TrainSimulatorCsharp
 
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
-                
+
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
@@ -554,7 +556,7 @@ namespace TrainSimulatorCsharp
                     descriptionPosition = 0;
                     scrollPix = -260;
                 }
-                
+
 
             }
         }
@@ -579,12 +581,12 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
-                TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden;}), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
 
                 gameState = "trackSelection";
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
-                
+
                 FadeTheMediaElement(1, 0, DescriptionScreenFootage, 200);
                 TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
 
@@ -678,10 +680,10 @@ namespace TrainSimulatorCsharp
 
                 }), TimeSpan.FromMilliseconds(300));
 
-                
+
 
             }
-            
+
         }
 
         private void nextSelect(object sender, MouseButtonEventArgs e)
@@ -699,7 +701,7 @@ namespace TrainSimulatorCsharp
                 //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1165, 0, 0, 0, 300, 1, 0, goldenToFieldDescriptionText); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 600, 0, 1, locationSelectionBar); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { toggleLocationSelectionButtons(Visibility.Visible); }), TimeSpan.FromMilliseconds(1300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1600, 0, -1296, 0, 500, 0, 1, selectionIndicatorBar);}), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1600, 0, -1296, 0, 500, 0, 1, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1297, 0, 500, 0, 1, selectStartPoint); }), TimeSpan.FromMilliseconds(700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, -2500, 0, 500, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, goldenLabel); }), TimeSpan.FromMilliseconds(1200));
@@ -727,11 +729,11 @@ namespace TrainSimulatorCsharp
                     PalliserEx.Play();
                     LeanchoilEx.Play();
                     OttertailEx.Play();
-                
+
                 }), TimeSpan.FromMilliseconds(1500));
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0.1, 1, GoldenEx, 1000); }), TimeSpan.FromMilliseconds(2000));
-                
+
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
 
@@ -739,13 +741,13 @@ namespace TrainSimulatorCsharp
                     PalliserEx.Margin = new Thickness(388, 598, 392, 142);
                     LeanchoilEx.Margin = new Thickness(388, 598, 392, 142);
                     OttertailEx.Margin = new Thickness(388, 598, 392, 142);
-                
+
                 }), TimeSpan.FromMilliseconds(3000));
 
                 selectedSegment = "selectGolden";
                 gameState = "startLocationSelection";
-      
-    
+
+
             }
             else if (gameState == "startLocationSelection" && UIbuttonsClickable == true)
             {
@@ -919,7 +921,7 @@ namespace TrainSimulatorCsharp
                 endLocation = endLocation - 1348;
 
                 TranslateTheMediaElement(startLocation, 0, endLocation, 0, 500, 0.5, 0.5, selectionIndicatorBar);
-                TimedAction.ExecuteWithDelay(new Action(delegate {UIbuttonsClickable = true ; }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true ; }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, -12, -1296, 0, 200, 0.5, 0.5, curLabel); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, newLabel); }), TimeSpan.FromMilliseconds(200));
                 selectedSegment = mySender.Name;
@@ -1017,14 +1019,14 @@ namespace TrainSimulatorCsharp
                 if (currentImage == "forst1")
                 {
                     currentImage = "forst2";
-                    FadeTheMediaElement( 0, 1, outWindow.forst2, 3000);
-                    FadeTheMediaElement( 1, 0, outWindow.forst1, 3000);
+                    FadeTheMediaElement(0, 1, outWindow.forst2, 3000);
+                    FadeTheMediaElement(1, 0, outWindow.forst1, 3000);
                 }
                 else if (currentImage == "forst2")
                 {
                     currentImage = "forst3";
-                    FadeTheMediaElement( 0, 1, outWindow.forst3, 3000);
-                    FadeTheMediaElement( 1, 0, outWindow.forst2, 3000);
+                    FadeTheMediaElement(0, 1, outWindow.forst3, 3000);
+                    FadeTheMediaElement(1, 0, outWindow.forst2, 3000);
                 }
                 //else if (currentImage == "forst3")
                 //{
@@ -1043,7 +1045,7 @@ namespace TrainSimulatorCsharp
             }
             else if (currentFaderIteration == 0)
             {
-                FadeTheMediaElement( 0, 1, outWindow.forst1, 3000);
+                FadeTheMediaElement(0, 1, outWindow.forst1, 3000);
             }
 
 
@@ -1107,9 +1109,9 @@ namespace TrainSimulatorCsharp
         }
 
 
-      ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      /// animation routines and objexts
-      ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        /// animation routines and objexts
+        ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
         public static void TranslateTheMediaElement(double startX, double startY, double endX, double endY, int timeSpanMilli, double acceleration, double deceleration, UIElement myMediaElement)
@@ -1124,7 +1126,7 @@ namespace TrainSimulatorCsharp
             myEndPoint.X = endX;
             myEndPoint.Y = endY;
             grp.Children.Add(trans);
-           
+
             myMediaElement.RenderTransform = grp;
             var aniX = new DoubleAnimation
             {
@@ -1141,29 +1143,29 @@ namespace TrainSimulatorCsharp
                 Duration = dur,
                 AccelerationRatio = acceleration,
                 DecelerationRatio = deceleration,
-                
+
 
             };
             trans.BeginAnimation(TranslateTransform.XProperty, aniX);
             trans.BeginAnimation(TranslateTransform.YProperty, aniY);
 
         }
-         
+
         public static void FadeTheMediaElement(double from, double to, UIElement myMediaElement, int fadeTimeMilli)
-            
+
         {
             TimeSpan dur = TimeSpan.FromMilliseconds(fadeTimeMilli);
             Storyboard sb = new Storyboard();
             DoubleAnimation da = new DoubleAnimation();
-    
-                da.From = from;
-                da.To = to;
 
-                da.Duration = dur;
-                sb.Children.Add(da);
-                Storyboard.SetTargetProperty(da, new PropertyPath(UIElement.OpacityProperty));
-                Storyboard.SetTarget(da, myMediaElement);
-                sb.Begin();
+            da.From = from;
+            da.To = to;
+
+            da.Duration = dur;
+            sb.Children.Add(da);
+            Storyboard.SetTargetProperty(da, new PropertyPath(UIElement.OpacityProperty));
+            Storyboard.SetTarget(da, myMediaElement);
+            sb.Begin();
         }
 
         public static void AnimateWidthProperty(double from, double to, int fadeTimeMilli, double acceleration, double deceleration, Rectangle myRectangle)
@@ -1176,18 +1178,18 @@ namespace TrainSimulatorCsharp
             da.AccelerationRatio = acceleration;
             da.DecelerationRatio = deceleration;
             da.Duration = dur;
-            
+
             da.Completed += (s, e) =>
             {
                 myRectangle.BeginAnimation(Rectangle.WidthProperty, null);
                 myRectangle.Width = to;
             };
-            
+
             myRectangle.BeginAnimation(Rectangle.WidthProperty, da);
         }
- 
+
         public static void ResizeTheMediaElement(double startScale, double endScale, int newMarginX, int newMarginY, Rectangle myMediaElement, int timeSpanMilli, double acceleration, double deceleration)
-            
+
         {
             TimeSpan dur = TimeSpan.FromMilliseconds(timeSpanMilli);
             TransformGroup grp = new TransformGroup();
@@ -1216,10 +1218,12 @@ namespace TrainSimulatorCsharp
                 AccelerationRatio = acceleration,
                 DecelerationRatio = deceleration,
             };
-            scaleTrans.CenterX = myMediaElement.Width/2;
-            scaleTrans.CenterY = myMediaElement.Height/2;
+////////////////////////////////////////////////////wht is this//////////////////////
 
-            myMediaElement.Margin = new Thickness(newMarginX,newMarginY,0,0);
+            scaleTrans.CenterX = myMediaElement.Width / 2;          ////////////////
+            scaleTrans.CenterY = myMediaElement.Height / 2;         ////////////////
+
+            myMediaElement.Margin = new Thickness(newMarginX, newMarginY, 0, 0);
 
             scaleTrans.BeginAnimation(ScaleTransform.ScaleXProperty, aniX);
             scaleTrans.BeginAnimation(ScaleTransform.ScaleYProperty, aniY);
@@ -1232,25 +1236,25 @@ namespace TrainSimulatorCsharp
         ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-        private void preflightChecks( int iter , bool throttlePage)
+        private void preflightChecks(int iter, bool ThrottlePage)
         {
 
             //// AUTOMATIC BRAKE CHECK POSITION
 
             if (my8_8_8.inputs[1] == false && iter == 0)                /// if independant brake position <>0 
             {
-                
+
                 TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
                 instructionsLabel.Content = "Release Locomotive Brake!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(1,false); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(1, false); }), TimeSpan.FromMilliseconds(500));
 
             }
 
 
             else if (my8_8_8.inputs[1] == false && iter == 1)
             {
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(1,false); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(1, false); }), TimeSpan.FromMilliseconds(500));
             }
 
 
@@ -1258,7 +1262,7 @@ namespace TrainSimulatorCsharp
             {
                 TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, indIstructions);
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0,false); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
 
 
@@ -1267,13 +1271,13 @@ namespace TrainSimulatorCsharp
                 instructionsLabel.Content = "Release Main Brake!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, brakeInstructions);
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(2,false); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(2, false); }), TimeSpan.FromMilliseconds(500));
             }
 
 
             else if (my16_16_0.inputs[3] == false && iter == 2)
             {
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(2,false); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(2, false); }), TimeSpan.FromMilliseconds(500));
             }
 
 
@@ -1283,28 +1287,35 @@ namespace TrainSimulatorCsharp
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
-            
-                    ////check throttle position
-            
+
+            ////////////  ////check throttle position
+
             else if (throttlePosition != 1 && iter == 0)
             {
-                if (throttlePage == false)
+                if (ThrottlePage == false)
                 {
                     if (throttlePosition > 1)
                     {
                         TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);
+                        //////newidea
+                        ThrottlePage = true;
                     }
-
                     if (throttlePosition < 1)
-
                     {
                         TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);
 
+                        //////newidea
+                        ThrottlePage = true;
+
                     }
                 }
+
                 instructionsLabel.Content = "Set Throttle To Idle!";
+                ////////////// fade instruction label
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
+
+
             }
 
 
@@ -1318,22 +1329,26 @@ namespace TrainSimulatorCsharp
             {
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
-                  // if throttle is at idle but the main brake or ind brake is still not released
-                  // then remove the throttle instructions and run preflight checks again 
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
-                    ///////// new idea
-                    throttlePage = false;
+
+                    ////do checks again????
+
                 }
+                /////////fade instruction
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
+                ThrottlePage = false;
+
+                FadeTheMediaElement(1, 0, instructionsLabel, 300);
+
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
-                        }
+            }
 
             //look at dynamic selector
 
             else if (dynamicPosition != 1 && iter == 0)
             {
-                if (throttlePage == false)
+                if (DynamicPage == false)
                 {
 
                     if (dynamicPosition > 1)
@@ -1352,7 +1367,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(4, true); }), TimeSpan.FromMilliseconds(500));
                 ////////// new idea 
 
-                throttlePage = true;
+                DynamicPage = true;
             }
 
 
@@ -1367,81 +1382,137 @@ namespace TrainSimulatorCsharp
             {
                 if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
                 {
-                    //if dynamic is correct but brakes are not released remove dynamic instructions and run preflight again
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
 
+                    ///do preflight checks again ????
                 }
+                //if dynamic is correct  remove dynamic instructions
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
 
-       
-              
-
 
             }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////check reverser
 
-
-            else if (my16_16_0.inputs[13] == false && iter == 0)
+            else if (my16_16_0.inputs[13] == false && iter == 0 && throttlePosition==1)
             {
-                if (throttlePage == false)
+                if (ReverserPage == false)
                 {
+                    if (ReverserThrottlePageUP == true)
+                    {
+                        ///remove any throttleUP instructions
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                        
+                        ReverserThrottlePageUP = false;
+                    }
+                    if (ReverserThrottlePageDOWN == true)
+                    {
+                        ///remove any throttleDOWN instructions
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+
+                        ReverserThrottlePageDOWN = false;
+                    }
+                    ///post reverser instructions
                     TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, reverserinstructions);
+                    ReverserPage = true;
                 }
                 instructionsLabel.Content = "Set Reverser to Forward!";
-                FadeTheMediaElement(0, 1, reverserinstructions, 300);
+                FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
+                instructionsSupLabel.Opacity = 0;   ///remove secondary label just in case
+
             }
+
+////////////////////////////////////////////////
 
             else if (my16_16_0.inputs[13] == false && iter == 5)
             {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(5, true); }), TimeSpan.FromMilliseconds(500));
-                if (throttlePosition != 1 || dynamicPosition == 1)////0
-                {
-                   
-                        if (throttlePosition > 1)
-                        {
-                            TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);
-                        }
 
-                    if (throttlePosition < 1)
+                if (throttlePosition != 1)
+                {
+                    if (throttlePosition > 1 && ReverserThrottlePageDOWN == false)
+                    {
+                        if (ReverserPage == true)
+                        {
+                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);  ///reomove reverser instructions
+                            ReverserPage = false;  
+                        }
+                        /////////////if throttle page up is displayed remove it
+                        if (ReverserThrottlePageUP == true)
+                        {
+                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);   ///remove up 
+                            ReverserThrottlePageUP = false;
+                        }
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
+                        ReverserThrottlePageDOWN = true;
+                    }
+                    if (throttlePosition < 1 && ReverserThrottlePageUP == false)
 
                     {
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);
+                        if (ReverserPage == true)
+                        {
+                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
+                            ReverserPage = false;
+                        }
+                        /////////////if throttle page down is displayed remove it
+                        if (ReverserThrottlePageDOWN == true)
+                        {
+                            TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);   ///remove down 
+                            ReverserThrottlePageDOWN = false;
+                        }
+                      
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsup);  ////post up
+                        
+                        ReverserThrottlePageUP = true;
                     }
-
-
-                        instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
+                    instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
                     instructionsSupLabel.Opacity = 1;
                 }
+               // instructionsSupLabel.Content = "(Throttle Must be in Idle Position to move Reverser)";
+               // instructionsSupLabel.Opacity = 1;
+            //////}
 
             }
-            //if reverser is in fwd position 
+
+//////////////////////////////
+
+           ////If reverser is okay
             else if (my16_16_0.inputs[13] == true && iter == 5)
             {
                 instructionsSupLabel.Opacity = 0;
                 //if main brake or ind brake are set but reverser is in fwd
-                if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-                {
-                    //remove reverserinstructions 
+               /// if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
+              //  {
+                  ////  go back to preflight
+             //   }
+               
+                //remove reverserinstructions 
 
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
-
-                    //////new idea
-                    throttlePage = false;
-
-                }
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);//// remove reverser instructions
+                ReverserPage = false;
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);   ////remove throttle up
+                ReverserThrottlePageUP = false;
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown); //// remove throttle down
+                ReverserThrottlePageDOWN = false;
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
             }
 
             else
             {
-                if (throttlePage == true)
+                if (ReverserPage == true)
                 {
 
-                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructions);
+                    TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, reverserinstructions);
+                    ReverserPage = false;
+   
                 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+
                 //////calibrate throttle and dynamic brake
                 //// Calibrate throttle position "1"
 
