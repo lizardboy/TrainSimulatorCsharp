@@ -8,7 +8,7 @@
     <Grid x:Name="splash" Background="Black">
 
 
-        <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
+        <!--<Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />-->
         <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png"  />
         <Image x:Name="goldenToFieldText" Margin="1296,496,-962,460" Source="goldenToFieldText.png" />
         <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" />
@@ -38,8 +38,6 @@
         <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack" MouseDown="highlightButton"/>
 
         <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack" MouseDown="highlightButton"/>
-
-
 
         <MediaElement x:Name="DescriptionScreenFootage" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\DescriptionScreenFootage.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 

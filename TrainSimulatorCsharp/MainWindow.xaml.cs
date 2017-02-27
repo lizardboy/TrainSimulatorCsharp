@@ -32,11 +32,6 @@ namespace TrainSimulatorCsharp
         //Globals, sounds, and Timers
 
         static int secondsPerDollar = 240;
-       
-
-
-
-
         static CachedSound engine8 = new CachedSound("Engine8.wav");
         static CachedSound engine7 = new CachedSound("Engine7.wav");
         static CachedSound engine6 = new CachedSound("Engine6.wav");
@@ -52,7 +47,6 @@ namespace TrainSimulatorCsharp
         static CachedSound engineStartup = new CachedSound("EngineStart.wav");
         static CachedSound bailSound = new CachedSound("BailSound.wav");
         static CachedSound brakeSound = new CachedSound("MainBrakeApplication.wav");
-
         static CachedSound CornerSqueal0 = new CachedSound("CornerSqueal0.wav");
         static CachedSound CornerSqueal1 = new CachedSound("CornerSqueal1.wav");
         static CachedSound CornerSqueal2 = new CachedSound("CornerSqueal2.wav");
@@ -63,18 +57,12 @@ namespace TrainSimulatorCsharp
         static CachedSound ambient1 = new CachedSound("AmbientAudio1.wav");
         static CachedSound coinSound = new CachedSound("CoinSound.wav");
 
-
-
-
         static VideoOutputWindow outWindow = new VideoOutputWindow();
-
-
 
         DispatcherTimer gameTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer screenSaver = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer lightFlahser = new System.Windows.Threading.DispatcherTimer();
-
 
         static string currentImage = "none";
         static int currentFaderIteration = 0;
@@ -88,14 +76,10 @@ namespace TrainSimulatorCsharp
         static int iterCounter = 0;
         static double velocityDec = 0;
 
-
-
-
         //Control Stand Input Devices
         private InterfaceKit my16_16_0;
         private InterfaceKit my8_8_8;
         private Analog myAnalogOut;
-
 
         //Control stand Input Variables
         static bool engineRunSwitch;
@@ -111,7 +95,7 @@ namespace TrainSimulatorCsharp
         static bool bailActivated;
         static int indPosition = 0;
         static int brakePosition;
-
+        ///status storage for dispalyed elements and sounds
         static bool bailPlaying = false;
         static bool hornPlaying = false;
         static bool bellPlaying = false;
@@ -124,18 +108,18 @@ namespace TrainSimulatorCsharp
         static bool ReverserThrottlePageDOWN = false;
         static bool ThrottlePageUP = false;
         static bool ThrottlePageDOWN = false;
+                
         //Game Data Variables
-
-
-        // throttle variables
+       
+            // throttle variables
         static double throttle_deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int throttlePosition = 0;
         static double actual_throttle_1_pos;     // keep track of actual position 1 reading for calibration use
-        static double Throttle_Idle_Position = 1;
-        static double Dynamic_Off_Position = 1;
+        static double Throttle_Idle_Position = 1; /// sets which throttle position is the idle 
+        static double Dynamic_Off_Position = 1;   /// sets which selector position is the off   
+        
         // setup throttle sector positions 
         // input actual readings from phidgets app here for all positions 
-
         static double throttle_position_0 = 630;
         static double throttle_position_1 = 588;
         static double throttle_position_2 = 536;
@@ -147,7 +131,6 @@ namespace TrainSimulatorCsharp
         static double throttle_position_8 = 256;
 
         // calculate throttle notch positions based on position 1 value 
-
         static double throttle_offset_0 = throttle_position_0 - throttle_position_1;
         static double throttle_offset_1 = throttle_position_1 - throttle_position_1;
         static double throttle_offset_2 = throttle_position_2 - throttle_position_1;
@@ -158,58 +141,32 @@ namespace TrainSimulatorCsharp
         static double throttle_offset_7 = throttle_position_7 - throttle_position_1;
         static double throttle_offset_8 = throttle_position_8 - throttle_position_1;
 
-
         static double throttle_calibration_value = throttle_position_1 - throttle_deadzone;  // store what the one position on the throttle is during preflight
 
-
-
-
-
-
+        /// velsocity variables
         static double velocity = 8;                    // initial velocity
-
         static double MaxVelocity = 65;                // set maximum train velocity (MPH)
         static double MinVelocity = 7;                 // Set Minimum Train Velocity (MPH)
 
         // Dynamic Brake variables
-
         static double dynamic_deadzone = 35;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static int dynamicPosition = 0;                //
         static double actual_dynamic_1_pos;     // keep track of actual dynamic selector pos 1 value for calibration during preflight
 
         // setup dynamic brake sector positions 
         // input actual readings from phidgets app here for all positions 
-
         static double dynamic_position_0 = 658;
         static double dynamic_position_1 = 582;
         static double dynamic_position_2 = 504;
         static double dynamic_position_3 = 428;
 
-
         // calculate dynamic selector  notch positions based on position 1 value 
-
         static double dynamic_offset_0 = dynamic_position_0 - dynamic_position_1;
         static double dynamic_offset_1 = dynamic_position_1 - dynamic_position_1;
         static double dynamic_offset_2 = dynamic_position_2 - dynamic_position_1;
         static double dynamic_offset_3 = dynamic_position_3 - dynamic_position_1;
 
-
-
         static double dynamic_calibration_value = dynamic_position_1 - dynamic_deadzone;  // store what the one position on the throttle is during preflight
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //Pneumatics Globals
         static double mainBrakePressureIndicated = 90;
@@ -220,8 +177,6 @@ namespace TrainSimulatorCsharp
         static int indDir = 1; //0 decreasing, 1 steady, 2 ascending
         static bool penaltyBrake;
         static int penaltyBrakeCountDown;
-
-
 
         //Bend Globals
         static int bendState;
@@ -366,44 +321,39 @@ namespace TrainSimulatorCsharp
             { 2771, 0 }
             };
 
+        ///     / game time left
         static int continueTimeLeft = 0;
-        static int timeLeft = 1500;  ///0;
-
+        static int timeLeft =0;
         static int descriptionPosition = 0;
         static int scrollPix = 0;
 
-        // static CachedSound engineStartup = new CachedSound();
-
+        /// ///////////////////////////////////////////////////////////////////////////////////////
         //Application Startup//////////////////////////////////////////////////////////////////////
 
-
         public MainWindow()
-        {
-            InitializeComponent();
-        }
+        {InitializeComponent();}
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-
             startGameTimer();
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
             //EngageScreenSaver();
-            //// Mouse.OverrideCursor = Cursors.None;
+            ////Mouse.OverrideCursor = Cursors.None;
+
             WindowState = WindowState.Maximized;
             my16_16_0 = new InterfaceKit();
             my8_8_8 = new InterfaceKit();
             myAnalogOut = new Analog();
 
-
             //////////open the interface boards by serial number////////////////////
             my16_16_0.open(468344);      ////revelstoke //(344671);
             my8_8_8.open(451950);        ////revelstoke //(327859);
-
+            /// leave space for analog board
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
+           
             ////  myAnalogOut.waitForAttachment(3000);
 
             ////  myAnalogOut.outputs[0].Enabled = true;
@@ -446,15 +396,14 @@ namespace TrainSimulatorCsharp
             DescriptionScreenFootage.Play();
             DescriptionScreenFootage.Pause();
 
-            //AudioPlaybackEngine.Instance.PlaySound(engine0);
-
-            // HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
-            //  HwndTarget hwndTarget = hwndSource.CompositionTarget;
-            //  hwndTarget.RenderMode = RenderMode.SoftwareOnly;
+            AudioPlaybackEngine.Instance.PlaySound(engine0);
+             HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
+              HwndTarget hwndTarget = hwndSource.CompositionTarget;
+              hwndTarget.RenderMode = RenderMode.SoftwareOnly;
 
         }
 
-
+//screensaver
 
         private void ScreenSaver(object sender, EventArgs e)
         {
@@ -490,8 +439,7 @@ namespace TrainSimulatorCsharp
             faderTimer.Tick += new EventHandler(ScreenSaverFader);
             faderTimer.Start();
         }
-
-
+        /// 
         //UI Animation
         private void selectTrack(object sender, MouseButtonEventArgs e)
         {
@@ -502,8 +450,11 @@ namespace TrainSimulatorCsharp
                 gameState = "trackDescription";
                 UIbuttonsClickable = false;
                 descriptionTextContainer.Visibility = Visibility.Visible;
+                /// move in select a track message
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(1146, 0, 0, 0, 400, 1, 0, selectATrackText); }), TimeSpan.FromMilliseconds(0));
+                /// move out description text
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
+                /// move in golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
 
@@ -523,7 +474,7 @@ namespace TrainSimulatorCsharp
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
-                //FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
+                ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
                 //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 scrollPix = -260;
             }
