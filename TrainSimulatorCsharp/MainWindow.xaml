@@ -31,7 +31,7 @@
         <Image x:Name="ottertailLabel" Margin="2224,912,-1039,86" Source="ottertailLabel.png" />
         <Image x:Name="fieldLabel" Margin="2460,912,-1237,86" Source="fieldLabel.png"/>
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
-        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="10,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
+        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="-623,154,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
         <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8"/>
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4"/>
@@ -74,12 +74,12 @@
         <Image x:Name="brakeInstructions" Margin="1363,154,-967,0" Source="MainBrake (2).png" />
         <Label x:Name="instructionsLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="10,10,10,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
         <Label x:Name="instructionsSupLabel" Content="ExampleText" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="40" Margin="-4,101,24,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
-        <Image x:Name="throttleInstructions" Margin="1467,191,-882,8" Source="Throttle_everything.png"/>
-        <Image x:Name="throttleInstructionsup" Margin="1467,191,-882,8" Source="Throttle_UP_label.png"/>
-        <Image x:Name="throttleInstructionsdown" Margin="1467,191,-882,8" Source="throttle_DOWN_label.png"/>
-        <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_APPLY_label.png"/>
-        <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="dynamic_brake_RELEASE_label.png"/>
-        <Image x:Name="reverserinstructions" Margin="1467,191,-882,8" Source="reverser_label.png"/>
+        <!--<Image x:Name="throttleInstructions" Margin="1467,191,-882,8" Source="Throttle_everything.png"/>-->
+        <Image x:Name="throttleInstructionsup" Margin="1467,191,-882,8" Source="Throttle_UP_label.png" />
+        <Image x:Name="throttleInstructionsdown" Margin="1467,191,-882,8" Source="throttle_DOWN_label.png" />
+        <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_APPLY_label.png" />
+        <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="dynamic_brake_RELEASE_label.png" />
+        <Image x:Name="reverserinstructions" Margin="1467,191,-882,8" Source="reverser_label.png" />
         <Image   Margin="1318,382,-190,609" Source="START.png" Stretch="Fill"/>
         <Label x:Name="startLabel" Content="START" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-186,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="147" FontFamily="nevis" d:IsHidden="True"/>
         <Label x:Name="selectLabel" Content="SELECT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-202,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
