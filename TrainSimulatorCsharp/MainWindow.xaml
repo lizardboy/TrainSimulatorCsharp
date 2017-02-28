@@ -8,7 +8,7 @@
     <Grid x:Name="splash" Background="Black">
 
 
-        <!--<Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />-->
+        <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
         <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png"  />
         <Image x:Name="goldenToFieldText" Margin="1296,496,-962,460" Source="goldenToFieldText.png" />
         <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" />
