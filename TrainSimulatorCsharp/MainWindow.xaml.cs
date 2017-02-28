@@ -62,7 +62,8 @@ namespace TrainSimulatorCsharp
         DispatcherTimer gameTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer screenSaver = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
-        DispatcherTimer lightFlahser = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer lightFlasher = new System.Windows.Threading.DispatcherTimer();
+        
 
         static string currentImage = "none";
         static int currentFaderIteration = 0;
@@ -108,7 +109,7 @@ namespace TrainSimulatorCsharp
         static bool ReverserThrottlePageDOWN = false;
         static bool ThrottlePageUP = false;
         static bool ThrottlePageDOWN = false;
-                
+        static bool LowFuelWarning = false;
         //Game Data Variables
        
             // throttle variables
@@ -350,7 +351,7 @@ namespace TrainSimulatorCsharp
             //////////open the interface boards by serial number////////////////////
             my16_16_0.open(468344);      ////revelstoke //(344671);
             my8_8_8.open(451950);        ////revelstoke //(327859);
-            /// leave space for analog board
+                         /// leave space for analog board
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
            
@@ -363,6 +364,7 @@ namespace TrainSimulatorCsharp
             my8_8_8.SensorChange += new SensorChangeEventHandler(myPotChanged);
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
+            
             this.Focus();
 
             my16_16_0.outputs[6] = true;
@@ -440,7 +442,8 @@ namespace TrainSimulatorCsharp
             faderTimer.Start();
         }
         /// 
-        //UI Animation
+        //Track selection screen
+
         private void selectTrack(object sender, MouseButtonEventArgs e)
         {
             if (UIbuttonsClickable == true)
@@ -450,29 +453,31 @@ namespace TrainSimulatorCsharp
                 gameState = "trackDescription";
                 UIbuttonsClickable = false;
                 descriptionTextContainer.Visibility = Visibility.Visible;
-                /// move in select a track message
+              
+                /// move out select a track message
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(1146, 0, 0, 0, 400, 1, 0, selectATrackText); }), TimeSpan.FromMilliseconds(0));
-                /// move out description text
+                /// move in scrolling description text for golden to field 
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
-                /// move in golden to field and trail to nelson icons
+                /// move out golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
 
-
+                /// move in  example video container text divider and golden to field text
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1183, 0, 300, 0, 1, exampleVideoContainer); }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1173, 0, 300, 0, 1, selectedTextDivider); }), TimeSpan.FromMilliseconds(700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1129, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
 
-                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1165, 0, 300, 0, 1, goldenToFieldDescriptionText); }), TimeSpan.FromMilliseconds(900));
+                ///  TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1165, 0, 300, 0, 1, goldenToFieldDescriptionText); }), TimeSpan.FromMilliseconds(900));
+                /// move in back and select labels 
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 201, 0, 300, 0, 1, backLabel); }), TimeSpan.FromMilliseconds(1100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 0, 1, selectLabel); }), TimeSpan.FromMilliseconds(1100));
-                TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2000));
+                // wait a second then activate user interface
+                TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1000));
 
-
+                ///display description footage in box
                 TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
-
-
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(800));
+                /// after half a second play that footGE
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
                 ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
                 //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
@@ -1502,7 +1507,10 @@ namespace TrainSimulatorCsharp
 
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                // analog inputs throttle and dynamic selector values are claibrated here values are compared to "1" position
+                //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
                 //////calibrate throttle and dynamic brake
                 //// Calibrate throttle position "1"
@@ -1733,7 +1741,11 @@ namespace TrainSimulatorCsharp
 
                 gameTimer.Tick -= new EventHandler(continueCountDown);
                 gameState = "inGame";
-                my16_16_0.outputs[14] = false;
+                if (LowFuelWarning == true)
+                {
+                    my16_16_0.outputs[14] = false;
+                    LowFuelWarning = false;
+                }
 
 
             }
@@ -1751,7 +1763,11 @@ namespace TrainSimulatorCsharp
             {
                 timeLeft += secondsPerDollar * 2;
                 updateFuelBar(450);
-                my16_16_0.outputs[14] = false;
+                if (LowFuelWarning == true)
+                {
+                    my16_16_0.outputs[14] = false;
+                    LowFuelWarning= false;
+                }
 
             }
         }
@@ -1836,6 +1852,10 @@ namespace TrainSimulatorCsharp
 
         private void calculateVelocity()
         {
+          
+            
+        /////////////////get indbrakestate returns a zero look at that
+            
             //Throttle, Brake, Independant brake, Dynamic Brake, Grade, Friction, Current Speed, Max speed
             velocity = velocity + (MaxVelocity-velocity)/(MaxVelocity)*(0.09 * (throttlePosition - 1) - (( 0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds)) + (0.07))));
 
@@ -2018,11 +2038,11 @@ namespace TrainSimulatorCsharp
         }
 
         private void checkTimeLeft()
-        {
+        {          
             timeLeft -= 1;
             if (timeLeft < 48)
-            {
-                my16_16_0.outputs[14] = true;
+            {             
+                TimedAction.ExecuteWithDelay(new Action(delegate { toggleLowFuel(); }), TimeSpan.FromMilliseconds(1000));               
             }
             if (timeLeft <= 0)
             {
@@ -2043,7 +2063,26 @@ namespace TrainSimulatorCsharp
 
             }
         }
-        
+
+
+        private void toggleLowFuel ()
+        {
+            if (my16_16_0.outputs[14] == true)
+            {
+                my16_16_0.outputs[14] = false;
+                LowFuelWarning = false;
+            }
+            else
+            {
+                my16_16_0.outputs[14] = true;
+                LowFuelWarning = true;
+            }
+        }
+
+
+
+
+
         private void updateSpeedometer(double mph)
         {
             if (mph < 0)
@@ -2788,10 +2827,7 @@ namespace TrainSimulatorCsharp
        }
 
 
-        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        // analog inputs throttle and dynamic selector values are claibrated here values are compared to "1" position
-        //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        
 
 
         private void myPotChanged(object sender, SensorChangeEventArgs e) 
@@ -2968,56 +3004,7 @@ namespace TrainSimulatorCsharp
        }
     }
 
-
-} 
-
-
+        
+}
 
 
-//Hotkeys
-      //  private void UserControlLoaded(object sender, RoutedEventArgs e)
-      //      //temp keyboard control
-      //  {
-      //      var window = Window.GetWindow(this);
-      //      window.KeyDown += HandleKeyPress;
-      //  }
-
-      //  private void HandleKeyPress(object sender, KeyEventArgs e)
-      //      //temp keyboard bindings
-      //  {
-      //      if (e.Key == Key.Space)
-       //     {
-      //          playsoundEffect("bell");
-      //      }
-      //      if (e.Key == Key.Escape)
-      //      {
-
-      //      }
-     //       if (e.Key == Key.P)
-     //       {
-
-     //       }
-     //       if (e.Key == Key.O)
-     //       {
-
-     //       }
-     //       if (e.Key == Key.Up)
-    //        {
-    //            outWindow.testMediaElement.SpeedRatio += 0.1;
-    //        }
-    //        if (e.Key == Key.Down)
-    //        {
-   //             outWindow.testMediaElement.SpeedRatio -= 0.1;
-    //        }
-   //         if (e.Key == Key.Delete)
-    //        {
-   //             applicationReset();
-   //         }
-    //        if (e.Key == Key.C)
-    //        {
-    //            coinDrop();
-    //        }
-
-    //    }
-
-        //Screen Saver
