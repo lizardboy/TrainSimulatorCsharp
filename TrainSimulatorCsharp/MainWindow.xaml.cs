@@ -62,7 +62,7 @@ namespace TrainSimulatorCsharp
         DispatcherTimer gameTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer screenSaver = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
-        DispatcherTimer lightFlasher = new System.Windows.Threading.DispatcherTimer();
+       /// DispatcherTimer lightFlasher = new System.Windows.Threading.DispatcherTimer();
         
 
         static string currentImage = "none";
@@ -351,7 +351,7 @@ namespace TrainSimulatorCsharp
             //////////open the interface boards by serial number////////////////////
             my16_16_0.open(468344);      ////revelstoke //(344671);
             my8_8_8.open(451950);        ////revelstoke //(327859);
-                         /// leave space for analog board
+            ////myAnalogOut.open(             /// leave space for analog board
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
            
