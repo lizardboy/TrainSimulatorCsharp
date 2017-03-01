@@ -1633,7 +1633,9 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Position = new TimeSpan(0); outWindow.CabFootageVideo.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(1200));
             fuelBar.Visibility = Visibility.Hidden;
             FadeTheMediaElement(1, 0, continueScreenLabel, 500);
+            FadeTheMediaElement(1, 0, outWindow.continueMainScreenLabel, 500);
             FadeTheMediaElement(1, 0, continueCountdownLabel, 500);
+            FadeTheMediaElement(1, 0, outWindow.continueMainCountdownLabel, 500);
 
             TimedAction.ExecuteWithDelay(new Action(delegate { 
                 TrainSimulatorLogo.Visibility = Visibility.Hidden; 
@@ -1641,7 +1643,10 @@ namespace TrainSimulatorCsharp
                 toggleExampleVideoVisibility(Visibility.Visible);
                 toggleDisplayLights(true); 
                 continueScreenLabel.Visibility = Visibility.Hidden;
-                continueCountdownLabel.Visibility = Visibility.Hidden;
+                outWindow.continueMainScreenLabel.Visibility = Visibility.Hidden;
+                continueCountdownLabel.Visibility = Visibility.Hidden;                
+                outWindow.continueMainCountdownLabel.Visibility = Visibility.Hidden;
+
                 thankyouScreen.Visibility = Visibility.Visible;
                 TranslateTheMediaElement(0, 0, 0, -559, 600, 0.5, 0.5, thankyouScreen);
             }), TimeSpan.FromMilliseconds(600));
@@ -1733,11 +1738,15 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Play(); }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameState = "inGame"; continueCountdownLabel.Visibility = Visibility.Hidden; continueScreenLabel.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(2000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { gameState = "inGame"; outWindow.continueMainCountdownLabel.Visibility = Visibility.Hidden; outWindow.continueMainScreenLabel.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(2000));
+               
                 timeLeft += secondsPerDollar * 2;
                 updateFuelBar(1700);
                 continueTimeLeft = 0;
                 FadeTheMediaElement(1, 0, continueScreenLabel, 500);
+                FadeTheMediaElement(1, 0, outWindow.continueMainScreenLabel, 500);
                 FadeTheMediaElement(1, 0, continueCountdownLabel, 500);
+                FadeTheMediaElement(1, 0, outWindow.continueMainCountdownLabel, 500);
 
                 gameTimer.Tick -= new EventHandler(continueCountDown);
                 gameState = "inGame";
@@ -2047,12 +2056,19 @@ namespace TrainSimulatorCsharp
             if (timeLeft <= 0)
             {
                 continueCountdownLabel.Content = "12";
+                outWindow.continueMainCountdownLabel.Content = "12";
                 continueCountdownLabel.Opacity = 0;
+                outWindow.continueMainCountdownLabel.Opacity = 0;                
                 continueScreenLabel.Opacity = 0;
+                outWindow.continueMainScreenLabel.Opacity = 0;
                 continueCountdownLabel.Visibility = Visibility.Visible;
+                outWindow.continueMainCountdownLabel.Visibility = Visibility.Visible;
                 continueScreenLabel.Visibility = Visibility.Visible;
+                outWindow.continueMainScreenLabel.Visibility = Visibility.Visible;                                                               
                 FadeTheMediaElement(0, 1, continueScreenLabel, 500);
+                FadeTheMediaElement(0, 1, outWindow.continueMainScreenLabel, 500);
                 FadeTheMediaElement(0, 1, continueCountdownLabel, 500);
+                FadeTheMediaElement(0, 1, outWindow.continueMainCountdownLabel, 500);
                 gameTimer.Tick -= new EventHandler(gameLoop);
                 gameTimer.Tick += new EventHandler(continueCountDown);
                 gameState = "continueScreen";
@@ -2125,6 +2141,7 @@ namespace TrainSimulatorCsharp
         private void continueCountDown(object sender, EventArgs e)
         {
             continueCountdownLabel.Content = continueTimeLeft / 2;
+            outWindow.continueMainCountdownLabel.Content = continueTimeLeft / 2;
             continueTimeLeft -= 1;
             updatePneumatics();
             if (continueTimeLeft == 0)
