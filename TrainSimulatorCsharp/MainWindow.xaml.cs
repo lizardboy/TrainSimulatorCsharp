@@ -23,8 +23,11 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using Phidgets;
 using Phidgets.Events;
+ 
 
-namespace TrainSimulatorCsharp
+    
+    
+    namespace TrainSimulatorCsharp
 {
     public partial class MainWindow : Window
     {
@@ -72,7 +75,9 @@ namespace TrainSimulatorCsharp
         static bool UIbuttonsClickable = false;
         static string selectedSegment = "none";
         static string selectedTrack = "none";
+        static string DescriptionScreenFootageSelected = "DescriptionScreenFootage1";
 
+        
         //Rolling up to Field Vars
         static int iterCounter = 0;
         static double velocityDec = 0;
@@ -351,16 +356,17 @@ namespace TrainSimulatorCsharp
             //////////open the interface boards by serial number////////////////////
             my16_16_0.open(468344);      ////revelstoke //(344671);
             my8_8_8.open(451950);        ////revelstoke //(327859);
-            ////myAnalogOut.open(             /// leave space for analog board
+                                         //// myAnalogOut.open(282774);  ////revelstoke //(282774)
+
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
-           
-            ////  myAnalogOut.waitForAttachment(3000);
 
+            ////  myAnalogOut.waitForAttachment(3000);
             ////  myAnalogOut.outputs[0].Enabled = true;
             ////  myAnalogOut.outputs[1].Enabled = true;
             ///   myAnalogOut.outputs[0].Voltage = 0;
             ///    myAnalogOut.outputs[1].Voltage = 0;
+
             my8_8_8.SensorChange += new SensorChangeEventHandler(myPotChanged);
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
@@ -384,8 +390,9 @@ namespace TrainSimulatorCsharp
 
             getMainBrakeState();
             indPosition = 0;
-
-            GoldenEx.Play();
+           
+            ///46 seconds 490 x 276 preview videos here
+            GoldenEx.Play();            
             GoldenEx.Pause();
             GlenogleEx.Play();
             GlenogleEx.Pause();
@@ -395,8 +402,12 @@ namespace TrainSimulatorCsharp
             LeanchoilEx.Pause();
             OttertailEx.Play();
             OttertailEx.Pause();
-            DescriptionScreenFootage.Play();
-            DescriptionScreenFootage.Pause();
+            ////add al other videos as well
+      
+
+
+            DescriptionScreenFootage2.Play();
+            DescriptionScreenFootage2.Pause();
 
             AudioPlaybackEngine.Instance.PlaySound(engine0);
              HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
@@ -442,11 +453,34 @@ namespace TrainSimulatorCsharp
             faderTimer.Start();
         }
         /// 
-        //Track selection screen
+////        //Track selection screen....what happens after the first track is selected...removing teh first screen building the second 
 
-        private void selectTrack(object sender, MouseButtonEventArgs e)
+        private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
-            if (UIbuttonsClickable == true)
+           
+            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage1.wmv");
+
+            trackSelect(sender,e);
+        }
+
+        private void selectTrack2(object sender, MouseButtonEventArgs e)
+        {
+            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage2.wmv");
+
+            trackSelect(sender, e);
+        }
+
+        private void selectTrack3(object sender, MouseButtonEventArgs e)
+        {
+            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage3.wmv");
+
+            trackSelect(sender, e);
+        }
+
+
+        private void  trackSelect(object sender, MouseButtonEventArgs e)
+        { 
+            if (UIbuttonsClickable == true) 
             {
                 var mySender = sender as Image;
                 unhighlightButton(mySender, e);
@@ -457,7 +491,7 @@ namespace TrainSimulatorCsharp
                 /// move out select a track message
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(1146, 0, 0, 0, 400, 1, 0, selectATrackText); }), TimeSpan.FromMilliseconds(0));
                 /// move in scrolling description text for golden to field 
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(1000));
                 /// move out golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
@@ -475,10 +509,10 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1000));
 
                 ///display description footage in box
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
                 /// after half a second play that footGE
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(500));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Play(); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage1, 1000); }), TimeSpan.FromMilliseconds(1100));
                 ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
                 //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 scrollPix = -260;
@@ -486,33 +520,38 @@ namespace TrainSimulatorCsharp
 
         }
 
-        private void scrollDescriptionText(object sender, MouseButtonEventArgs e)
+      
+
+        
+
+
+        private void scrollDescriptionText1(object sender, MouseButtonEventArgs e)
         {
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
             {
                 if (descriptionPosition == 0)
                 {
-                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText);
+                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText1);
                     descriptionPosition = 1;
                     scrollPix = -520;
                 }
                 else if (descriptionPosition == 1)
                 {
-                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText);
+                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText1);
                     descriptionPosition = 2;
                     scrollPix = -780;
 
                 }
                 else if (descriptionPosition == 2)
                 {
-                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText);
+                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText1);
                     scrollPix = -1040;
                     descriptionPosition = 3;
 
                 }
                 else
                 {
-                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText);
+                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText1);
                     descriptionPosition = 0;
                     scrollPix = -260;
                 }
@@ -521,7 +560,80 @@ namespace TrainSimulatorCsharp
             }
         }
 
-        private void backSelect(object sender, MouseButtonEventArgs e)
+       
+        private void scrollDescriptionText2(object sender, MouseButtonEventArgs e)
+        {
+            if (gameState == "trackDescription" && UIbuttonsClickable == true)
+            {
+                if (descriptionPosition == 0)
+                {
+                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 1;
+                    scrollPix = -520;
+                }
+                else if (descriptionPosition == 1)
+                {
+                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 2;
+                    scrollPix = -780;
+
+                }
+                else if (descriptionPosition == 2)
+                {
+                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText2);
+                    scrollPix = -1040;
+                    descriptionPosition = 3;
+
+                }
+                else
+                {
+                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 0;
+                    scrollPix = -260;
+                }
+
+
+            }
+        }
+
+
+        private void scrollDescriptionText3(object sender, MouseButtonEventArgs e)
+        {
+            if (gameState == "trackDescription" && UIbuttonsClickable == true)
+            {
+                if (descriptionPosition == 0)
+                {
+                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 1;
+                    scrollPix = -520;
+                }
+                else if (descriptionPosition == 1)
+                {
+                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 2;
+                    scrollPix = -780;
+
+                }
+                else if (descriptionPosition == 2)
+                {
+                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText2);
+                    scrollPix = -1040;
+                    descriptionPosition = 3;
+
+                }
+                else
+                {
+                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText2);
+                    descriptionPosition = 0;
+                    scrollPix = -260;
+                }
+
+
+            }
+        }
+
+
+        private void backSelect1(object sender, MouseButtonEventArgs e)
         {
             var mySender = sender as Image;
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
@@ -534,21 +646,25 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(900));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
+                ////add the other screeens stuff 
+                
+                
+                
                 // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
                 //display second icon trail to nelson
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
 
                 gameState = "trackSelection";
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
 
-                FadeTheMediaElement(1, 0, DescriptionScreenFootage, 200);
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
+                FadeTheMediaElement(1, 0, DescriptionScreenFootage2, 200);
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
 
             }
             else if (gameState == "startLocationSelection" && UIbuttonsClickable == true)
@@ -611,8 +727,8 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, ottertailLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, fieldLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1700));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage2, 1000); }), TimeSpan.FromMilliseconds(1700));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(1500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Visible; }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(0));//
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(300));
@@ -653,7 +769,7 @@ namespace TrainSimulatorCsharp
             {
                 UIbuttonsClickable = false;
                 selectLabel.Opacity = 1;
-                FadeTheMediaElement(1, 0, DescriptionScreenFootage, 200);
+                FadeTheMediaElement(1, 0, DescriptionScreenFootage2, 200);
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, -909, -46, 300, 0.5, 0.5, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
@@ -672,7 +788,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, fieldLabel); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, goldenLabel); }), TimeSpan.FromMilliseconds(1800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2800));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
                 scrollPix = -260;
@@ -781,7 +897,7 @@ namespace TrainSimulatorCsharp
                     PalliserEx.Pause();
                     LeanchoilEx.Pause();
                     OttertailEx.Pause();
-                    DescriptionScreenFootage.Pause();
+                    DescriptionScreenFootage2.Pause();
 
                     GlenogleEx.Margin = new Thickness(1269, 1013, -489, -273);
                     PalliserEx.Margin = new Thickness(1269, 1013, -489, -273);
@@ -796,7 +912,7 @@ namespace TrainSimulatorCsharp
 
                 }), TimeSpan.FromMilliseconds(300));
 
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, -564, 0, 400, 1200, 1, 0, selectionScreenBackground); DescriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1700));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, -564, 0, 400, 1200, 1, 0, selectionScreenBackground); DescriptionScreenFootage2.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { selectionScreenBackground.Visibility = Visibility.Hidden; toggleExampleVideoVisibility(Visibility.Hidden); }), TimeSpan.FromMilliseconds(3000));
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0,false); }), TimeSpan.FromMilliseconds(4000));
@@ -917,7 +1033,7 @@ namespace TrainSimulatorCsharp
             PalliserEx.Visibility = myVis;
             LeanchoilEx.Visibility = myVis;
             OttertailEx.Visibility = myVis;
-            DescriptionScreenFootage.Visibility = myVis;
+            DescriptionScreenFootage2.Visibility = myVis;
         }
 
         private void highlightButton(object sender, MouseButtonEventArgs e)
@@ -1068,7 +1184,7 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
         }
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         /// animation routines and objexts
         ///xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

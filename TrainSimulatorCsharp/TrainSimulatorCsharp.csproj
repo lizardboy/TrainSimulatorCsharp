@@ -250,9 +250,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Scrollable-Text.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="LocomotiveBrake.png" />
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="dynamic_brake_RELEASE_label.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Scrollable-Text1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
