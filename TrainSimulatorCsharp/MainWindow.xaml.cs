@@ -343,7 +343,7 @@ using Phidgets.Events;
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-            //EngageScreenSaver();
+            EngageScreenSaver();
             ////Mouse.OverrideCursor = Cursors.None;
 
             WindowState = WindowState.Maximized;
@@ -400,8 +400,30 @@ using Phidgets.Events;
             LeanchoilEx.Pause();
             OttertailEx.Play();
             OttertailEx.Pause();
+            ///Track2Siding1.play();
+            ///Track2Siding1.pause();
+            ///Track2Siding2.play();
+            ///Track2Siding2.pause();
+            ///Track2Siding2.play();
+            ///Track2Siding2.pause();
+            ///Track2Siding3.play();
+            ///Track2Siding3.pause();
+            ///Track2Siding4.play();
+            ///Track2Siding4.pause();
+            ///Track3Siding1.play();
+            ///Track3Siding1.pause();
+            ///Track3Siding2.play();
+            ///Track3Siding2.pause();
+            ///Track3Siding3.play();
+            ///Track3Siding3.pause();
+            ///Track3Siding4.play();
+            ///Track3Siding4.pause();
+
+
+
+
             ////add al other videos as well
-      
+
 
 
             DescriptionScreenFootage.Play();
@@ -433,7 +455,7 @@ using Phidgets.Events;
                 TranslateTheMediaElement(-648, -528, 0, 0, 50000, 0.3, 0.3, outWindow.forst1);
                 TranslateTheMediaElement(648, -528, 0, 0, 50000, 0.3, 0.3, outWindow.forst2);
                 TranslateTheMediaElement(-648, 528, 0, 0, 50000, 0.3, 0.3, outWindow.forst3);
-                TranslateTheMediaElement(0, 0, -648, 528, 50000, 0.3, 0.3, outWindow.cpsd402);
+                TranslateTheMediaElement(-648, 528,0 , 0, 50000, 0.3, 0.3, outWindow.cpsd402);
                 ssFwd = true;
             }
 
@@ -1052,14 +1074,14 @@ using Phidgets.Events;
                     FadeTheMediaElement(0, 1, outWindow.forst3, 3000);
                     FadeTheMediaElement(1, 0, outWindow.forst2, 3000);
                 }
-                //else if (currentImage == "forst3")
-                //{
-                //    currentImage = "cpsd402";
-                //    FadeTheMediaElement(0, 1, outWindow.cpsd402, 3000);
-                //    FadeTheMediaElement(1, 0, outWindow.forst3, 3000);
-                //}
-
                 else if (currentImage == "forst3")
+                {
+                    currentImage = "cpsd402";
+                    FadeTheMediaElement(0, 1, outWindow.cpsd402, 3000);
+                    FadeTheMediaElement(1, 0, outWindow.forst3, 3000);
+                }
+
+                else if (currentImage == "cpsd402")
                 {
                     currentImage = "forst1";
                     FadeTheMediaElement(0, 1, outWindow.forst1, 3000);
@@ -1099,10 +1121,10 @@ using Phidgets.Events;
                 }
 
 
-                //if (currentImage == "cpsd402")
-                //{
-                //    FadeTheMediaElement(1, 0, outWindow.Cpsd402, 3000);
-                //}
+                if (currentImage == "cpsd402")
+                {
+                    FadeTheMediaElement(1, 0, outWindow.cpsd402, 3000);
+                }
                 currentImage = "none";
                 faderTimer.Tick -= new EventHandler(ScreenSaverFader);
                 screenSaver.Tick -= new EventHandler(ScreenSaver);
@@ -1613,7 +1635,7 @@ using Phidgets.Events;
                 LaunchGame();
                 instructionsLabel.Opacity = 0;
 
-                ////// add other opacity controls for other clips?
+               
 
             }
         }
@@ -1754,6 +1776,8 @@ using Phidgets.Events;
                     outWindow.CabFootageVideo.SpeedRatio -= 0.1;
                 }
             }
+
+
 
             double displayMPH = velocity - (Convert.ToDouble(outWindow.CabFootageVideo.Position.TotalSeconds) - 2750) * velocityDec;
             if (displayMPH >= 0)
