@@ -14,7 +14,7 @@
 
         <Image x:Name="selectionScreenBackground" Margin="3,0,-3,-565" Source="SelectionBackground.png" Grid.RowSpan="2"  />
         <Image x:Name="selectATrackText" Margin="-979,39,1312,463" Source="selectATrackText.png" Grid.Row="1"  />
-        <Image x:Name="goldenToFieldText" Margin="1296,41,-962,460" Source="goldenToFieldText.png" Grid.Row="1" />
+        <Image x:Name="selectedTrackText" Margin="1296,41,-962,460" Source="track1Text.png" Grid.Row="1" />
         <Image x:Name="TrailToNelsonText" Margin="1296,41,-962,460" Source="TrailToNelsonText.png" Grid.Row="1" />
 
 
@@ -35,7 +35,7 @@
         <Image x:Name="ottertailLabel" Margin="2224,457,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
         <Image x:Name="fieldLabel" Margin="2460,457,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" Grid.RowSpan="2" />
-        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="-623,154,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect1"/>
+        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="-623,154,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
        
         <Image x:Name="selectionIndicatorBar" Margin="1360,473,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8" Grid.Row="1"/>
 
@@ -44,9 +44,8 @@
 
         <Image x:Name="TrailToNelsonIcon" Margin="-279,227,1279,124" Source="TrailToNelsonIcon.png"  MouseLeave="unhighlightButton" MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
 
-        <MediaElement x:Name="DescriptionScreenFootage1" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\DescriptionScreenFootage1.wmv" Margin="1269,558,-487,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
-        <MediaElement x:Name="DescriptionScreenFootage2" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\DescriptionScreenFootage1.wmv" Margin="1269,558,-487,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
-
+        <MediaElement x:Name="DescriptionScreenFootage"  Margin="1269,558,-487,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
+       
         <MediaElement x:Name="GoldenEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
         <MediaElement x:Name="GlenogleEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
         <MediaElement x:Name="PalliserEx" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
@@ -67,9 +66,8 @@
         <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,428,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
 
         <Grid x:Name="descriptionTextContainer"  HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="514" Margin="699,185,0,0" ClipToBounds="True" Grid.Row="1">
-            <Image x:Name="descriptionText1" Margin="0,276,0,-1030" Source="Scrollable-Text1.png" MouseDown="scrollDescriptionText1"/>
-            <Image x:Name="descriptionText2" Margin="0,276,0,-1030" Source="Scrollable-Text1.png" MouseDown="scrollDescriptionText2"/>
-
+            <Image x:Name="descriptionText" Margin="0,276,0,-1030" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\Scrollable-Text1.png" MouseDown="scrollDescriptionText"/>
+           
 
         </Grid>
         <Label x:Name="continueScreenLabel" Visibility="Hidden" Content="Insert Coin to Continue" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="-14,198,24,48" Width="1262" Height="209"/>

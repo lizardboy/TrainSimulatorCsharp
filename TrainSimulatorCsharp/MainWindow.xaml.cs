@@ -75,9 +75,7 @@ using Phidgets.Events;
         static bool UIbuttonsClickable = false;
         static string selectedSegment = "none";
         static string selectedTrack = "none";
-        static string DescriptionScreenFootageSelected = "DescriptionScreenFootage1";
-
-        
+       
         //Rolling up to Field Vars
         static int iterCounter = 0;
         static double velocityDec = 0;
@@ -406,8 +404,8 @@ using Phidgets.Events;
       
 
 
-            DescriptionScreenFootage2.Play();
-            DescriptionScreenFootage2.Pause();
+            DescriptionScreenFootage.Play();
+            DescriptionScreenFootage.Pause();
 
             AudioPlaybackEngine.Instance.PlaySound(engine0);
              HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
@@ -453,28 +451,48 @@ using Phidgets.Events;
             faderTimer.Start();
         }
         /// 
-////        //Track selection screen....what happens after the first track is selected...removing teh first screen building the second 
+////        //Track selection screen....what happens after the first track is selected...removing the first screen building the second 
 
         private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
-           
-            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage1.wmv");
+            try
+            {
+
+                DescriptionScreenFootage.Source = new Uri(@"C: \Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv");
+
+                descriptionText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text1.png"));
+                selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
+
+            }
+            catch { }
 
             trackSelect(sender,e);
         }
 
         private void selectTrack2(object sender, MouseButtonEventArgs e)
         {
-            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage2.wmv");
-
+            try
+            {
+                DescriptionScreenFootage.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv");
+                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text2.png");
+                selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
+            }
+            catch { }
             trackSelect(sender, e);
         }
 
         private void selectTrack3(object sender, MouseButtonEventArgs e)
         {
-            DescriptionScreenFootage1.Source = new Uri("DescriptionScreenFootage3.wmv");
+            //try { 
+            //DescriptionScreenFootage.Source = new Uri("descriptionScreenFootage3.wmv");
+            //descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text3.png");
+            // selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
+            ///}
+            //catch { }
+
 
             trackSelect(sender, e);
+
         }
 
 
@@ -491,7 +509,7 @@ using Phidgets.Events;
                 /// move out select a track message
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(1146, 0, 0, 0, 400, 1, 0, selectATrackText); }), TimeSpan.FromMilliseconds(0));
                 /// move in scrolling description text for golden to field 
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(1000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
                 /// move out golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
@@ -499,7 +517,7 @@ using Phidgets.Events;
                 /// move in  example video container text divider and golden to field text
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1183, 0, 300, 0, 1, exampleVideoContainer); }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1173, 0, 300, 0, 1, selectedTextDivider); }), TimeSpan.FromMilliseconds(700));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1129, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1129, 0, 200, 1, 0, selectedTrackText); }), TimeSpan.FromMilliseconds(400));
 
                 ///  TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1165, 0, 300, 0, 1, goldenToFieldDescriptionText); }), TimeSpan.FromMilliseconds(900));
                 /// move in back and select labels 
@@ -509,10 +527,10 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1000));
 
                 ///display description footage in box
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
                 /// after half a second play that footGE
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Play(); }), TimeSpan.FromMilliseconds(500));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage1, 1000); }), TimeSpan.FromMilliseconds(1100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
                 ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
                 //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 scrollPix = -260;
@@ -525,33 +543,33 @@ using Phidgets.Events;
         
 
 
-        private void scrollDescriptionText1(object sender, MouseButtonEventArgs e)
+        private void scrollDescriptionText(object sender, MouseButtonEventArgs e)
         {
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
             {
                 if (descriptionPosition == 0)
                 {
-                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText1);
+                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText);
                     descriptionPosition = 1;
                     scrollPix = -520;
                 }
                 else if (descriptionPosition == 1)
                 {
-                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText1);
+                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText);
                     descriptionPosition = 2;
                     scrollPix = -780;
 
                 }
                 else if (descriptionPosition == 2)
                 {
-                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText1);
+                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText);
                     scrollPix = -1040;
                     descriptionPosition = 3;
 
                 }
                 else
                 {
-                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText1);
+                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText);
                     descriptionPosition = 0;
                     scrollPix = -260;
                 }
@@ -561,79 +579,9 @@ using Phidgets.Events;
         }
 
        
-        private void scrollDescriptionText2(object sender, MouseButtonEventArgs e)
-        {
-            if (gameState == "trackDescription" && UIbuttonsClickable == true)
-            {
-                if (descriptionPosition == 0)
-                {
-                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 1;
-                    scrollPix = -520;
-                }
-                else if (descriptionPosition == 1)
-                {
-                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 2;
-                    scrollPix = -780;
+     
 
-                }
-                else if (descriptionPosition == 2)
-                {
-                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText2);
-                    scrollPix = -1040;
-                    descriptionPosition = 3;
-
-                }
-                else
-                {
-                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 0;
-                    scrollPix = -260;
-                }
-
-
-            }
-        }
-
-
-        private void scrollDescriptionText3(object sender, MouseButtonEventArgs e)
-        {
-            if (gameState == "trackDescription" && UIbuttonsClickable == true)
-            {
-                if (descriptionPosition == 0)
-                {
-                    TranslateTheMediaElement(0, -260, 0, -520, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 1;
-                    scrollPix = -520;
-                }
-                else if (descriptionPosition == 1)
-                {
-                    TranslateTheMediaElement(0, -520, 0, -780, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 2;
-                    scrollPix = -780;
-
-                }
-                else if (descriptionPosition == 2)
-                {
-                    TranslateTheMediaElement(0, -780, 0, -1040, 400, 0, 1, descriptionText2);
-                    scrollPix = -1040;
-                    descriptionPosition = 3;
-
-                }
-                else
-                {
-                    TranslateTheMediaElement(0, -1040, 0, -260, 400, 0, 1, descriptionText2);
-                    descriptionPosition = 0;
-                    scrollPix = -260;
-                }
-
-
-            }
-        }
-
-
-        private void backSelect1(object sender, MouseButtonEventArgs e)
+        private void backSelect(object sender, MouseButtonEventArgs e)
         {
             var mySender = sender as Image;
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
@@ -645,7 +593,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(201, 0, 0, 0, 300, 1, 0, backLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(900));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(400));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, selectedTrackText); }), TimeSpan.FromMilliseconds(400));
                 ////add the other screeens stuff 
                 
                 
@@ -656,15 +604,15 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(0));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
 
                 gameState = "trackSelection";
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
 
-                FadeTheMediaElement(1, 0, DescriptionScreenFootage2, 200);
-                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage2.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
+                FadeTheMediaElement(1, 0, DescriptionScreenFootage, 200);
+                TimedAction.ExecuteWithDelay(new Action(delegate { DescriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
 
             }
             else if (gameState == "startLocationSelection" && UIbuttonsClickable == true)
@@ -719,7 +667,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { toggleLocationSelectionButtons(Visibility.Hidden); }), TimeSpan.FromMilliseconds(200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(startLocation, 0, -1600, 0, 200, 1, 0, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1297, 0, 0, 0, 500, 1, 0, selectStartPoint); }), TimeSpan.FromMilliseconds(800));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-2500, 0, -1183, 0, 500, 0, 1, goldenToFieldText); }), TimeSpan.FromMilliseconds(1300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-2500, 0, -1183, 0, 500, 0, 1, selectedTrackText); }), TimeSpan.FromMilliseconds(1300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, goldenLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, glenogleLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, palliserLabel); }), TimeSpan.FromMilliseconds(300));
@@ -727,8 +675,8 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, ottertailLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, fieldLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2000));
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage2, 1000); }), TimeSpan.FromMilliseconds(1700));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(1500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, DescriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1700));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Visible; }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(0));//
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(300));
@@ -769,7 +717,7 @@ using Phidgets.Events;
             {
                 UIbuttonsClickable = false;
                 selectLabel.Opacity = 1;
-                FadeTheMediaElement(1, 0, DescriptionScreenFootage2, 200);
+                FadeTheMediaElement(1, 0, DescriptionScreenFootage, 200);
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, -909, -46, 300, 0.5, 0.5, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
@@ -779,7 +727,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { toggleLocationSelectionButtons(Visibility.Visible); }), TimeSpan.FromMilliseconds(1300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1600, 0, -1296, 0, 500, 0, 1, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1297, 0, 500, 0, 1, selectStartPoint); }), TimeSpan.FromMilliseconds(700));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, -2500, 0, 500, 1, 0, goldenToFieldText); }), TimeSpan.FromMilliseconds(200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, -2500, 0, 500, 1, 0, selectedTrackText); }), TimeSpan.FromMilliseconds(200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, goldenLabel); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, glenogleLabel); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, palliserLabel); }), TimeSpan.FromMilliseconds(1200));
@@ -788,7 +736,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, fieldLabel); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, goldenLabel); }), TimeSpan.FromMilliseconds(1800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2800));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText1); }), TimeSpan.FromMilliseconds(0));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
                 scrollPix = -260;
@@ -897,7 +845,7 @@ using Phidgets.Events;
                     PalliserEx.Pause();
                     LeanchoilEx.Pause();
                     OttertailEx.Pause();
-                    DescriptionScreenFootage2.Pause();
+                    DescriptionScreenFootage.Pause();
 
                     GlenogleEx.Margin = new Thickness(1269, 1013, -489, -273);
                     PalliserEx.Margin = new Thickness(1269, 1013, -489, -273);
@@ -912,7 +860,7 @@ using Phidgets.Events;
 
                 }), TimeSpan.FromMilliseconds(300));
 
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, -564, 0, 400, 1200, 1, 0, selectionScreenBackground); DescriptionScreenFootage2.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1700));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, -564, 0, 400, 1200, 1, 0, selectionScreenBackground); DescriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { selectionScreenBackground.Visibility = Visibility.Hidden; toggleExampleVideoVisibility(Visibility.Hidden); }), TimeSpan.FromMilliseconds(3000));
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0,false); }), TimeSpan.FromMilliseconds(4000));
@@ -1033,7 +981,7 @@ using Phidgets.Events;
             PalliserEx.Visibility = myVis;
             LeanchoilEx.Visibility = myVis;
             OttertailEx.Visibility = myVis;
-            DescriptionScreenFootage2.Visibility = myVis;
+            DescriptionScreenFootage.Visibility = myVis;
         }
 
         private void highlightButton(object sender, MouseButtonEventArgs e)

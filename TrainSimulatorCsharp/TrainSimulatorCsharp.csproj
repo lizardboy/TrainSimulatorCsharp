@@ -294,6 +294,11 @@
   <ItemGroup>
     <Resource Include="Scrollable-Text1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="descriptionScreenFootage1.wmv" />
+    <Content Include="descriptionScreenFootage2.wmv" />
+    <Content Include="descriptionScreenFootage3.wmv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
