@@ -1682,7 +1682,9 @@ using Phidgets.Events;
             }
 
             
-
+            ///  play engine start up
+            /// reset segment selection
+            
             selectedSegment = "";
             AudioPlaybackEngine.Instance.PlaySound(engineStartup);
 

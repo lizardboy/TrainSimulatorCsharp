@@ -188,9 +188,6 @@
     <Resource Include="selectATrackText.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="goldenToFieldText.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="selectionTextDivider.png" />
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +295,9 @@
     <Content Include="descriptionScreenFootage1.wmv" />
     <Content Include="descriptionScreenFootage2.wmv" />
     <Content Include="descriptionScreenFootage3.wmv" />
+    <Resource Include="track3Text.png" />
+    <Resource Include="track2Text.png" />
+    <Resource Include="track1Text.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
