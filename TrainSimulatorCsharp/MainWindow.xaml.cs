@@ -633,10 +633,8 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 1146, 0, 600, 0, 1, selectATrackText); }), TimeSpan.FromMilliseconds(900));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1129, 0, 0, 0, 200, 1, 0, selectedTrackText); }), TimeSpan.FromMilliseconds(400));
                 ////add the other screeens stuff 
-                
-                
-                
-                // display first icon golden to field
+                               
+                 // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
                 //display second icon trail to nelson
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
@@ -715,6 +713,8 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, descriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1500));
+
+                ///////////////////////////////
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Visible; }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(0));//
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(300));
@@ -755,8 +755,11 @@ using Phidgets.Events;
             {
                 UIbuttonsClickable = false;
                 selectLabel.Opacity = 1;
+                /// fade away description screen footage
                 FadeTheMediaElement(1, 0, descriptionScreenFootage, 200);
+                ///remove select label
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 1, 0, selectLabel); }), TimeSpan.FromMilliseconds(0));
+                ///move out start label
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, -909, -46, 300, 0.5, 0.5, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
@@ -785,7 +788,7 @@ using Phidgets.Events;
 
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
-                   // GoldenEx.Opacity = 0.1;
+                    GoldenEx.Opacity = 0.1;
                     GoldenEx.Play();
                     GlenogleEx.Play();
                     PalliserEx.Play();
@@ -1026,8 +1029,8 @@ using Phidgets.Events;
         {
             if (UIbuttonsClickable == true)
             {
-                var mySender = sender as Image;
-                mySender.Opacity = 0.5;
+               /// var mySender = sender as Image;
+               /// mySender.Opacity = 0.5;
             }
         }
 
@@ -1036,9 +1039,9 @@ using Phidgets.Events;
             if (UIbuttonsClickable == true)
             {
 
-                var mySender = sender as Image;
+             ///   var mySender = sender as Image;
 
-                mySender.Opacity = 1;
+              ///  mySender.Opacity = 1;
             }
         }
 
