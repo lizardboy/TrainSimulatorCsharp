@@ -256,19 +256,10 @@
     <Resource Include="LocomotiveBrake %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Throttle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Throttle %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="START.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TrailToNelsonIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Throttle_everything.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Throttle_UP_label.png" />

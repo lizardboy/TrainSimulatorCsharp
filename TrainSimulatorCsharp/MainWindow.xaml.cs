@@ -615,10 +615,11 @@ using Phidgets.Events;
             }
         }
 
-       
-     
 
-        private void backSelect(object sender, MouseButtonEventArgs e)
+
+    
+
+    private void backSelect(object sender, MouseButtonEventArgs e)
         {
             var mySender = sender as Image;
             if (gameState == "trackDescription" && UIbuttonsClickable == true)
@@ -784,7 +785,7 @@ using Phidgets.Events;
 
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
-                    GoldenEx.Opacity = 0.1;
+                   // GoldenEx.Opacity = 0.1;
                     GoldenEx.Play();
                     GlenogleEx.Play();
                     PalliserEx.Play();
