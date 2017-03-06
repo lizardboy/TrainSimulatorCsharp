@@ -481,7 +481,7 @@ using Phidgets.Events;
            
 
              Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\descriptionScreenFootage1.wmv", UriKind.Absolute);
-           // descriptionScreenFootage.Source=  myUri1; 
+            descriptionScreenFootage.Source=  myUri1; 
             System.Diagnostics.Debug.WriteLine(myUri1);
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
@@ -507,7 +507,7 @@ using Phidgets.Events;
                
 
             Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
-          ///  descriptionScreenFootage.Source = myUri2;
+            descriptionScreenFootage.Source = myUri2;
            
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
@@ -641,7 +641,7 @@ using Phidgets.Events;
                  // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
                 //display second icon trail to nelson
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));

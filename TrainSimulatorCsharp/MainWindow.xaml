@@ -17,7 +17,7 @@
 
         <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,126,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0" Grid.Row="3"/>
 
-        <Image x:Name="locationSelectionBar" Margin="1296,438,-1304,0" Source="locationSelectionBar.png" Grid.Row="1"  />
+        <Image x:Name="locationSelectionBar" Margin="1296,893,-1304,0" Source="locationSelectionBar.png" Grid.Row="1"  />
         <Image x:Name="selectStartPoint" Margin="1350,498,-1244,465" Source="selectStartPointLabel.png" Grid.Row="1" Grid.RowSpan="2"  />
         <Rectangle x:Name="selectGolden" HorizontalAlignment="Left" Height="123" Margin="52,893,1118,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1"/>
         <Rectangle x:Name="selectGlenogle" HorizontalAlignment="Left" Height="123" Margin="268,893,962,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
