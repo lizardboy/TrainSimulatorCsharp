@@ -521,16 +521,20 @@ using Phidgets.Events;
 
         private void selectTrack3(object sender, MouseButtonEventArgs e)
         {
-            //try { 
-            //descriptionScreenFootage.Source = new Uri("descriptionScreenFootage3.wmv");
-            //descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text3.png");
-            // selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
-            ///}
-            //catch { }
 
 
+
+            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
+            descriptionScreenFootage.Source = myUri2;
+
+
+            selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
+            try
+            {
+                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text3.png");
+            }
+            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text3" }
             trackSelect(sender, e);
-
         }
 
 
