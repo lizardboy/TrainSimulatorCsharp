@@ -515,7 +515,7 @@ using Phidgets.Events;
             {
                 descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text2.png");
             }
-            catch { }
+            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text2" }
             trackSelect(sender, e);
         }
 
