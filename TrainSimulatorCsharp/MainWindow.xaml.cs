@@ -515,7 +515,7 @@ using Phidgets.Events;
             {
                 descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text2.png");
             }
-            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text2" }
+            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text2"); }
             trackSelect(sender, e);
         }
 
@@ -524,8 +524,8 @@ using Phidgets.Events;
 
 
 
-            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
-            descriptionScreenFootage.Source = myUri2;
+            Uri myUri3 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
+            descriptionScreenFootage.Source = myUri3;
 
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
@@ -533,7 +533,7 @@ using Phidgets.Events;
             {
                 descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text3.png");
             }
-            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text3" }
+            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text3"); }
             trackSelect(sender, e);
         }
 
@@ -554,7 +554,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
                 /// move out golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(775, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
 
                 /// move in  example video container text divider and golden to field text
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1183, 0, 300, 0, 1, exampleVideoContainer); }), TimeSpan.FromMilliseconds(500));
@@ -645,7 +645,7 @@ using Phidgets.Events;
                  // display first icon golden to field
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1100));
                 //display second icon trail to nelson
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 200, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 200, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, 0, 0, 300, 1, 0, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
