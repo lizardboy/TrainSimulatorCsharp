@@ -65,7 +65,7 @@ using Phidgets.Events;
         DispatcherTimer gameTimer = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer screenSaver = new System.Windows.Threading.DispatcherTimer();
         DispatcherTimer faderTimer = new System.Windows.Threading.DispatcherTimer();
-       /// DispatcherTimer lightFlasher = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer lightFlasher = new System.Windows.Threading.DispatcherTimer();
         
 
         static string currentImage = "none";
@@ -370,6 +370,7 @@ using Phidgets.Events;
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
             
             this.Focus();
+            ////StartupLeverPositions();
 
             my16_16_0.outputs[6] = true;
             my16_16_0.outputs[7] = true;
@@ -477,21 +478,21 @@ using Phidgets.Events;
 
         private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
+           
 
-
-             Uri myUri = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1", UriKind.Absolute);
-             descriptionScreenFootage.Source = myUri;
-
-
+             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\descriptionScreenFootage1.wmv", UriKind.Absolute);
+           // descriptionScreenFootage.Source=  myUri1; 
+            System.Diagnostics.Debug.WriteLine(myUri1);
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
             try
             {
                 descriptionText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text1.png"));
             }
-            catch { }
+            catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text");
+            }
 
-
+            ///descriptionTest.Play();
 
 
             trackSelect(sender,e);
@@ -505,9 +506,9 @@ using Phidgets.Events;
            
                
 
-            Uri myUri = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\", UriKind.Absolute);
-            descriptionScreenFootage.Source = myUri;
-
+            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
+          ///  descriptionScreenFootage.Source = myUri2;
+           
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
             try
@@ -566,7 +567,10 @@ using Phidgets.Events;
                 ///display description footage in box
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionScreenFootage.Margin = new Thickness(114, 645, 406, 97); }), TimeSpan.FromMilliseconds(800));
                 /// after half a second play that footGE
-                TimedAction.ExecuteWithDelay(new Action(delegate { descriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(500));
+                System.Diagnostics.Debug.WriteLine("descriptionScreenFootage Play");
+               
+
+                TimedAction.ExecuteWithDelay(new Action(delegate { descriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, descriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
                 ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
                 //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
@@ -873,7 +877,7 @@ using Phidgets.Events;
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, ottertailLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, fieldLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(3000));
-
+                
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(201, 0, 0, 0, 300, 0, 1, backLabel); }), TimeSpan.FromMilliseconds(300));
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-211, 0, 0, 0, 300, 0, 1, startLabel); }), TimeSpan.FromMilliseconds(300));//
@@ -886,7 +890,7 @@ using Phidgets.Events;
                     PalliserEx.Pause();
                     LeanchoilEx.Pause();
                     OttertailEx.Pause();
-                    descriptionScreenFootage.Pause();
+                   descriptionScreenFootage.Pause();
 
                     GlenogleEx.Margin = new Thickness(1269, 1013, -489, -273);
                     PalliserEx.Margin = new Thickness(1269, 1013, -489, -273);
@@ -1002,6 +1006,7 @@ using Phidgets.Events;
 
         private void toggleLocationSelectionButtons(Visibility myVis)
         {
+           //// myVis = Visibility.Visible;
             selectGolden.Visibility = myVis;
             selectGlenogle.Visibility = myVis;
             selectPalliser.Visibility = myVis;
@@ -1017,6 +1022,7 @@ using Phidgets.Events;
 
         private void toggleExampleVideoVisibility(Visibility myVis)
         {
+          ///  myVis = Visibility.Visible ;
             GoldenEx.Visibility = myVis;
             GlenogleEx.Visibility = myVis;
             PalliserEx.Visibility = myVis;
@@ -1029,8 +1035,8 @@ using Phidgets.Events;
         {
             if (UIbuttonsClickable == true)
             {
-               /// var mySender = sender as Image;
-               /// mySender.Opacity = 0.5;
+               var mySender = sender as Image;
+                mySender.Opacity = 0.5;
             }
         }
 
@@ -1039,9 +1045,9 @@ using Phidgets.Events;
             if (UIbuttonsClickable == true)
             {
 
-             ///   var mySender = sender as Image;
+                var mySender = sender as Image;
 
-              ///  mySender.Opacity = 1;
+               mySender.Opacity = 1;
             }
         }
 

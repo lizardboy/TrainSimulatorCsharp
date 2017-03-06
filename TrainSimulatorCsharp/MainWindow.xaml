@@ -5,74 +5,78 @@
         Title="MainWindow" Height="1024" Width="1280" WindowStyle="None" Loaded="Window_Loaded"
         WindowStartupLocation="Manual" Top="10" Left="1930">
 
-    <Grid x:Name="splash" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="455*"/>
-            <RowDefinition Height="561*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="splash" Background="Black">
 
 
-        <Image x:Name="selectionScreenBackground" Margin="3,0,-3,-565" Source="SelectionBackground.png" Grid.RowSpan="2"  />
-        <Image x:Name="selectATrackText" Margin="-979,39,1312,463" Source="selectATrackText.png" Grid.Row="1"  />
-        <Image x:Name="selectedTrackText" Margin="1296,41,-962,460" Source="track1Text.png" Grid.Row="1" />
-        <Image x:Name="TrailToNelsonText" Margin="1296,41,-962,460" Source="TrailToNelsonText.png" Grid.Row="1" />
+
+        <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
+        <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png" Grid.Row="1" />
+        <Image x:Name="selectedTrackText" Margin="1296,496,-962,460" Source="track1Text.png" Grid.Row="1"  />
+        <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" Grid.Row="1" />
 
 
-        <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,186,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0" Grid.Row="1"/>
+        <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,126,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0" Grid.Row="3"/>
 
         <Image x:Name="locationSelectionBar" Margin="1296,438,-1304,0" Source="locationSelectionBar.png" Grid.Row="1"  />
-        <Image x:Name="selectStartPoint" Margin="1350,43,-1244,465" Source="selectStartPointLabel.png" Grid.Row="1"  />
-        <Rectangle x:Name="selectGolden" HorizontalAlignment="Left" Height="123" Margin="52,438,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
-        <Rectangle x:Name="selectGlenogle" HorizontalAlignment="Left" Height="123" Margin="268,438,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
-        <Rectangle x:Name="selectPalliser" HorizontalAlignment="Left" Height="123" Margin="485,438,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
-        <Rectangle x:Name="selectLeanchoil" HorizontalAlignment="Left" Height="123" Margin="703,438,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
-        <Rectangle x:Name="selectOttertail" HorizontalAlignment="Left" Height="123" Margin="920,438,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Image x:Name="selectStartPoint" Margin="1350,498,-1244,465" Source="selectStartPointLabel.png" Grid.Row="1" Grid.RowSpan="2"  />
+        <Rectangle x:Name="selectGolden" HorizontalAlignment="Left" Height="123" Margin="52,893,1118,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="selectGlenogle" HorizontalAlignment="Left" Height="123" Margin="268,893,962,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectPalliser" HorizontalAlignment="Left" Height="123" Margin="485,893,684,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectLeanchoil" HorizontalAlignment="Left" Height="123" Margin="703,893,467,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectOttertail" HorizontalAlignment="Left" Height="123" Margin="920,893,250,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+       
+        <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
+        <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
+
         <Image x:Name="goldenLabel" Margin="1363,458,-163,86" Source="goldenLabel.png" Grid.Row="1" />
-        <Image x:Name="glenogleLabel" Margin="1571,458,-389,81" Source="glenogleLabel.png" Grid.Row="1" />
-        <Image x:Name="palliserLabel" Margin="1795,457,-598,86" Source="PalliserLabel.png" Grid.Row="1" />
-        <Image x:Name="leanchoilLabel" Margin="2002,457,-826,86" Source="leanchoilLabel.png" Grid.Row="1" />
-        <Image x:Name="ottertailLabel" Margin="2224,457,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
-        <Image x:Name="fieldLabel" Margin="2460,457,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
-        <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
+        <Image x:Name="glenogleLabel" Margin="1571,913,-389,81" Source="glenogleLabel.png" Grid.Row="1" />
+        <Image x:Name="palliserLabel" Margin="1795,912,-598,86" Source="PalliserLabel.png" Grid.Row="1" />
+        <Image x:Name="leanchoilLabel" Margin="2002,912,-826,86" Source="leanchoilLabel.png" Grid.Row="1" />
+        <Image x:Name="ottertailLabel" Margin="2224,912,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
+        <Image x:Name="fieldLabel" Margin="2460,912,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
+        <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
         <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
 
-        <Image x:Name="selectionIndicatorBar" Margin="1360,473,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8" Grid.Row="1"/>
+        <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8" Grid.Row="3"/>
 
-        <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,186,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
-        <Image x:Name="goldenToFieldIcon" Margin="-279,227,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1"/>
+        <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
+        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1"/>
 
-        <Image x:Name="TrailToNelsonIcon" Margin="-279,227,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
+        <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
+        <!--<MediaElement x:Name="descriptionScreenFootage"   Margin="1269,1013,-489,-273" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" Source="c:\users\dar\desktop\descriptionScreenFootage1.wmv"/>-->
+        <MediaElement x:Name="descriptionScreenFootage" Source="C:\Users/dar/desktop/descriptionScreenFootage1.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+
+
+        <MediaElement x:Name="GoldenEx" Source="GoldenEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
        
-        
-    <MediaElement x:Name="GoldenEx" Source="GoldenEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
-    <MediaElement x:Name="descriptionScreenFootage"  Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <MediaElement x:Name="GlenogleEx" Source="GlenogleEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
-        <MediaElement x:Name="PalliserEx" Source="PalliserEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
-        <MediaElement x:Name="LeanchoilEx" Source="LeanchoilEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
-        <MediaElement x:Name="OttertailEx" Source="OttertailEx.wmv" Margin="1269,558,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
 
-        <Rectangle x:Name="goldenCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="86,481,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="33" Opacity="0" Panel.ZIndex="3" Grid.Row="1"/>
-        <Rectangle x:Name="glenogleCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="306,480,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
-        <Rectangle x:Name="palliserCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="522,481,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
-        <Rectangle x:Name="leanchoilCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="738,481,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
-        <Rectangle x:Name="ottertailCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="955,481,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <MediaElement x:Name="GlenogleEx" Source="GlenogleEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
+        <MediaElement x:Name="PalliserEx" Source="PalliserEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
+        <MediaElement x:Name="LeanchoilEx" Source="LeanchoilEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
+        <MediaElement x:Name="OttertailEx" Source="OttertailEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
+
+        <Rectangle x:Name="goldenCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="86,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="33" Opacity="0" Panel.ZIndex="3" Grid.Row="1"/>
+        <Rectangle x:Name="glenogleCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="306,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="palliserCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="522,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="leanchoilCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="738,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="ottertailCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="955,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
 
 
         <Rectangle Fill="#FF83A0A9" HorizontalAlignment="Left" Height="1016" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="-1" Margin="0,0,-8,0" Grid.RowSpan="2"/>
 
-        <Image x:Name="TrainSimulatorLogo" Margin="290,97,292,2" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3" Grid.Row="1"/>
-        <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A" HorizontalAlignment="Left" Height="133" Margin="0,428,-8,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden" Grid.Row="1"/>
-        <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,428,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
+        <Image x:Name="TrainSimulatorLogo" Margin="290,552,292,2" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3" Grid.Row="1"/>
+        <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A" HorizontalAlignment="Left" Height="133" Margin="0,863,-8,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden" Grid.Row="1"/>
+        <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,863,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
 
-        <Grid x:Name="descriptionTextContainer"  HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="514" Margin="699,185,0,0" ClipToBounds="True" Grid.Row="1">
+        <Grid x:Name="descriptionTextContainer"  HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="514" Margin="699,640,-656,0" ClipToBounds="True" Grid.Row="3">
             <Image x:Name="descriptionText" Margin="0,276,0,-1030" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\Scrollable-Text1.png" MouseDown="scrollDescriptionText"/>
 
 
         </Grid>
-        <Label x:Name="continueScreenLabel" Visibility="Hidden" Content="Insert Coin to Continue" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="-14,198,24,48" Width="1262" Height="209"/>
-        <Label x:Name="continueCountdownLabel" Visibility="Hidden" Content="12" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="3,380,-11,542" RenderTransformOrigin="-2.411,-0.78" Width="1280" Height="94" Grid.RowSpan="2"/>
-        <Image x:Name="thankyouScreen" Margin="-4,104,-4,-567" Source="ThankyouScreen.png" Visibility="Hidden" Grid.Row="1"/>
+        <Label x:Name="continueScreenLabel" Visibility="Hidden" Content="Insert Coin to Continue" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="-415,204,0,0" Width="1262" Height="209"/>
+        <Label x:Name="continueCountdownLabel" Visibility="Hidden" Content="12" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="581,325,-0,0" RenderTransformOrigin="-2.411,-0.78" Width="1280" Height="94" Grid.RowSpan="2"/>
+        <Image x:Name="thankyouScreen" Margin="-4,559,-4,-567" Source="ThankyouScreen.png" Visibility="Hidden" Grid.Row="1"/>
         <Image x:Name="indIstructions" Margin="1350,384,-942,153" Source="LocomotiveBrake (1).png" Grid.RowSpan="2"/>
         <Image x:Name="brakeInstructions" Margin="1363,154,-967,0" Source="MainBrake (2).png" Grid.RowSpan="2" />
         <Label x:Name="instructionsLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="10,10,10,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
@@ -88,6 +92,7 @@
         <Label x:Name="selectLabel" Content="SELECT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-202,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
         <Label  x:Name="backLabel" Content="BACK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-160,369,0,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
 
+        <!--<MediaElement x:Name="descriptionScreenFootage" HorizontalAlignment="Left" Height="449" Margin="52,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="591" Source="c:\\users\dar\desktop\descriptionScreenFootage1.wmv" ScrubbingEnabled="True" Stretch="UniformToFill" LoadedBehavior="Manual" Grid.RowSpan="3"/>-->
 
 
 
