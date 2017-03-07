@@ -15,7 +15,7 @@
         <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" Grid.Row="1" />
 
 
-        <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,126,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0" Grid.Row="3"/>
+        <Rectangle x:Name="selectedTextDivider" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="288" Margin="1816,641,-546,0" Stroke="Black" VerticalAlignment="Top" Width="2" StrokeThickness="0" />
 
         <Image x:Name="locationSelectionBar" Margin="1296,893,-1304,0" Source="locationSelectionBar.png" Grid.Row="1"  />
         <Image x:Name="selectStartPoint" Margin="1350,498,-1244,465" Source="selectStartPointLabel.png" Grid.Row="1" Grid.RowSpan="2"  />
@@ -35,16 +35,16 @@
         <Image x:Name="ottertailLabel" Margin="2224,912,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
         <Image x:Name="fieldLabel" Margin="2460,912,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
-        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="141" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
+        <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="152" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
 
-        <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8" Grid.Row="3"/>
+        <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8"/>
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
         <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1"/>
 
         <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
-        <!--<MediaElement x:Name="descriptionScreenFootage"   Margin="1269,1013,-489,-273" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top" Source="c:\users\dar\desktop\descriptionScreenFootage1.wmv"/>-->
-        <MediaElement x:Name="descriptionScreenFootage" Source="C:\Users/dar/desktop/descriptionScreenFootage1.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+       
+        <MediaElement x:Name="descriptionScreenFootage"  Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
 
 
@@ -87,14 +87,12 @@
         <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_APPLY_label.png" Grid.RowSpan="2" />
         <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="dynamic_brake_RELEASE_label.png" Grid.RowSpan="2" />
         <Image x:Name="reverserinstructions" Margin="1467,191,-882,8" Source="reverser_label.png" Grid.RowSpan="2" />
-        <Image   Margin="1318,382,-190,48" Source="START.png" Stretch="Fill"/>
+        
         <Label x:Name="startLabel" Content="START" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-186,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="147" FontFamily="nevis" d:IsHidden="True"/>
         <Label x:Name="selectLabel" Content="SELECT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-202,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
         <Label  x:Name="backLabel" Content="BACK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-160,369,0,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
 
-        <!--<MediaElement x:Name="descriptionScreenFootage" HorizontalAlignment="Left" Height="449" Margin="52,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="591" Source="c:\\users\dar\desktop\descriptionScreenFootage1.wmv" ScrubbingEnabled="True" Stretch="UniformToFill" LoadedBehavior="Manual" Grid.RowSpan="3"/>-->
-
-
+        
 
 
 

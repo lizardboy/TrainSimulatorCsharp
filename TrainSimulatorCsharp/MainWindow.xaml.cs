@@ -480,14 +480,14 @@ using Phidgets.Events;
         {
            
 
-             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\descriptionScreenFootage1.wmv", UriKind.Absolute);
+             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source=  myUri1; 
             System.Diagnostics.Debug.WriteLine(myUri1);
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
             try
             {
-                descriptionText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text1.png"));
+                descriptionText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText1.png"));
             }
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text");
             }
@@ -506,14 +506,14 @@ using Phidgets.Events;
            
                
 
-            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
+            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage2.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri2;
-           
+            System.Diagnostics.Debug.WriteLine(myUri2);
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
             try
             {
-                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text2.png");
+                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText2.png");
             }
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text2"); }
             trackSelect(sender, e);
@@ -531,7 +531,7 @@ using Phidgets.Events;
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
             try
             {
-                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("Scrollable - Text3.png");
+                descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText3.png");
             }
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text3"); }
             trackSelect(sender, e);

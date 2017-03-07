@@ -280,11 +280,6 @@
     <Resource Include="dynamic_brake_RELEASE_label.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Scrollable-Text1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Scrollable-Text2.png" />
-    <Resource Include="Scrollable-Text3.png" />
     <Resource Include="track3Text.png" />
     <Resource Include="track2Text.png" />
     <Resource Include="track1Text.png" />
