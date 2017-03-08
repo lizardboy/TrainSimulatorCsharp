@@ -70,7 +70,7 @@
         <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,863,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
 
         <Grid x:Name="descriptionTextContainer"  HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="514" Margin="699,640,-656,0" ClipToBounds="True" Grid.Row="3">
-            <Image x:Name="descriptionText" Margin="0,276,0,-1030" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\Scrollable-Text1.png" MouseDown="scrollDescriptionText"/>
+            <Image x:Name="descriptionText" Margin="0,276,0,-1030"  MouseDown="scrollDescriptionText"/>
 
 
         </Grid>

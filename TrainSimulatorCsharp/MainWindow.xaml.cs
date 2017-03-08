@@ -23,11 +23,11 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using Phidgets;
 using Phidgets.Events;
- 
+///#include math.h
 
-    
-    
-    namespace TrainSimulatorCsharp
+
+
+namespace TrainSimulatorCsharp
 {
     public partial class MainWindow : Window
     {
@@ -147,10 +147,21 @@ using Phidgets.Events;
 
         static double throttle_calibration_value = throttle_position_1 - throttle_deadzone;  // store what the one position on the throttle is during preflight
 
-        /// velsocity variables
+        /// velsocity and dynamic variables
         static double velocity = 8;                    // initial velocity
         static double MaxVelocity = 65;                // set maximum train velocity (MPH)
         static double MinVelocity = 7;                 // Set Minimum Train Velocity (MPH)
+        static double trainDrag;
+        static double trainWeight = 400000;
+        static double trainBrakeForce;
+        static double trainTractiveEffort;
+        static double velocityMs;
+        static double sinGradient;
+        static double gradient;
+        static double gradeDeg;
+        static double trainAcceleration;
+        static double maxTractiveEffort;
+        static double maxBrakeForce;
 
         // Dynamic Brake variables
         static double dynamic_deadzone = 35;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
@@ -1980,9 +1991,44 @@ using Phidgets.Events;
 
         private void calculateVelocity()
         {
-          
-            
-        /////////////////get indbrakestate returns a zero look at that
+           gradient = getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds));  ///get grade multiply out % to get grade in dec
+            gradeDeg = Math.Atan (gradient / 100);    ///do inverse tan to get grade in degrees
+            sinGradient = Math.Sin (gradeDeg);        /// do sin of gradient 
+            velocityMs = velocity / 2.237;
+           
+            ///Drag on train friction wind bearing drag etc
+            trainDrag = 2000 + (20 * velocity) + (3.5 * (velocity * velocity));
+            //// maximum braking force avaliable based on avaliable traction 
+            maxBrakeForce  = (0.09 * trainWeight);          ///  Add some factor for sand being used
+            /// maximum effort from the motors at a given speed hence maximum amps so set max motor amps to this 
+            if (velocityMs > 0 && velocityMs < 4.2)
+            { maxTractiveEffort = 50000;
+            }
+            else if (velocityMs > 4.2 && velocityMs < 24.9)
+            { maxTractiveEffort = 56100 - (1440 * velocityMs);
+            }
+            else if (velocityMs >24.9 && velocityMs < 45)
+            { maxTractiveEffort = 33300 - (525 * velocityMs);
+            }
+
+            trainTractiveEffort = ((maxTractiveEffort / 8) * throttlePosition);            ///calculate train max traction.... =(trainWeight * 0.11) or if sanding = (trainWeight*.16)  not to excede max tractive effort
+          /// trainBrakeForce = ((maxBrakeForce/(brake resivour psi - brake line psi) if its 20 or > then full service brakes  ))
+            ///
+            /// avaliable accel/decel force =  ((trainTractiveEffort - trainDrag) - (trainWeight * sinGradient)) - 
+            /// max calculated speed  = (trainTractiveEffort - trainDrag) / (trainWeight * sinGradient) = 0 ////...no acceleration
+            /// 
+
+
+            trainAcceleration = (trainTractiveEffort - trainDrag) / trainWeight;   //max posible acceleration at full amps 
+
+            ///
+            ///
+
+
+
+
+
+            /////////////////get indbrakestate() returns a zero look at that
             
             //Throttle, Brake, Independant brake, Dynamic Brake, Grade, Friction, Current Speed, Max speed
             velocity = velocity + (MaxVelocity-velocity)/(MaxVelocity)*(0.09 * (throttlePosition - 1) - (( 0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds)) + (0.07))));
@@ -2957,6 +3003,9 @@ using Phidgets.Events;
                if (e.Index == 14)
                {
                    engineRunSwitch = e.Value;
+
+                ///   if (engineRunSwitch= true) { playsound.engineStart};
+
                    outWindow.engineRunButtonStateLabel.Content = "Engine Run State: " + Convert.ToString(engineRunSwitch);
                }
            }));
