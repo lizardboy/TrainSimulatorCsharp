@@ -2062,15 +2062,16 @@ namespace TrainSimulatorCsharp
                         instructionState = "mainBrake";
                         iter2 = 1;
                     }
-                    if (getMainBrakeState() == 0 && getIndependantBrakeState() != 0) ;
-                    { instructionsSupLabel.Content = "Release locomotive Brake";
+                    if (getMainBrakeState() == 0 && getIndependantBrakeState() != 0)
+                    {
+                        instructionsSupLabel.Content = "Release locomotive Brake";
                         FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
                         /// put out indbrake 
                         TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
                         instructionState = "indBrake";
                         iter2 = 1;
                     }
-                    if (getMainBrakeState() == 0 && getIndependantBrakeState() == 0 && dynamicPosition != Dynamic_Off_Position) ;
+                    if (getMainBrakeState() == 0 && getIndependantBrakeState() == 0 && dynamicPosition != Dynamic_Off_Position)
                     {
                         instructionsSupLabel.Content = "Reduce Dynamic Brake";
                         FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
@@ -2095,17 +2096,17 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
 
                     /// remove instruction graphics
-                    if (instructionState == "mainBrake") ;
+                    if (instructionState == "mainBrake")
                     {
                         ///remove mainBrake instructions
                         TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, brakeInstructions);
                     }
-                    if (instructionState == "indBrake") ;
+                    if (instructionState == "indBrake")
                     {
                         /// remove indBrake Instructions
                         TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indIstructions);
                     }
-                    if (instructionState == "dynBrake") ;
+                    if (instructionState == "dynBrake")
                     {  ///remove DynBrake instructions
                         TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
 
@@ -3464,7 +3465,7 @@ namespace TrainSimulatorCsharp
         private void emergencyBrakeMessage()
         {
 
-             if (ebrakeState = true )
+             if (ebrakeState == true )
             {
 
                 if (iter1 == 1)
