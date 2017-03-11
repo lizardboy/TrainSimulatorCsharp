@@ -156,8 +156,8 @@ namespace TrainSimulatorCsharp
         static double MaxVelocity = 65;                // set maximum train velocity (MPH)
         static double MinVelocity = 1;                 // Set Minimum Train Velocity (MPH)
         static double trainDrag;
-        static double locomotiveWeight = 390000;
-        static double carWeight = 200000;
+        static double locomotiveWeight = 400000;
+        static double carWeight = 190000;
         static double trainBrakeForce;
         static double trainTractiveEffort;
         static double velocityMs;
@@ -167,9 +167,9 @@ namespace TrainSimulatorCsharp
         static double trainAcceleration;
         static double maxTractiveEffort;
         static double maxBrakeForce;
-        static double tractionFactor = 0.11;
-        static double tractionFactorSsand = 0.14;
-        static double tractionFactorDsand = 0.17;
+        static double tractionFactor = 0.12;
+        static double tractionFactorSsand = 0.15;
+        static double tractionFactorDsand = 0.18;
         static string mainBrakeState;
         static double mainBrakeEffort;
         static double trainBrakeEffort;
@@ -2131,15 +2131,15 @@ namespace TrainSimulatorCsharp
             /// maximum effort from the motors at a given speed hence maximum amps so set max motor amps to this 
             if (velocityMs > 0 && velocityMs < 4.2)
             {
-                maxTractiveEffort = 50000;
+                maxTractiveEffort = 52000;
             }
             else if (velocityMs > 4.2 && velocityMs < 24.9)
             {
-                maxTractiveEffort = 56100 - (1440 * velocityMs);
+                maxTractiveEffort = 58100 - (1440 * velocityMs);
             }
             else if (velocityMs > 24.9 && velocityMs < 45)
             {
-                maxTractiveEffort = 33300 - (525 * velocityMs);
+                maxTractiveEffort = 35300 - (525 * velocityMs);
             }
 
             trainTractiveEffort = ((maxTractiveEffort / 7) * throttlePosition-1);
@@ -2227,7 +2227,7 @@ namespace TrainSimulatorCsharp
             { trainTractiveEffort = maxTractiveForce;
                 }
             ////////////////////////////////take bend state and converrt to corner deg multiply by 0.8 pounds per ton 
-            bendDrag = ((getBendState(outWindow.CabFootageVideo.Position.TotalSeconds)) * 4)*0.8*(carWeight+locomotiveWeight/2000);
+            bendDrag = ((getBendState(outWindow.CabFootageVideo.Position.TotalSeconds)) * 4)*(0.8*(carWeight/2000));
 
             trainAcceleration = (((trainTractiveEffort - trainDrag) - ((locomotiveWeight + carWeight) * sinGradient) - trainBrakeForce - bendDrag))/100000;
         
