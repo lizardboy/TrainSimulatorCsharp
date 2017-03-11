@@ -1392,9 +1392,6 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
 
-
-
-
             ////////////  ////check throttle position
 
             else if (throttlePosition != Throttle_Idle_Position && iter == 0)
@@ -1424,28 +1421,21 @@ namespace TrainSimulatorCsharp
                     
 
                 }
-
-
-
-
-
                 instructionsLabel.Content = "Set Throttle To Idle!";
                 ////////////// fade instruction label
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
 
+                }
 
-            }
-
-
-            else if (throttlePosition != Throttle_Idle_Position && iter == 3)
-            {
+                else if (throttlePosition != Throttle_Idle_Position && iter == 3)
+                {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(3, true); }), TimeSpan.FromMilliseconds(500));
-            }
+                }
 
 
-            else if (throttlePosition == Throttle_Idle_Position && iter == 3)
-            {
+                else if (throttlePosition == Throttle_Idle_Position && iter == 3)
+                {
              //   if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
              //   {
 
