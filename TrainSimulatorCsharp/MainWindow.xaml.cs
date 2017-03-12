@@ -116,12 +116,13 @@ namespace TrainSimulatorCsharp
         static bool ThrottlePageDOWN = false;
         static bool LowFuelWarning = false;
         static bool ebrakeState = false;
-       
+        static bool eState;
+
         //Game Data Variables
        
             // throttle variables
         static double throttle_deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
-        static int throttlePosition = 0;
+        static int throttlePosition ;
         static double actual_throttle_1_pos;     // keep track of actual position 1 reading for calibration use
         static double Throttle_Idle_Position = 1; /// sets which throttle position is the idle 
          
@@ -157,7 +158,7 @@ namespace TrainSimulatorCsharp
         static double MinVelocity = 1;                 // Set Minimum Train Velocity (MPH)
         static double trainDrag;
         static double locomotiveWeight = 400000;
-        static double carWeight = 190000;
+        static double carWeight = 1200000;
         static double trainBrakeForce;
         static double trainTractiveEffort;
         static double velocityMs;
@@ -180,7 +181,7 @@ namespace TrainSimulatorCsharp
         static double bendDrag = 0;
         // Dynamic Brake variables
         static double dynamic_deadzone = 35;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
-        static double dynamicPosition = 0;                //
+        static double dynamicPosition ;                //
         static double actual_dynamic_1_pos;     // keep track of actual dynamic selector pos 1 value for calibration during preflight
         static double Dynamic_Off_Position = 1;   /// sets which selector position is the off 
 
@@ -358,9 +359,10 @@ namespace TrainSimulatorCsharp
         static int timeLeft =0;
         static int descriptionPosition = 0;
         static int scrollPix = 0;
-        static int iter1;
-        static int iter2;
-        static int iter3;
+        static int iter =0;
+        static int iter1 = 0;
+        static int iter2 = 0;
+        static int iter3 = 0;
         /// ///////////////////////////////////////////////////////////////////////////////////////
         //Application Startup//////////////////////////////////////////////////////////////////////
 
@@ -394,7 +396,7 @@ namespace TrainSimulatorCsharp
             ////  myAnalogOut.outputs[1].Enabled = true;
             ///   myAnalogOut.outputs[0].Voltage = 0;
             ///    myAnalogOut.outputs[1].Voltage = 0;
-
+            intControlsPosition();
             my8_8_8.SensorChange += new SensorChangeEventHandler(myPotChanged);
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
@@ -1436,23 +1438,32 @@ namespace TrainSimulatorCsharp
 
                 else if (throttlePosition == Throttle_Idle_Position && iter == 3)
                 {
-             //   if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-             //   {
+                if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
+                {
 
-                    ////do checks again????
-
-               // }
+                    ////remove throttle instructions
+                    if (ThrottlePageUP == true)
+                    { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                        ThrottlePageUP = false;
+                    }
+                    if (ThrottlePageDOWN == true)
+                    { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
+                        ThrottlePageDOWN = false;
+                    }
+                                      
+                }
                 /////////fade instruction
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 if (ThrottlePageUP == true)
-                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup); }
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsup);
+                    ThrottlePageUP = false;
+                }
                 if (ThrottlePageDOWN == true)
-                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown); }
-                ThrottlePageUP = false;
-                ThrottlePageDOWN = false;
-                FadeTheMediaElement(1, 0, instructionsLabel, 300);
-
-                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, throttleInstructionsdown);
+                    ThrottlePageDOWN = false;
+                }
+                    FadeTheMediaElement(1, 0, instructionsLabel, 300);
+                    TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
             }
 
             //////////  dynamic selector
@@ -1489,20 +1500,29 @@ namespace TrainSimulatorCsharp
             }
 
 
-            else if (dynamicPosition != 1 && iter == 4)
+            else if (dynamicPosition != Dynamic_Off_Position && iter == 4)
             {
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(4, true); }), TimeSpan.FromMilliseconds(500));
 
             }
 
 
-            else if (dynamicPosition == 1 && iter == 4)
+            else if (dynamicPosition == Dynamic_Off_Position && iter == 4)
             {
-                //if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
-                //{
-
-                //    ///do preflight checks again ????
-                //}
+                if (my8_8_8.inputs[1] == false || my16_16_0.inputs[3] == false)
+                {
+                if (DynamicPageRELEASE == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
+                        DynamicPageRELEASE = false;
+                    }
+                if (DynamicPageAPPLY == true)
+                { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
+                        DynamicPageAPPLY = false;
+                    }
+                FadeTheMediaElement(1, 0, instructionsLabel, 300);
+                TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, true); }), TimeSpan.FromMilliseconds(500));
+                                               
+                }
 
                 //if dynamic is correct  remove dynamic instructions
                 if (DynamicPageRELEASE == true)
@@ -2286,7 +2306,7 @@ namespace TrainSimulatorCsharp
         private void updateControlStandOutputs()
         {
             updateSpeedometer(velocity);
-            updateAmmeter(velocity * 2 * (throttlePosition));
+            updateAmmeter(velocity * 2 * (throttlePosition));   ///////////////this needs redoing  amps=tractiveffort/ (maxtractiveEffort/1500)
 
 
         }
@@ -3330,93 +3350,104 @@ namespace TrainSimulatorCsharp
                 if (gameState == "inGame" || gameState == "continueScreen")
                 {
                     ///put release mainbrake picture up and display emergency brakes activated message
-                  ///  emergencyBrakeMessage();
-
-                   
-                     
-                       ///activate penalty braking
+                    emergencyBrakeMessage(true);
+                    ///activate penalty braking
                     penaltyBrake = true;
-                    penaltyBrakeCountDown = 5;
+                    penaltyBrakeCountDown = 8;
                     my16_16_0.outputs[1] = true;
                     my16_16_0.outputs[0] = true;
                     my16_16_0.outputs[5] = true;
                     my16_16_0.outputs[13] = true;
                     mainBrakeEffort = 1.0;   ///100%           
-                    trainBrakeEffort = 1.0;  /// 100%
+                  ///  trainBrakeEffort = 1.0;  /// 100%
                     indBrakeEffort = 1.0;
                     ebrakeState = true;
-
+                    
                 }
                     mainBrakePosition = 5;
 
-                    }
-                    else
-                    {
-                    if (my16_16_0.inputs[3] == true)
-                    {
-                    ebrakeState = false;
-                    emergencyBrakeMessage();
+             }
+
+//////////////////////////////////
+                else
+                {
+                if (my16_16_0.inputs[3] == true)
+                {
+
                     mainBrakeState = "release";
                     mainBrakePosition = 0;
                     mainBrakePressureRequested = 90;
-                    
+
                     mainBrakeEffort = 0;                    ///0%
                     trainBrakeEffort = 0;                   ///0%
-                    indBrakeEffort = 0;
-                }
-                    else
+                    if (ebrakeState == true)
                     {
+                        ebrakeState = false;
+                        emergencyBrakeMessage(false);                                           ///do not have an opinion of ind effort if the main brake is released
+                       
+                    }
+                }
+                // }
+
+                else
+                {
                     if (my16_16_0.inputs[4] == true)
                     {
-                    mainBrakeState = "minimum";
-                    mainBrakePosition = 1;
-                    mainBrakePressureRequested = 80;
-                    mainBrakeEffort = 0.25;                 ///25%
-                    trainBrakeEffort = 0.25;                ///25%
-                    indBrakeEffort = 0.25;
+                        mainBrakeState = "minimum";
+                        mainBrakePosition = 1;
+                        mainBrakePressureRequested = 80;
+                        mainBrakeEffort = 0.25;                 ///25%
+                        trainBrakeEffort = 0.25;                ///25%
+                        indBrakeEffort = 0;
                     }
+                    //  }
                     else
                     {
-                     if (my16_16_0.inputs[2] == true)
+                        if (my16_16_0.inputs[2] == true)
                         {
-                    mainBrakeState = "minService";
-                    mainBrakePosition = 2;
-                    mainBrakePressureRequested = 75;
-                    mainBrakeEffort = 0.50;                  ///50%
-                    trainBrakeEffort = 0.50;                 ///50%
-                    indBrakeEffort = 0.50;
+                            mainBrakeState = "minService";
+                            mainBrakePosition = 2;
+                            mainBrakePressureRequested = 75;
+                            mainBrakeEffort = 0.50;                  ///50%
+                            trainBrakeEffort = 0.50;                 ///50%
+                            indBrakeEffort = 0;
                         }
-                    else
+                        //  }
+                        else
                         {
-                    if (my16_16_0.inputs[9] == true)
-                        {
-                    mainBrakeState = "maxService";    
-                    mainBrakePosition = 3;
-                    mainBrakePressureRequested = 60;
-                    mainBrakeEffort = 0.90;                 ///90%
-                    trainBrakeEffort = 0.90;                ///90%
-                    indBrakeEffort = 0.90;
+                            if (my16_16_0.inputs[9] == true)
+                            {
+                                mainBrakeState = "maxService";
+                                mainBrakePosition = 3;
+                                mainBrakePressureRequested = 60;
+                                mainBrakeEffort = 0.90;                 ///90%
+                                trainBrakeEffort = 0.90;                ///90%
+                                indBrakeEffort = 0;
                             }
-                     else
-                         {
-                    mainBrakeState = "supression";         
-                    mainBrakePosition = 4;
-                    mainBrakePressureRequested = 60;
-                    mainBrakeEffort = 0.91;                 ///91%
-                    trainBrakeEffort = 0.91;                ///.91
-                    indBrakeEffort = 0.91;
+                            //  }
+                            else
+                            {
+                                mainBrakeState = "supression";
+                                mainBrakePosition = 4;
+                                mainBrakePressureRequested = 60;
+                                mainBrakeEffort = 0.91;                 ///91%
+                                trainBrakeEffort = 0.91;                ///.91
+                                indBrakeEffort = 0;
 
-                     if (ebrakeState == true)
-                          {
-                     ebrakeState = false;
+                              ///  if (ebrakeState == true)
+                              //  {
 
-                     emergencyBrakeMessage();
-                           }
+                              ///      ebrakeState = false;                 /// add this to have ebrake cancel during supression 
+                               ///     emergencyBrakeMessage(false);
+                                    
 
-                            }
+                              ///  }
+
+                             }
                         }
                     }
-                }
+                }          
+                
 
 
 
@@ -3452,19 +3483,27 @@ namespace TrainSimulatorCsharp
            }
        }
 
-        private void emergencyBrakeMessage()
+        private void emergencyBrakeMessage(bool eState)
         {
 
-             if (ebrakeState == true )
+            if (eState == true)
             {
 
-                if (iter1 == 1)
+                if (iter1 == 0)
                 {
 
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 200);
                     //// display release main brake message
-                    ///  put up text message saying ebrakes activated release main brakes
-                    iter1 = 2;
+
+                    instructionsLabel.Content = "Emergency Braking Activated!";
+                    FadeTheMediaElement(0, 1, instructionsLabel, 300);
+                    instructionsSupLabel.Content = "Release Main Brake!";
+                    FadeTheMediaElement(0, 1, instructionsSupLabel, 300);
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, brakeInstructions);
+                    TimedAction.ExecuteWithDelay(new Action(delegate { iter1 = 2; }), TimeSpan.FromMilliseconds(500));
+
+                    /// remove fuel bar too
+
                 }
 
                 if (iter1 == 2)
@@ -3472,22 +3511,112 @@ namespace TrainSimulatorCsharp
                 { /// mext time through 
 
 
-                    /// do nothing
+                    TimedAction.ExecuteWithDelay(new Action(delegate { iter1 = 3; }), TimeSpan.FromMilliseconds(200));
 
                 }
-                else if (ebrakeState == false)
+            }
+
+                if (eState == false)
                 {
-                    /// remove release main brake message
-                    /// remove the ebrake text 
-                    FadeTheMediaElement(0, 1, TrainSimulatorLogo, 200);
-                    iter1 = 1;
+                    if (iter1 == 3)
+                    {
+                        ////replace logo
+                        FadeTheMediaElement(0, 1, TrainSimulatorLogo, 200);
+                        /// remove release main brake message
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, brakeInstructions);
+
+                        /// remove the ebrake text                    
+                        FadeTheMediaElement(1, 0, instructionsSupLabel, 300);
+                        FadeTheMediaElement(1, 0, instructionsLabel, 300);
+                        FadeTheMediaElement(1, 0, TrainSimulatorLogo, 200);
+                        iter1 = 0;
+                    }
                 }
-                }
+                
         }
 
 
 
-//////////////////////////////////////////////////////////////////////////
+
+        private void intControlsPosition()  ///check the two analoge inputs once to establish their initial value as the events oriented loop cant do that
+
+        {
+            int val = my8_8_8.sensors[6].Value;
+
+            if (val >= throttle_calibration_value + throttle_offset_0)              ///         ///605
+            {
+                throttlePosition = 0;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_1)         ///          ///563
+            {
+                throttlePosition = 1;
+
+
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_2)          ///         ///511
+            {
+                throttlePosition = 2;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_3)          ///         ///458
+            {
+                throttlePosition = 3;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_4)          ///         ///409
+            {
+                throttlePosition = 4;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_5)          ///         ///359
+            {
+                throttlePosition = 5;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_6)          ///         ///313
+            {
+                throttlePosition = 6;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_7)          ///         ///268
+            {
+                throttlePosition = 7;
+            }
+            else if (val >= throttle_calibration_value + throttle_offset_8)          ///         ///231
+            {
+                throttlePosition = 8;
+            }
+
+            val = my8_8_8.sensors[7].Value;
+
+            if (val >= dynamic_calibration_value + dynamic_offset_0)             //623)
+            {
+                dynamicPosition = 0;
+            }
+            else if (val >= dynamic_calibration_value + dynamic_offset_1)        // 547)
+            {
+                dynamicPosition = 1;
+
+            }
+            else if (val >= dynamic_calibration_value + dynamic_offset_2)        //469)
+            {
+                dynamicPosition = 2;
+            }
+            else if (val >= dynamic_calibration_value + dynamic_offset_3)        //393)
+            {
+                dynamicPosition = 3;
+            }
+            else
+            {
+                dynamicPosition = 4;
+            }
+
+
+        }  
+                
+        
+            
+        //////////////////////////////////////////////////////////////////////////
+
+
+
+
+
     }
 
         
