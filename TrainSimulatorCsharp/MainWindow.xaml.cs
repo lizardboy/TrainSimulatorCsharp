@@ -167,7 +167,10 @@ namespace TrainSimulatorCsharp
         static double gradeDeg;
         static double trainAcceleration;
         static double maxTractiveEffort;
-        static double maxBrakeForce;
+        static double maxLocoBrakeForce;
+        static double maxCarBrakeForce;
+        static double locoBrakeForce;
+        static double carBrakeForce;
         static double tractionFactor = 0.12;
         static double tractionFactorSsand = 0.15;
         static double tractionFactorDsand = 0.18;
@@ -1771,10 +1774,59 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
             }
 
-            
+            else if (selectedSegment == "selectTrail")
+            {
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(0);
+                velocity = 20;
+                bendIndex = 18;
+                TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
+
+            }
+            else if (selectedSegment == "selectBrilliant")
+            {
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(324);
+                velocity = 20;
+                bendIndex = 18;
+                TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
+
+            }
+
+            else if (selectedSegment == "selectThrums")
+            {
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(896);
+                velocity = 26;
+                bendIndex = 50;
+                TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
+            }
+
+            else if (selectedSegment == "selectGranite")
+            {
+                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Pause();
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(1408);
+                velocity = 26;
+                bendIndex = 50;
+                TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
+                outWindow.CabFootageVideo.Play();
+            }
+
+
             ///  play engine start up
             /// reset segment selection
-            
+
             selectedSegment = "";
             AudioPlaybackEngine.Instance.PlaySound(engineStartup);
 
@@ -2034,25 +2086,37 @@ namespace TrainSimulatorCsharp
             //// maximum braking force avaliable based on avaliable traction 
             if (sandingPlaying == true && sandingToggle == true)
             {
-                maxBrakeForce = (tractionFactorDsand * locomotiveWeight) + (tractionFactor * carWeight);
+                maxLocoBrakeForce = (tractionFactorDsand * locomotiveWeight) ;
             }
 
             else if (sandingPlaying == true && sandingToggle != true)
             {
-                maxBrakeForce = (tractionFactorSsand * locomotiveWeight) + (tractionFactor * carWeight);
+                maxLocoBrakeForce = (tractionFactorSsand * locomotiveWeight) ;
             }
 
             else
             {
-                maxBrakeForce = tractionFactor * (locomotiveWeight + carWeight);
+                maxLocoBrakeForce = tractionFactor * locomotiveWeight ;
             }
 
+            maxCarBrakeForce = tractionFactor * carWeight;
+            ////////////////////////////////////////////////////   separate car and locomotive caLCULATIONS//////
 
-   ////////////////////////////////////////////////////         
 
-            trainBrakeForce = (maxBrakeForce * (mainBrakeEffort + indBrakeEffort/2)) + dynBrakeEffort;
+            if (bailActivated == true)
+            { indBrakeEffort = 0; }   //if bail held down then no locomotive brakes
 
-            if (trainBrakeForce > maxBrakeForce)
+
+            locoBrakeForce = (maxLocoBrakeForce * indBrakeEffort) + dynBrakeEffort;
+            carBrakeForce = (maxCarBrakeForce * mainBrakeEffort);
+
+
+            trainBrakeForce = locoBrakeForce + carBrakeForce ;
+           
+           
+//////////////////////
+
+            if (locoBrakeForce > maxLocoBrakeForce)
             {
                 if (iter2 == 0)
                 {
@@ -2061,7 +2125,7 @@ namespace TrainSimulatorCsharp
                     //// activate pcs light perhaps flashing 
 
                     /// display wheel slippage reduce brake setting message
-                    instructionsLabel.Content = "Warning Wheel Slippage!";
+                    instructionsLabel.Content = "Warning Locomotive Wheel Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
                     if (getMainBrakeState() != 0)
                     {
@@ -2094,8 +2158,11 @@ namespace TrainSimulatorCsharp
                 }
               
             }
+
+
+
 ////////////////////////////////////////////////////////////
-            else if (trainBrakeForce < maxBrakeForce)
+            else if (locoBrakeForce < maxLocoBrakeForce)
             {
                 if (iter2 == 1)
                 {
@@ -2137,7 +2204,96 @@ namespace TrainSimulatorCsharp
                 }
             }
 
-////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////
+
+            //////////////////////
+
+            if (carBrakeForce > maxCarBrakeForce)
+            {
+                if (iter2 == 0)
+                {
+                    ///remove logo
+                    FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);
+                   
+                    /// display wheel slippage reduce brake setting message
+                    instructionsLabel.Content = "Warning Car Wheel Slippage!";
+                    FadeTheMediaElement(0, 1, instructionsLabel, 500);
+                    if (getMainBrakeState() != 0)
+                    {
+                        instructionsSupLabel.Content = "Release Automatic Brake";
+                        FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
+                        ///put out mainbrake 
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, brakeInstructions);
+                        instructionState = "mainBrake";
+                        iter2 = 1;
+                    }
+                    if (getMainBrakeState() == 0 && getIndependantBrakeState() != 0)
+                    {
+                        instructionsSupLabel.Content = "Release locomotive Brake";
+                        FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
+                        /// put out indbrake 
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
+                        instructionState = "indBrake";
+                        iter2 = 1;
+                    }
+                   
+                }
+
+            }
+
+
+
+            ////////////////////////////////////////////////////////////
+            else if (carBrakeForce < maxCarBrakeForce)
+            {
+                if (iter2 == 1)
+                {
+                    ///replace logo               
+                    FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
+                    ///remove instruction labels
+                    FadeTheMediaElement(1, 0, instructionsLabel, 500);
+                    FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
+
+                    /// remove instruction graphics
+                    if (instructionState == "mainBrake")
+                    {
+                        ///remove mainBrake instructions
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, brakeInstructions);
+                    }
+                    if (instructionState == "indBrake")
+                    {
+                        /// remove indBrake Instructions
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indIstructions);
+                    }
+                 
+                    instructionState = "";
+                  
+                    iter2 = 2;
+                }
+
+                if (iter2 == 2)
+                {
+                    TimedAction.ExecuteWithDelay(new Action(delegate { iter2 = 3; }), TimeSpan.FromMilliseconds(500));
+                }
+                if (iter2 == 3)
+                {
+                    iter2 = 0;
+                }
+            }
+
+            ////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
             /// maximum effort from the motors at a given speed hence maximum amps so set max motor amps to this 
             if (velocityMs > 0 && velocityMs < 4.2)
@@ -2194,7 +2350,7 @@ namespace TrainSimulatorCsharp
                 /// bring out throttle DOWN graphic
                 TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
                 /// display wheel slippage message
-                instructionsLabel.Content = "Warning Wheel Slippage!";
+                instructionsLabel.Content = "Warning Locomotive Wheel Slippage!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 500);
                 /// display reduce throttle setting message
                 instructionsSupLabel.Content = "Reduce Throttle Setting";
@@ -2231,8 +2387,8 @@ namespace TrainSimulatorCsharp
 
             /////////////// limit forces to maximums
 
-            if ( trainBrakeForce > maxBrakeForce) 
-            {  trainBrakeForce = maxBrakeForce;
+            if ( trainBrakeForce > maxLocoBrakeForce) 
+            {  trainBrakeForce = maxLocoBrakeForce;
                 }
             if (trainTractiveEffort > maxTractiveForce)
             { trainTractiveEffort = maxTractiveForce;
@@ -2633,23 +2789,23 @@ namespace TrainSimulatorCsharp
                     }
                     mainDir = 1;
                 }
-                if (bailActivated == true)
-                {
-                    if (indBrakePressureIndicated >= 5)
-                    {
-                        my16_16_0.outputs[3] = false;
-                        my16_16_0.outputs[0] = true;
-                        indBrakePressureIndicated -= 5;
-                        indBrakePressureRequested = indBrakePressureIndicated;
-                        trainBrakeEffort = 0;
-                    }
-                    else
-                    {
-                        my16_16_0.outputs[3] = false;
-                        my16_16_0.outputs[0] = true;
-                        indDir = 1;
-                    }
-                }
+                //if (bailActivated == true)
+                //{
+                //    if (indBrakePressureIndicated >= 5)
+                //    {
+                //        my16_16_0.outputs[3] = false;
+                //        my16_16_0.outputs[0] = true;
+                //        indBrakePressureIndicated -= 5;
+                //        indBrakePressureRequested = indBrakePressureIndicated;
+                       
+                //    }
+                //    else
+                //    {
+                //        my16_16_0.outputs[3] = false;
+                //        my16_16_0.outputs[0] = true;
+                //        indDir = 1;
+                //    }
+                //}
                 else
                 {
                     if (indDir == 1 && indBrakePressureIndicated != indBrakePressureRequested)
@@ -3055,6 +3211,9 @@ namespace TrainSimulatorCsharp
             Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+          
+         /////   /// //////////////////////////////////////////////////////////////////////////////
+           
 
        private void my8InputChanged(object sender, InputChangeEventArgs e)
        {
@@ -3065,30 +3224,32 @@ namespace TrainSimulatorCsharp
                        indPosition = e.Index - 1;
                        outWindow.indPositionLabel.Content = "Ind Position: " + Convert.ToString(indPosition);
 
-
+                       if (getMainBrakeState() == 0)
+                       {
                            if (indPosition == 0)
-                            {
-                           if (getMainBrakeState() == 0)
                            {
-                               indBrakePressureRequested = 50;
+
+
+                               indBrakePressureRequested = 60;
                                indBrakeEffort = 0.91;
                            }
-                             }
-                             else if (indPosition == 1)
-                            {
-                           indBrakePressureRequested = 70;
-                           indBrakeEffort = 0.50;
-                            }
-                            else if (indPosition == 2)
-                            {
-                           indBrakePressureRequested = 75;
-                           indBrakeEffort = 0.25;
-                            }
-                            else
-                            {
-                           indBrakePressureRequested = 90;
-                           indBrakeEffort = 0;
-                             }
+
+                           else if (indPosition == 1)
+                           {
+                               indBrakePressureRequested = 70;
+                               indBrakeEffort = 0.50;
+                           }
+                           else if (indPosition == 2)
+                           {
+                               indBrakePressureRequested = 80;
+                               indBrakeEffort = 0.25;
+                           }
+                           else
+                           {
+                               indBrakePressureRequested = 90;
+                               indBrakeEffort = 0;
+                           }
+                       }
                     }
                    if (e.Index == 5)
                    {
@@ -3097,25 +3258,8 @@ namespace TrainSimulatorCsharp
                        
                        if (bailActivated == false)
                        {
-                           if (indPosition == 0)
-                           {
-                               if (getMainBrakeState() == 0)
-                               {
-                                   indBrakePressureRequested = 0;
-                               }
-                           }
-                           else if (indPosition == 1)
-                           {
-                               indBrakePressureRequested = 30;
-                           }
-                           else if (indPosition == 2)
-                           {
-                               indBrakePressureRequested = 60;
-                           }
-                           else
-                           {
-                               indBrakePressureRequested = 90;
-                           }
+                                                      
+                                   indBrakePressureRequested = 0;                         
                        }
                        else if(bailPlaying == false && indBrakePressureIndicated > 0 && gameState == "inGame")
                        {
@@ -3379,7 +3523,7 @@ namespace TrainSimulatorCsharp
                     mainBrakePressureRequested = 90;
 
                     mainBrakeEffort = 0;                    ///0%
-                    trainBrakeEffort = 0;                   ///0%
+                    indBrakeEffort = 0;                   ///0%
                     if (ebrakeState == true)
                     {
                         ebrakeState = false;
@@ -3395,10 +3539,10 @@ namespace TrainSimulatorCsharp
                     {
                         mainBrakeState = "minimum";
                         mainBrakePosition = 1;
-                        mainBrakePressureRequested = 80;
+                        mainBrakePressureRequested = 85;
                         mainBrakeEffort = 0.25;                 ///25%
-                        trainBrakeEffort = 0.25;                ///25%
-                        indBrakeEffort = 0;
+                      
+                        indBrakeEffort = 0.25;
                     }
                     //  }
                     else
@@ -3407,10 +3551,10 @@ namespace TrainSimulatorCsharp
                         {
                             mainBrakeState = "minService";
                             mainBrakePosition = 2;
-                            mainBrakePressureRequested = 75;
+                            mainBrakePressureRequested = 80;
                             mainBrakeEffort = 0.50;                  ///50%
-                            trainBrakeEffort = 0.50;                 ///50%
-                            indBrakeEffort = 0;
+                           
+                            indBrakeEffort = 0.5;
                         }
                         //  }
                         else
@@ -3419,20 +3563,20 @@ namespace TrainSimulatorCsharp
                             {
                                 mainBrakeState = "maxService";
                                 mainBrakePosition = 3;
-                                mainBrakePressureRequested = 60;
+                                mainBrakePressureRequested = 65;
                                 mainBrakeEffort = 0.90;                 ///90%
-                                trainBrakeEffort = 0.90;                ///90%
-                                indBrakeEffort = 0;
+                               
+                                indBrakeEffort = .90;
                             }
                             //  }
                             else
                             {
                                 mainBrakeState = "supression";
                                 mainBrakePosition = 4;
-                                mainBrakePressureRequested = 60;
+                                mainBrakePressureRequested = 65;
                                 mainBrakeEffort = 0.91;                 ///91%
-                                trainBrakeEffort = 0.91;                ///.91
-                                indBrakeEffort = 0;
+                               
+                                indBrakeEffort = .91;
 
                               ///  if (ebrakeState == true)
                               //  {
