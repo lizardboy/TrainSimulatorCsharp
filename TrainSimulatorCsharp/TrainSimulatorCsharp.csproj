@@ -284,6 +284,33 @@
     <Resource Include="track2Text.png" />
     <Resource Include="track1Text.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ThrumsLabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TrailLabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SSlocanLabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GraniteLabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NelsonLabel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ScrollableText1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ScrollableText2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ScrollableText3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BrilliantLabel.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -80,7 +80,16 @@ namespace TrainSimulatorCsharp
         //Rolling up to Field Vars
         static int iterCounter = 0;
         static double velocityDec = 0;
-
+        static string selectStart1;
+        static string selectStart2;
+        static string selectStart3;
+        static string selectStart4;
+        static string selectStart5;
+        static string selectLabel1;
+        static string selectLabel2;
+        static string selectLabel3;
+        static string selectLabel4;
+        static string selectLabel5;
         //Control Stand Input Devices
         private InterfaceKit my16_16_0;
         private InterfaceKit my8_8_8;
@@ -426,40 +435,34 @@ namespace TrainSimulatorCsharp
             indPosition = 0;
            
             ///46 seconds 490 x 276 preview videos here
-            GoldenEx.Play();            
-            GoldenEx.Pause();
-            GlenogleEx.Play();
-            GlenogleEx.Pause();
-            PalliserEx.Play();
-            PalliserEx.Pause();
-            LeanchoilEx.Play();
-            LeanchoilEx.Pause();
-            OttertailEx.Play();
-            OttertailEx.Pause();
-            ///Track2Siding1.play();
-            ///Track2Siding1.pause();
-            ///Track2Siding2.play();
-            ///Track2Siding2.pause();
-            ///Track2Siding2.play();
-            ///Track2Siding2.pause();
-            ///Track2Siding3.play();
-            ///Track2Siding3.pause();
-            ///Track2Siding4.play();
-            ///Track2Siding4.pause();
-            ///Track3Siding1.play();
-            ///Track3Siding1.pause();
-            ///Track3Siding2.play();
-            ///Track3Siding2.pause();
-            ///Track3Siding3.play();
-            ///Track3Siding3.pause();
-            ///Track3Siding4.play();
-            ///Track3Siding4.pause();
-
-
-
-
-            ////add al other videos as well
-
+            Stop1Ex.Play();            
+            Stop1Ex.Pause();
+            Stop2Ex.Play();
+            Stop2Ex.Pause();
+            Stop3Ex.Play();
+            Stop3Ex.Pause();
+            Stop4Ex.Play();
+            Stop4Ex.Pause();
+            Stop5Ex.Play();
+            Stop5Ex.Pause();
+            TrailEx.Play();
+            TrailEx.Pause();
+            BrilliantEx.Play();
+            BrilliantEx.Pause();
+            ThrumsEx.Play();
+            ThrumsEx.Pause();
+            SSlocanEx.Play();
+            SSlocanEx.Pause();
+            GraniteEx.Play();
+            GraniteEx.Pause();
+            ///Track3Siding1.Play();
+            ///Track3Siding1.Pause();
+            ///Track3Siding2.Play();
+            ///Track3Siding2.Pause();
+            ///Track3Siding3.Play();
+            ///Track3Siding3.Pause();
+            ///Track3Siding4.Play();
+            ///Track3Siding4.Pause();
 
 
             descriptionScreenFootage.Play();
@@ -518,8 +521,17 @@ namespace TrainSimulatorCsharp
              Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source=  myUri1; 
             System.Diagnostics.Debug.WriteLine(myUri1);
+            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\Glenogle.wmv", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv", UriKind.Absolute);
+
+            StopLabel1.Source = new Uri (@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\goldenLabel.png", UriKind.Absolute);
+            StopLabel1.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\goldenLabel.png", UriKind.Absolute);
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
+
             try
             {
                 descriptionText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText1.png"));
@@ -527,11 +539,22 @@ namespace TrainSimulatorCsharp
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text");
             }
 
-            ///descriptionTest.Play();
-
+            
+         
+            selectStart1 = "selectGolden";
+            selectStart2 = "selectGlenogle";
+            selectStart3 = "selectPalliser";
+            selectStart4 = "selectLeanchoil";
+            selectStart5 = "selectOttertail";
+            selectLabel1 = "goldenLabel";
+            selectLabel2 = "glenogleLabel";
+            selectLabel3 = "palliserLabel";
+            selectLabel4 = "leanchoilLabel";
+            selectLabel5 = "ottertailLabel";
 
             trackSelect(sender,e);
-        }
+
+}
 
        
 
@@ -545,13 +568,41 @@ namespace TrainSimulatorCsharp
             descriptionScreenFootage.Source = myUri2;
             System.Diagnostics.Debug.WriteLine(myUri2);
 
+            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.wmv", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.wmv", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.wmv", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.wmv", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.wmv", UriKind.Absolute);
+           
+
+
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
             try
             {
                 descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText2.png");
+
+
             }
+
+
+
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text2"); }
+
+            selectStart1 = "selectTrail";
+            selectStart2 = "selectBrilliant";
+            selectStart3 = "selectThrums";
+            selectStart4 = "selectSSlocan";
+            selectStart5 = "selectGranite";
+            selectLabel1 = "TrailLabel";
+            selectLabel2 = "BrilliantLabel";
+            selectLabel3 = "ThrumsLabel";
+            selectLabel4 = "SSlocanLabel";
+            selectLabel5 = "GraniteLabel";
+
             trackSelect(sender, e);
+
+           
+
         }
 
         private void selectTrack3(object sender, MouseButtonEventArgs e)
@@ -569,6 +620,18 @@ namespace TrainSimulatorCsharp
                 descriptionText.Source = (ImageSource)new ImageSourceConverter().ConvertFrom("ScrollableText3.png");
             }
             catch { System.Diagnostics.Debug.WriteLine("exception in scrollable text3"); }
+
+            selectStart1 = "selectTrail";
+            selectStart2 = "selectBrilliant";
+            selectStart3 = "selectThrums";
+            selectStart4 = "selectSSlocan";
+            selectStart5 = "selectGranite";
+            selectLabel1 = "TrailLabel";
+            selectLabel2 = "BrilliantLabel";
+            selectLabel3 = "ThrumsLabel";
+            selectLabel4 = "SSlocanLabel";
+            selectLabel5 = "GraniteLabel";
+
             trackSelect(sender, e);
         }
 
@@ -611,8 +674,7 @@ namespace TrainSimulatorCsharp
 
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionScreenFootage.Play(); }), TimeSpan.FromMilliseconds(800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, descriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1100));
-                ///FadeTheMediaElement( 0, 1, outWindow.testMediaElement, 3000);
-                //TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
+               
                 scrollPix = -260;
             }
 
@@ -700,41 +762,41 @@ namespace TrainSimulatorCsharp
                 backLabel.Opacity = 1;
                 UIbuttonsClickable = false;
                 double startLocation = 0;
-                if (selectedSegment == selectGolden.Name)
+                if (selectedSegment == selectStart1)
                 {
-                    startLocation = selectGolden.Margin.Left;
-                    curLabel = goldenLabel;
-                    FadeTheMediaElement(1, 0, GoldenEx, 250);
-                    FadeTheMediaElement(1, 0, goldenCover, 100);
+                    startLocation = selectStartBox1.Margin.Left;
+                    curLabel = StopLabel1;
+                    FadeTheMediaElement(1, 0, Stop1Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop1Cover, 100);
 
                 }
-                else if (selectedSegment == selectGlenogle.Name)
+                else if (selectedSegment == selectStart2)
                 {
-                    startLocation = selectGlenogle.Margin.Left;
-                    curLabel = glenogleLabel;
-                    FadeTheMediaElement(1, 0, GlenogleEx, 250);
-                    FadeTheMediaElement(1, 0, glenogleCover, 100);
+                    startLocation = selectStartBox2.Margin.Left;
+                    curLabel = StopLabel2;
+                    FadeTheMediaElement(1, 0, Stop2Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop2Cover, 100);
                 }
-                else if (selectedSegment == selectPalliser.Name)
+                else if (selectedSegment == selectStart3)
                 {
-                    startLocation = selectPalliser.Margin.Left;
-                    curLabel = palliserLabel;
-                    FadeTheMediaElement(1, 0, PalliserEx, 250);
-                    FadeTheMediaElement(1, 0, palliserCover, 100);
+                    startLocation = selectStartBox3.Margin.Left;
+                    curLabel = StopLabel3;
+                    FadeTheMediaElement(1, 0, Stop3Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop3Cover, 100);
                 }
-                else if (selectedSegment == selectLeanchoil.Name)
+                else if (selectedSegment == selectStart4)
                 {
-                    startLocation = selectLeanchoil.Margin.Left;
-                    curLabel = leanchoilLabel;
-                    FadeTheMediaElement(1, 0, LeanchoilEx, 250);
-                    FadeTheMediaElement(1, 0, leanchoilCover, 100);
+                    startLocation = selectStartBox4.Margin.Left;
+                    curLabel = StopLabel4;
+                    FadeTheMediaElement(1, 0, Stop4Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop4Cover, 100);
                 }
-                else if (selectedSegment == selectOttertail.Name)
+                else if (selectedSegment == selectStart5)
                 {
-                    startLocation = selectOttertail.Margin.Left;
-                    curLabel = ottertailLabel;
-                    FadeTheMediaElement(1, 0, OttertailEx, 250);
-                    FadeTheMediaElement(1, 0, ottertailCover, 100);
+                    startLocation = selectStartBox5.Margin.Left;
+                    curLabel = StopLabel5;
+                    FadeTheMediaElement(1, 0, Stop5Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop5Cover, 100);
                 }
 
                 startLocation = startLocation - 1348;
@@ -747,12 +809,12 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(startLocation, 0, -1600, 0, 200, 1, 0, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1297, 0, 0, 0, 500, 1, 0, selectStartPoint); }), TimeSpan.FromMilliseconds(800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-2500, 0, -1183, 0, 500, 0, 1, selectedTrackText); }), TimeSpan.FromMilliseconds(1300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, goldenLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, glenogleLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, palliserLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, leanchoilLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, ottertailLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, fieldLabel); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel1); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel2); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel3); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel4); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel5); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, 0, 0, 500, 1, 0, StopLabel6); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, descriptionScreenFootage, 1000); }), TimeSpan.FromMilliseconds(1700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1500));
@@ -766,22 +828,22 @@ namespace TrainSimulatorCsharp
 
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
-                    GoldenEx.Pause();
-                    GlenogleEx.Pause();
-                    PalliserEx.Pause();
-                    LeanchoilEx.Pause();
-                    OttertailEx.Pause();
+                    Stop1Ex.Pause();
+                    Stop2Ex.Pause();
+                    Stop3Ex.Pause();
+                    Stop4Ex.Pause();
+                    Stop5Ex.Pause();
 
-                    GlenogleEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    PalliserEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    LeanchoilEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    OttertailEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop2Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop3Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop4Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop5Ex.Margin = new Thickness(1269, 1013, -489, -273);
 
-                    GoldenEx.Opacity = 0.01;
-                    GlenogleEx.Opacity = 0.01;
-                    PalliserEx.Opacity = 0.01;
-                    LeanchoilEx.Opacity = 0.01;
-                    OttertailEx.Opacity = 0.01;
+                    Stop1Ex.Opacity = 0.01;
+                    Stop2Ex.Opacity = 0.01;
+                    Stop3Ex.Opacity = 0.01;
+                    Stop4Ex.Opacity = 0.01;
+                    Stop5Ex.Opacity = 0.01;
 
                 }), TimeSpan.FromMilliseconds(300));
 
@@ -812,43 +874,43 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1600, 0, -1296, 0, 500, 0, 1, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(1200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1297, 0, 500, 0, 1, selectStartPoint); }), TimeSpan.FromMilliseconds(700));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1183, 0, -2500, 0, 500, 1, 0, selectedTrackText); }), TimeSpan.FromMilliseconds(200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, goldenLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, glenogleLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, palliserLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, leanchoilLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, ottertailLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, fieldLabel); }), TimeSpan.FromMilliseconds(1200));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, goldenLabel); }), TimeSpan.FromMilliseconds(1800));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel1); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel2); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel3); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel4); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel5); }), TimeSpan.FromMilliseconds(1200));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 500, 0, 1, StopLabel6); }), TimeSpan.FromMilliseconds(1200));
+               ///// TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, StopLabel1); }), TimeSpan.FromMilliseconds(1800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(2800));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, scrollPix, 0, 0, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(0));
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionTextContainer.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(500));
                 descriptionPosition = 0;
                 scrollPix = -260;
 
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, goldenCover, 200); }), TimeSpan.FromMilliseconds(1500));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop1Cover, 200); }), TimeSpan.FromMilliseconds(1500));
 
-                GoldenEx.Margin = new Thickness(388, 598, 392, 142);
+                Stop1Ex.Margin = new Thickness(388, 598, 392, 142);
 
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
-                    GoldenEx.Opacity = 0.1;
-                    GoldenEx.Play();
-                    GlenogleEx.Play();
-                    PalliserEx.Play();
-                    LeanchoilEx.Play();
-                    OttertailEx.Play();
+                    Stop1Ex.Opacity = 0.1;
+                    Stop1Ex.Play();
+                    Stop2Ex.Play();
+                    Stop3Ex.Play();
+                    Stop4Ex.Play();
+                    Stop5Ex.Play();
 
                 }), TimeSpan.FromMilliseconds(1500));
 
-                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0.1, 1, GoldenEx, 1000); }), TimeSpan.FromMilliseconds(2000));
+                TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0.1, 1, Stop1Ex, 1000); }), TimeSpan.FromMilliseconds(2000));
 
                 TimedAction.ExecuteWithDelay(new Action(delegate {
 
 
-                    GlenogleEx.Margin = new Thickness(388, 598, 392, 142);
-                    PalliserEx.Margin = new Thickness(388, 598, 392, 142);
-                    LeanchoilEx.Margin = new Thickness(388, 598, 392, 142);
-                    OttertailEx.Margin = new Thickness(388, 598, 392, 142);
+                    Stop2Ex.Margin = new Thickness(388, 598, 392, 142);
+                    Stop3Ex.Margin = new Thickness(388, 598, 392, 142);
+                    Stop4Ex.Margin = new Thickness(388, 598, 392, 142);
+                    Stop5Ex.Margin = new Thickness(388, 598, 392, 142);
 
                 }), TimeSpan.FromMilliseconds(3000));
 
@@ -863,80 +925,80 @@ namespace TrainSimulatorCsharp
                 selectLabel.Opacity = 1;
                 var curLabel = new Image();
                 double startLocation = 0;
-                if (selectedSegment == selectGolden.Name)
+                if (selectedSegment == selectStart1)
                 {
-                    startLocation = selectGolden.Margin.Left;
-                    curLabel = goldenLabel;
-                    FadeTheMediaElement(1, 0, GoldenEx, 250);
-                    FadeTheMediaElement(1, 0, goldenCover, 100);
+                    startLocation = selectStartBox1.Margin.Left;
+                    curLabel = StopLabel1;
+                    FadeTheMediaElement(1, 0, Stop1Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop1Cover, 100);
 
                 }
-                else if (selectedSegment == selectGlenogle.Name)
+                else if (selectedSegment ==  selectStart2)
                 {
-                    startLocation = selectGlenogle.Margin.Left;
-                    curLabel = glenogleLabel;
-                    FadeTheMediaElement(1, 0, GlenogleEx, 250);
-                    FadeTheMediaElement(1, 0, glenogleCover, 100);
+                    startLocation = selectStartBox2.Margin.Left;
+                    curLabel = StopLabel2;
+                    FadeTheMediaElement(1, 0, Stop2Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop2Cover, 100);
                 }
-                else if (selectedSegment == selectPalliser.Name)
+                else if (selectedSegment == selectStart3)
                 {
-                    startLocation = selectPalliser.Margin.Left;
-                    curLabel = palliserLabel;
-                    FadeTheMediaElement(1, 0, PalliserEx, 250);
-                    FadeTheMediaElement(1, 0, palliserCover, 100);
+                    startLocation = selectStartBox3.Margin.Left;
+                    curLabel = StopLabel3;
+                    FadeTheMediaElement(1, 0, Stop3Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop3Cover, 100);
                 }
-                else if (selectedSegment == selectLeanchoil.Name)
+                else if (selectedSegment == selectStart4)
                 {
-                    startLocation = selectLeanchoil.Margin.Left;
-                    curLabel = leanchoilLabel;
-                    FadeTheMediaElement(1, 0, LeanchoilEx, 250);
-                    FadeTheMediaElement(1, 0, leanchoilCover, 100);
+                    startLocation = selectStartBox4.Margin.Left;
+                    curLabel = StopLabel4;
+                    FadeTheMediaElement(1, 0, Stop4Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop4Cover, 100);
                 }
-                else if (selectedSegment == selectOttertail.Name)
+                else if (selectedSegment == selectStart5)
                 {
-                    startLocation = selectOttertail.Margin.Left;
-                    curLabel = ottertailLabel;
-                    FadeTheMediaElement(1, 0, OttertailEx, 250);
-                    FadeTheMediaElement(1, 0, ottertailCover, 100);
+                    startLocation = selectStartBox5.Margin.Left;
+                    curLabel = StopLabel5;
+                    FadeTheMediaElement(1, 0, Stop5Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop5Cover, 100);
                 }
 
 
-                if (selectedSegment == selectTrail.Name)
-                {
-                    startLocation = selectTrail.Margin.Left;
-                    curLabel = TrailLabel;
-                    FadeTheMediaElement(1, 0, TrailEx, 250);
-                    FadeTheMediaElement(1, 0, TrailCover, 100);
+                //if (selectedSegment == selectTrail.Name)
+                //{
+                //    startLocation = selectTrail.Margin.Left;
+                //    curLabel = TrailLabel;
+                //    FadeTheMediaElement(1, 0, TrailEx, 250);
+                //    FadeTheMediaElement(1, 0, TrailCover, 100);
 
-                }
-                else if (selectedSegment == selectBrilliant.Name)
-                {
-                    startLocation = selectBrilliant.Margin.Left;
-                    curLabel = BrilliantLabel;
-                    FadeTheMediaElement(1, 0, BrilliantEx, 250);
-                    FadeTheMediaElement(1, 0, BrilliantCover, 100);
-                }
-                else if (selectedSegment == selectThrums.Name)
-                {
-                    startLocation = selectThrums.Margin.Left;
-                    curLabel = ThrumsLabel;
-                    FadeTheMediaElement(1, 0, ThrumsEx, 250);
-                    FadeTheMediaElement(1, 0, ThrumsCover, 100);
-                }
-                else if (selectedSegment == selectSSlocan.Name)
-                {
-                    startLocation = selectSSlocan.Margin.Left;
-                    curLabel = SSlocanLabel;
-                    FadeTheMediaElement(1, 0, SSlocanEx, 250);
-                    FadeTheMediaElement(1, 0, SSlocanCover, 100);
-                }
-                else if (selectedSegment == selectGranitel.Name)
-                {
-                    startLocation = selectGranitel.Margin.Left;
-                    curLabel = GranitelLabel;
-                    FadeTheMediaElement(1, 0, GranitelEx, 250);
-                    FadeTheMediaElement(1, 0, GranitelCover, 100);
-                }
+                //}
+                //else if (selectedSegment == selectBrilliant.Name)
+                //{
+                //    startLocation = selectBrilliant.Margin.Left;
+                //    curLabel = BrilliantLabel;
+                //    FadeTheMediaElement(1, 0, BrilliantEx, 250);
+                //    FadeTheMediaElement(1, 0, BrilliantCover, 100);
+                //}
+                //else if (selectedSegment == selectThrums.Name)
+                //{
+                //    startLocation = selectThrums.Margin.Left;
+                //    curLabel = ThrumsLabel;
+                //    FadeTheMediaElement(1, 0, ThrumsEx, 250);
+                //    FadeTheMediaElement(1, 0, ThrumsCover, 100);
+                //}
+                //else if (selectedSegment == selectSSlocan.Name)
+                //{
+                //    startLocation = selectSSlocan.Margin.Left;
+                //    curLabel = SSlocanLabel;
+                //    FadeTheMediaElement(1, 0, SSlocanEx, 250);
+                //    FadeTheMediaElement(1, 0, SSlocanCover, 100);
+                //}
+                //else if (selectedSegment == selectGranite.Name)
+                //{
+                //    startLocation = selectGranite.Margin.Left;
+                //    curLabel = GraniteLabel;
+                //    FadeTheMediaElement(1, 0, GraniteEx, 250);
+                //    FadeTheMediaElement(1, 0, GraniteCover, 100);
+                //}
 
 
 
@@ -951,18 +1013,18 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { toggleLocationSelectionButtons(Visibility.Hidden); }), TimeSpan.FromMilliseconds(200));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(startLocation, 0, -1500, 0, 500, 1, 0, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1297, 0, -2600, 0, 500, 1, 0, selectStartPoint); }), TimeSpan.FromMilliseconds(800));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, goldenLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, glenogleLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, palliserLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, leanchoilLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, ottertailLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, fieldLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, TrailLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, BrilliantLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, ThrumsLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, SSlocanLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, GraniteLabel); }), TimeSpan.FromMilliseconds(300));
-                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, NelsonLabel); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel1); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel2); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel3); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel4); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel5); }), TimeSpan.FromMilliseconds(300));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, StopLabel6); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, TrailLabel); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, BrilliantLabel); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, ThrumsLabel); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, SSlocanLabel); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, GraniteLabel); }), TimeSpan.FromMilliseconds(300));
+                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -2600, 0, 500, 1, 0, NelsonLabel); }), TimeSpan.FromMilliseconds(300));
 
 
 
@@ -977,40 +1039,40 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate
                 {
 
-                    GoldenEx.Pause();
-                    GlenogleEx.Pause();
-                    PalliserEx.Pause();
-                    LeanchoilEx.Pause();
-                    OttertailEx.Pause();
-                    TrailEx.Pause();
-                    BrilliantEx.Pause();
-                    ThrumsEx.pause();
-                    SSlocanEx.Pause();
-                    GraniteEx.Pause();
+                    Stop1Ex.Pause();
+                    Stop2Ex.Pause();
+                    Stop3Ex.Pause();
+                    Stop4Ex.Pause();
+                    Stop5Ex.Pause();
+                    //TrailEx.Pause();
+                    //BrilliantEx.Pause();
+                    //ThrumsEx.Pause();
+                    //SSlocanEx.Pause();
+                    //GraniteEx.Pause();
 
                     descriptionScreenFootage.Pause();
 
-                    GlenogleEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    PalliserEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    LeanchoilEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    OttertailEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop2Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop3Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop4Ex.Margin = new Thickness(1269, 1013, -489, -273);
+                    Stop5Ex.Margin = new Thickness(1269, 1013, -489, -273);
 
-                    BrilliantEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    ThrumsEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    SSlocanEx.Margin = new Thickness(1269, 1013, -489, -273);
-                    GraniteEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    //BrilliantEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    //ThrumsEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    //SSlocanEx.Margin = new Thickness(1269, 1013, -489, -273);
+                    //GraniteEx.Margin = new Thickness(1269, 1013, -489, -273);
 
-                    GoldenEx.Opacity = 0.01;
-                    GlenogleEx.Opacity = 0.01;
-                    PalliserEx.Opacity = 0.01;
-                    LeanchoilEx.Opacity = 0.01;
-                    OttertailEx.Opacity = 0.01;
+                    Stop1Ex.Opacity = 0.01;
+                    Stop2Ex.Opacity = 0.01;
+                    Stop3Ex.Opacity = 0.01;
+                    Stop4Ex.Opacity = 0.01;
+                    Stop5Ex.Opacity = 0.01;
 
-                    TrailEx.Opacity = 0.01;
-                    GraniteEx.Opacity = 0.01;
-                    ThrumsEx.Opacity = 0.01;
-                    SSlocanEx.Opacity = 0.01;
-                    GraniteEx.Opacity = 0.01;
+                    //TrailEx.Opacity = 0.01;
+                    //GraniteEx.Opacity = 0.01;
+                    //ThrumsEx.Opacity = 0.01;
+                    //SSlocanEx.Opacity = 0.01;
+                    //GraniteEx.Opacity = 0.01;
 
 
 
@@ -1034,134 +1096,134 @@ namespace TrainSimulatorCsharp
                 double endLocation = mySender.Margin.Left;
                 var curLabel = new Image();
                 var newLabel = new Image();
-                if (selectedSegment == selectGolden.Name)
+                if (selectedSegment == selectStart1)
                 {
-                    startLocation = selectGolden.Margin.Left;
-                    curLabel = goldenLabel;
-                    FadeTheMediaElement(1, 0, GoldenEx, 250);
-                    FadeTheMediaElement(1, 0, goldenCover, 100);
+                    startLocation = selectStartBox1.Margin.Left;
+                    curLabel = StopLabel1;
+                    FadeTheMediaElement(1, 0, Stop1Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop1Cover, 100);
                 }
-                else if (selectedSegment == selectGlenogle.Name)
+                else if (selectedSegment == selectStart2)
                 {
-                    startLocation = selectGlenogle.Margin.Left;
-                    curLabel = glenogleLabel;
-                    FadeTheMediaElement(1, 0, GlenogleEx, 250);
-                    FadeTheMediaElement(1, 0, glenogleCover, 100);
+                    startLocation = selectStartBox2.Margin.Left;
+                    curLabel = StopLabel2;
+                    FadeTheMediaElement(1, 0, Stop2Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop2Cover, 100);
                 }
-                else if (selectedSegment == selectPalliser.Name)
+                else if (selectedSegment == selectStart3)
                 {
-                    startLocation = selectPalliser.Margin.Left;
-                    curLabel = palliserLabel;
-                    FadeTheMediaElement(1, 0, PalliserEx, 250);
-                    FadeTheMediaElement(1, 0, palliserCover, 100);
+                    startLocation = selectStartBox3.Margin.Left;
+                    curLabel = StopLabel3;
+                    FadeTheMediaElement(1, 0, Stop3Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop3Cover, 100);
                 }
-                else if (selectedSegment == selectLeanchoil.Name)
+                else if (selectedSegment == selectStart4)
                 {
-                    startLocation = selectLeanchoil.Margin.Left;
-                    curLabel = leanchoilLabel;
-                    FadeTheMediaElement(1, 0, LeanchoilEx, 250);
-                    FadeTheMediaElement(1, 0, leanchoilCover, 100);
+                    startLocation = selectStartBox4.Margin.Left;
+                    curLabel = StopLabel4;
+                    FadeTheMediaElement(1, 0, Stop4Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop4Cover, 100);
                 }
-                else if (selectedSegment == selectOttertail.Name)
+                else if (selectedSegment == selectStart5)
                 {
-                    startLocation = selectOttertail.Margin.Left;
-                    curLabel = ottertailLabel;
-                    FadeTheMediaElement(1, 0, OttertailEx, 250);
-                    FadeTheMediaElement(1, 0, ottertailCover, 100);
-                }
-
-
-
-                if (selectedSegment == selectTrail.Name)
-                {
-                    startLocation = selectTrail.Margin.Left;
-                    curLabel = TrailLabel;
-                    FadeTheMediaElement(1, 0, TrailEx, 250);
-                    FadeTheMediaElement(1, 0, TrailCover, 100);
-                }
-                else if (selectedSegment == selectBrilliant.Name)
-                {
-                    startLocation = selectBrilliant.Margin.Left;
-                    curLabel = BrilliantLabel;
-                    FadeTheMediaElement(1, 0, BrilliantEx, 250);
-                    FadeTheMediaElement(1, 0, BrilliantCover, 100);
-                }
-                else if (selectedSegment == selectThrums.Name)
-                {
-                    startLocation = selectThrums.Margin.Left;
-                    curLabel = ThrumsLabel;
-                    FadeTheMediaElement(1, 0, ThrumsEx, 250);
-                    FadeTheMediaElement(1, 0, ThrumsCover, 100);
-                }
-                else if (selectedSegment == selectSSlocan.Name)
-                {
-                    startLocation = selectSSlocan.Margin.Left;
-                    curLabel = SSlocanLabel;
-                    FadeTheMediaElement(1, 0, SSlocanEx, 250);
-                    FadeTheMediaElement(1, 0, SSlocanCover, 100);
-                }
-                else if (selectedSegment == selectGranite.Name)
-                {
-                    startLocation = selectGranite.Margin.Left;
-                    curLabel = GraniteLabel;
-                    FadeTheMediaElement(1, 0, GraniteEx, 250);
-                    FadeTheMediaElement(1, 0, GraniteCover, 100);
+                    startLocation = selectStartBox5.Margin.Left;
+                    curLabel = StopLabel5;
+                    FadeTheMediaElement(1, 0, Stop5Ex, 250);
+                    FadeTheMediaElement(1, 0, Stop5Cover, 100);
                 }
 
 
-                if (mySender.Name == selectGolden.Name)
+
+                //if (selectedSegment == selectTrail.Name)
+                //{
+                //    startLocation = selectTrail.Margin.Left;
+                //    curLabel = TrailLabel;
+                //    FadeTheMediaElement(1, 0, TrailEx, 250);
+                //    FadeTheMediaElement(1, 0, TrailCover, 100);
+                //}
+                //else if (selectedSegment == selectBrilliant.Name)
+                //{
+                //    startLocation = selectBrilliant.Margin.Left;
+                //    curLabel = BrilliantLabel;
+                //    FadeTheMediaElement(1, 0, BrilliantEx, 250);
+                //    FadeTheMediaElement(1, 0, BrilliantCover, 100);
+                //}
+                //else if (selectedSegment == selectThrums.Name)
+                //{
+                //    startLocation = selectThrums.Margin.Left;
+                //    curLabel = ThrumsLabel;
+                //    FadeTheMediaElement(1, 0, ThrumsEx, 250);
+                //    FadeTheMediaElement(1, 0, ThrumsCover, 100);
+                //}
+                //else if (selectedSegment == selectSSlocan.Name)
+                //{
+                //    startLocation = selectSSlocan.Margin.Left;
+                //    curLabel = SSlocanLabel;
+                //    FadeTheMediaElement(1, 0, SSlocanEx, 250);
+                //    FadeTheMediaElement(1, 0, SSlocanCover, 100);
+                //}
+                //else if (selectedSegment == selectGranite.Name)
+                //{
+                //    startLocation = selectGranite.Margin.Left;
+                //    curLabel = GraniteLabel;
+                //    FadeTheMediaElement(1, 0, GraniteEx, 250);
+                //    FadeTheMediaElement(1, 0, GraniteCover, 100);
+                //}
+
+
+                if (mySender.Name == selectStart1)
                 {
-                    newLabel = goldenLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, GoldenEx, 250); FadeTheMediaElement(0, 1, goldenCover, 250); }), TimeSpan.FromMilliseconds(250));
+                    newLabel = StopLabel1;
+                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop1Ex, 250); FadeTheMediaElement(0, 1, Stop1Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectGlenogle.Name)
+                else if (mySender.Name == selectStart2)
                 {
-                    newLabel = glenogleLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, GlenogleEx, 250); FadeTheMediaElement(0, 1, glenogleCover, 250); }), TimeSpan.FromMilliseconds(250));
+                    newLabel = StopLabel2;
+                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop2Ex, 250); FadeTheMediaElement(0, 1, Stop2Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectPalliser.Name)
+                else if (mySender.Name == selectStart3)
                 {
-                    newLabel = palliserLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, PalliserEx, 250); FadeTheMediaElement(0, 1, palliserCover, 250); }), TimeSpan.FromMilliseconds(250));
+                    newLabel = StopLabel3;
+                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop3Ex, 250); FadeTheMediaElement(0, 1, Stop3Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectLeanchoil.Name)
+                else if (mySender.Name == selectStart4)
                 {
-                    newLabel = leanchoilLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, LeanchoilEx, 250); FadeTheMediaElement(0, 1, leanchoilCover, 250); }), TimeSpan.FromMilliseconds(250));
+                    newLabel = StopLabel4;
+                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop4Ex, 250); FadeTheMediaElement(0, 1, Stop4Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectOttertail.Name)
+                else if (mySender.Name == selectStart5)
                 {
-                    newLabel = ottertailLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, ottertailCover, 250); }), TimeSpan.FromMilliseconds(250));
+                    newLabel = StopLabel5;
+                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, Stop5Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
 
-                else if (mySender.Name == selectTrail.Name)
-                {
-                    newLabel = TrailLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, TrailCover, 250); }), TimeSpan.FromMilliseconds(250));
-                }
+                //else if (mySender.Name == selectTrail.Name)
+                //{
+                //    newLabel = TrailLabel;
+                //    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, TrailCover, 250); }), TimeSpan.FromMilliseconds(250));
+                //}
 
-                else if (mySender.Name == selectBrilliant.Name)
-                {
-                    newLabel = BrilliantLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, BrilliantCover, 250); }), TimeSpan.FromMilliseconds(250));
-                }
+                //else if (mySender.Name == selectBrilliant.Name)
+                //{
+                //    newLabel = BrilliantLabel;
+                //    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, BrilliantCover, 250); }), TimeSpan.FromMilliseconds(250));
+                //}
 
-                else if (mySender.Name == selectThrums.Name)
-                {
-                    newLabel = ThrumsLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, ThrumsCover, 250); }), TimeSpan.FromMilliseconds(250));
-                }
-                else if (mySender.Name == selectSSlocan.Name)
-                {
-                    newLabel = SSlocanLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, SSlocanCover, 250); }), TimeSpan.FromMilliseconds(250));
-                }
-                else if (mySender.Name == selectGranite.Name)
-                {
-                    newLabel = GraniteLabel;
-                    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, OttertailEx, 250); FadeTheMediaElement(0, 1, GraniteCover, 250); }), TimeSpan.FromMilliseconds(250));
-                }
+                //else if (mySender.Name == selectThrums.Name)
+                //{
+                //    newLabel = ThrumsLabel;
+                //    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, ThrumsCover, 250); }), TimeSpan.FromMilliseconds(250));
+                //}
+                //else if (mySender.Name == selectSSlocan.Name)
+                //{
+                //    newLabel = SSlocanLabel;
+                //    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, SSlocanCover, 250); }), TimeSpan.FromMilliseconds(250));
+                //}
+                //else if (mySender.Name == selectGranite.Name)
+                //{
+                //    newLabel = GraniteLabel;
+                //    TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, GraniteCover, 250); }), TimeSpan.FromMilliseconds(250));
+                //}
 
 
                 startLocation = startLocation - 1348;
@@ -1185,27 +1247,27 @@ namespace TrainSimulatorCsharp
         private void toggleLocationSelectionButtons(Visibility myVis)
         {
            //// myVis = Visibility.Visible;
-            selectGolden.Visibility = myVis;
-            selectGlenogle.Visibility = myVis;
-            selectPalliser.Visibility = myVis;
-            selectLeanchoil.Visibility = myVis;
-            selectOttertail.Visibility = myVis;
+            selectStartBox1.Visibility = myVis;
+            selectStartBox2.Visibility = myVis;
+            selectStartBox3.Visibility = myVis;
+            selectStartBox4.Visibility = myVis;
+            selectStartBox5.Visibility = myVis;
 
-            goldenCover.Visibility = myVis;
-            glenogleCover.Visibility = myVis;
-            palliserCover.Visibility = myVis;
-            leanchoilCover.Visibility = myVis;
-            ottertailCover.Visibility = myVis;
+            Stop1Cover.Visibility = myVis;
+            Stop2Cover.Visibility = myVis;
+            Stop3Cover.Visibility = myVis;
+            Stop4Cover.Visibility = myVis;
+            Stop5Cover.Visibility = myVis;
         }
 
         private void toggleExampleVideoVisibility(Visibility myVis)
         {
           ///  myVis = Visibility.Visible ;
-            GoldenEx.Visibility = myVis;
-            GlenogleEx.Visibility = myVis;
-            PalliserEx.Visibility = myVis;
-            LeanchoilEx.Visibility = myVis;
-            OttertailEx.Visibility = myVis;
+            Stop1Ex.Visibility = myVis;
+            Stop2Ex.Visibility = myVis;
+            Stop3Ex.Visibility = myVis;
+            Stop4Ex.Visibility = myVis;
+            Stop5Ex.Visibility = myVis;
             descriptionScreenFootage.Visibility = myVis;
         }
 
