@@ -74,8 +74,8 @@ namespace TrainSimulatorCsharp
         static string gameState = "screenSaver";
         static bool ssFwd = true;
         static bool UIbuttonsClickable = false;
-        static string selectedSegment = "none";
-        static string selectedTrack = "none";
+        static string selectedSegment = "";
+        static string selectedTrack = "";
         static string instructionState ="";
         //Rolling up to Field Vars
         static int iterCounter = 0;
@@ -922,7 +922,7 @@ namespace TrainSimulatorCsharp
 
                 }), TimeSpan.FromMilliseconds(3000));
 
-                selectedSegment = "selectGolden";
+                selectedSegment = selectStart1;
                 gameState = "startLocationSelection";
 
 
