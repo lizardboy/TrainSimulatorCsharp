@@ -445,18 +445,18 @@ namespace TrainSimulatorCsharp
             Stop4Ex.Pause();
             Stop5Ex.Play();
             Stop5Ex.Pause();
-            TrailEx.Play();
-            TrailEx.Pause();
-            BrilliantEx.Play();
-            BrilliantEx.Pause();
-            ThrumsEx.Play();
-            ThrumsEx.Pause();
-            SSlocanEx.Play();
-            SSlocanEx.Pause();
-            GraniteEx.Play();
-            GraniteEx.Pause();
-            ///Track3Siding1.Play();
-            ///Track3Siding1.Pause();
+            //TrailEx.Play();
+            //TrailEx.Pause();
+            //BrilliantEx.Play();
+            //BrilliantEx.Pause();
+            //ThrumsEx.Play();
+            //ThrumsEx.Pause();
+            //SSlocanEx.Play();
+            //SSlocanEx.Pause();
+            //GraniteEx.Play();
+            //GraniteEx.Pause();
+            /////Track3Siding1.Play();
+            /////Track3Siding1.Pause();
             ///Track3Siding2.Play();
             ///Track3Siding2.Pause();
             ///Track3Siding3.Play();
@@ -576,8 +576,13 @@ namespace TrainSimulatorCsharp
             Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.wmv", UriKind.Absolute);
             Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.wmv", UriKind.Absolute);
             Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.wmv", UriKind.Absolute);
-           
 
+            StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("TrailLabel.png"));
+            StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("BrilliantLabel.png"));
+            StopLabel3.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ThrumsLabel.png"));
+            StopLabel4.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("SSlocanLabel.png"));
+            StopLabel5.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("GraniteLabel.png"));
+            StopLabel6.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("NelsonLabel.png"));
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track2Text.png"));
             try
@@ -753,7 +758,7 @@ namespace TrainSimulatorCsharp
                 descriptionPosition = 0;
 
                 gameState = "trackSelection";
-                TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1000));
 
                 FadeTheMediaElement(1, 0, descriptionScreenFootage, 200);
                 TimedAction.ExecuteWithDelay(new Action(delegate { descriptionScreenFootage.Margin = new Thickness(1269, 1013, -489, -273); }), TimeSpan.FromMilliseconds(1000));
