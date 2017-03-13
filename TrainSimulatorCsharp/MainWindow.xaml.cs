@@ -527,9 +527,12 @@ namespace TrainSimulatorCsharp
             Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv", UriKind.Absolute);
             Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv", UriKind.Absolute);
 
-            StopLabel1.Source = new Uri (@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\goldenLabel.png", UriKind.Absolute);
-            StopLabel1.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\goldenLabel.png", UriKind.Absolute);
-
+            StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("goldenLabel.png"));
+            StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("glenogleLabel.png"));
+            StopLabel3.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("palliserLabel.png"));
+            StopLabel4.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("leanchoilLabel.png"));
+            StopLabel5.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ottertailLabel.png"));
+           
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
 
             try
