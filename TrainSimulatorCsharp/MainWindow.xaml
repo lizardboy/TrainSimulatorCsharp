@@ -24,7 +24,15 @@
         <Rectangle x:Name="selectPalliser" HorizontalAlignment="Left" Height="123" Margin="485,893,684,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectLeanchoil" HorizontalAlignment="Left" Height="123" Margin="703,893,467,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectOttertail" HorizontalAlignment="Left" Height="123" Margin="920,893,250,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
-       
+
+        <Rectangle x:Name="selectTrail" HorizontalAlignment="Left" Height="123" Margin="52,893,1118,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="selectBrilliant" HorizontalAlignment="Left" Height="123" Margin="268,893,962,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectThrums" HorizontalAlignment="Left" Height="123" Margin="485,893,684,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectSSlocan" HorizontalAlignment="Left" Height="123" Margin="703,893,467,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectGranite" HorizontalAlignment="Left" Height="123" Margin="920,893,250,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+
+
+
         <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
         <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
 
@@ -34,6 +42,19 @@
         <Image x:Name="leanchoilLabel" Margin="2002,912,-826,86" Source="leanchoilLabel.png" Grid.Row="1" />
         <Image x:Name="ottertailLabel" Margin="2224,912,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
         <Image x:Name="fieldLabel" Margin="2460,912,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
+
+        <Image x:Name="TrailLabel" Margin="1363,458,-163,86" Source="TrailLabel.png" Grid.Row="1" />
+        <Image x:Name="BrilliantLabel" Margin="1571,913,-389,81" Source="BrilliantLabel.png" Grid.Row="1" />
+        <Image x:Name="ThrumsLabel" Margin="1795,912,-598,86" Source="ThrumsLabel.png" Grid.Row="1" />
+        <Image x:Name="SSlocanLabel" Margin="2002,912,-826,86" Source="SSlocanLabel.png" Grid.Row="1" />
+        <Image x:Name="GraniteLabel" Margin="2224,912,-1039,86" Source="GraniteLabel.png" Grid.Row="1" />
+        <Image x:Name="NelsonLabel" Margin="2460,912,-1237,86" Source="NelsonLabel.png" Grid.Row="1"/>
+
+
+
+
+
+
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
         <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="152" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
 
@@ -61,6 +82,15 @@
         <Rectangle x:Name="palliserCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="522,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
         <Rectangle x:Name="leanchoilCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="738,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
         <Rectangle x:Name="ottertailCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="955,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+
+
+        <Rectangle x:Name="TrailCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="86,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="33" Opacity="0" Panel.ZIndex="3" Grid.Row="1"/>
+        <Rectangle x:Name="BrilliantCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="306,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="ThrumsCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="522,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="SSlocanCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="738,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+        <Rectangle x:Name="GraniteCover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="955,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
+
+
 
 
         <Rectangle Fill="#FF83A0A9" HorizontalAlignment="Left" Height="1016" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="-1" Margin="0,0,-8,0" Grid.RowSpan="2"/>
