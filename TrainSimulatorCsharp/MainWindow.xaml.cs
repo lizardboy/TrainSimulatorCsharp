@@ -445,25 +445,7 @@ namespace TrainSimulatorCsharp
             Stop4Ex.Pause();
             Stop5Ex.Play();
             Stop5Ex.Pause();
-            //TrailEx.Play();
-            //TrailEx.Pause();
-            //BrilliantEx.Play();
-            //BrilliantEx.Pause();
-            //ThrumsEx.Play();
-            //ThrumsEx.Pause();
-            //SSlocanEx.Play();
-            //SSlocanEx.Pause();
-            //GraniteEx.Play();
-            //GraniteEx.Pause();
-            /////Track3Siding1.Play();
-            /////Track3Siding1.Pause();
-            ///Track3Siding2.Play();
-            ///Track3Siding2.Pause();
-            ///Track3Siding3.Play();
-            ///Track3Siding3.Pause();
-            ///Track3Siding4.Play();
-            ///Track3Siding4.Pause();
-
+           
 
             descriptionScreenFootage.Play();
             descriptionScreenFootage.Pause();

@@ -224,6 +224,7 @@
     <Resource Include="fieldLabel.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="SSlocanLabel.png" />
     <Resource Include="trainIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -285,19 +286,19 @@
     <Resource Include="track1Text.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ThrumsLabel.png" />
+    <Resource Include="ThrumsLabel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="TrailLabel.png" />
+    <Resource Include="TrailLabel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SSlocanLabel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="GraniteLabel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="NelsonLabel.png" />
+    <Resource Include="GraniteLabel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ScrollableText1.png" />
@@ -309,7 +310,12 @@
     <Resource Include="ScrollableText3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="BrilliantLabel.png" />
+    <Resource Include="BrilliantLabel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="NelsonLabel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
