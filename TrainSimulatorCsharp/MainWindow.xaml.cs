@@ -74,6 +74,7 @@ namespace TrainSimulatorCsharp
         static string gameState = "screenSaver";
         static bool ssFwd = true;
         static bool UIbuttonsClickable = false;
+        static string buttonClicked;
         static string selectedSegment = "";
         static string selectedTrack = "";
         static string instructionState ="";
@@ -90,6 +91,7 @@ namespace TrainSimulatorCsharp
         static string selectLabel3;
         static string selectLabel4;
         static string selectLabel5;
+        
         //Control Stand Input Devices
         private InterfaceKit my16_16_0;
         private InterfaceKit my8_8_8;
@@ -514,7 +516,9 @@ namespace TrainSimulatorCsharp
             StopLabel3.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("palliserLabel.png"));
             StopLabel4.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("leanchoilLabel.png"));
             StopLabel5.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ottertailLabel.png"));
-           
+            StopLabel6.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("FieldLabel.png"));
+
+
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track1Text.png"));
 
             try
@@ -1012,8 +1016,22 @@ namespace TrainSimulatorCsharp
 
         private void segmentSelect(object sender, MouseButtonEventArgs e)
         {
+            
             var mySender = sender as Rectangle;
-            if (mySender.Name != selectedSegment && UIbuttonsClickable == true)
+            //// cahnge the names to the stored values for this track
+            if(mySender.Name == "selectStartBox1")
+            { buttonClicked = selectStart1; }
+            if (mySender.Name == "selectStartBox2")
+            { buttonClicked = selectStart2; }
+            if (mySender.Name == "selectStartBox3")
+            { buttonClicked = selectStart3; }
+            if (mySender.Name == "selectStartBox4")
+            { buttonClicked = selectStart4; }
+            if (mySender.Name == "selectStartBox5")
+            { buttonClicked = selectStart5; }
+
+
+            if (buttonClicked != selectedSegment && UIbuttonsClickable == true)
             {
                 UIbuttonsClickable = false;
                 double startLocation = 0;
@@ -1058,27 +1076,27 @@ namespace TrainSimulatorCsharp
 
 
 
-                if (mySender.Name == selectStart1)
+                if (buttonClicked == selectStart1)
                 {
                     newLabel = StopLabel1;
                     TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop1Ex, 250); FadeTheMediaElement(0, 1, Stop1Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectStart2)
+                else if (buttonClicked == selectStart2)
                 {
                     newLabel = StopLabel2;
                     TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop2Ex, 250); FadeTheMediaElement(0, 1, Stop2Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectStart3)
+                else if (buttonClicked == selectStart3)
                 {
                     newLabel = StopLabel3;
                     TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop3Ex, 250); FadeTheMediaElement(0, 1, Stop3Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectStart4)
+                else if (buttonClicked == selectStart4)
                 {
                     newLabel = StopLabel4;
                     TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop4Ex, 250); FadeTheMediaElement(0, 1, Stop4Cover, 250); }), TimeSpan.FromMilliseconds(250));
                 }
-                else if (mySender.Name == selectStart5)
+                else if (buttonClicked == selectStart5)
                 {
                     newLabel = StopLabel5;
                     TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, Stop5Ex, 250); FadeTheMediaElement(0, 1, Stop5Cover, 250); }), TimeSpan.FromMilliseconds(250));
@@ -1092,7 +1110,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true ; }), TimeSpan.FromMilliseconds(500));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, -12, -1296, 0, 200, 0.5, 0.5, curLabel); }), TimeSpan.FromMilliseconds(100));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1296, 0, -1296, -12, 200, 0.5, 0.5, newLabel); }), TimeSpan.FromMilliseconds(200));
-                selectedSegment = mySender.Name;
+                selectedSegment = buttonClicked;
             }
         }
 

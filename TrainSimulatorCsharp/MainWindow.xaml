@@ -17,7 +17,7 @@
         <Image x:Name="locationSelectionBar" Margin="1296,893,-1304,0" Source="locationSelectionBar.png" Grid.Row="1"  />
         <Image x:Name="selectStartPoint" Margin="1350,498,-1244,465" Source="selectStartPointLabel.png" Grid.Row="1" Grid.RowSpan="2"  />
         <Rectangle x:Name="selectStartBox1" HorizontalAlignment="Left" Height="123" Margin="52,893,1118,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1"/>
-        <Rectangle x:Name="selectStartBox2" HorizontalAlignment="Left" Height="123" Margin="268,893,962,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
+        <Rectangle x:Name="selectStartBox2" HorizontalAlignment="Left" Height="123" Margin="268,893,902,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectStartBox3" HorizontalAlignment="Left" Height="123" Margin="485,893,684,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectStartBox4" HorizontalAlignment="Left" Height="123" Margin="703,893,467,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectStartBox5" HorizontalAlignment="Left" Height="123" Margin="920,893,250,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
@@ -26,12 +26,12 @@
         <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
         <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
 
-        <Image x:Name="StopLabel1" Margin="1363,458,-163,86" Source="goldenLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel2" Margin="1571,913,-389,81" Source="glenogleLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel3" Margin="1795,912,-598,86" Source="PalliserLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel4" Margin="2002,912,-826,86" Source="leanchoilLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel5" Margin="2224,912,-1039,86" Source="ottertailLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel6" Margin="2460,912,-1237,86" Source="fieldLabel.png" Grid.Row="1"/>
+        <Image x:Name="StopLabel1" Margin="1363,913,-163,90" Source="goldenLabel.png" Grid.Row="1" />
+        <Image x:Name="StopLabel2" Margin="1571,913,-389,90" Source="glenogleLabel.png" Grid.Row="1" />
+        <Image x:Name="StopLabel3" Margin="1795,912,-598,90" Source="PalliserLabel.png" Grid.Row="1" />
+        <Image x:Name="StopLabel4" Margin="2002,912,-826,90" Source="leanchoilLabel.png" Grid.Row="1" />
+        <Image x:Name="StopLabel5" Margin="2224,912,-1039,90" Source="ottertailLabel.png" Grid.Row="1" />
+        <Image x:Name="StopLabel6" Margin="2460,912,-1237,90" Source="FieldLabel.png" Grid.Row="1"/>
 
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
         <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="152" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
