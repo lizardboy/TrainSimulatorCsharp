@@ -5,7 +5,7 @@
         Title="MainWindow" Height="1024" Width="1280" WindowStyle="None" Loaded="Window_Loaded"
         WindowStartupLocation="Manual" Top="10" Left="1930">
 
-    <Grid x:Name="splash" Background="Black">
+    <Grid x:Name="splash"  Background ="Black">
 
         <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
         <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png" Grid.Row="1" />

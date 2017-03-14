@@ -21,7 +21,8 @@ namespace TrainSimulatorCsharp
     {
         public VideoOutputWindow()
         {
-            InitializeComponent();    //// parse xmal file 
+            InitializeComponent();    //// parse xmal file creates output window (alias) layout
+
         }
 
         private void testMediaElement_MediaEnded(object sender, RoutedEventArgs e)

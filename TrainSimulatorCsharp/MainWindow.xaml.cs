@@ -389,8 +389,13 @@ namespace TrainSimulatorCsharp
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-           /// EngageScreenSaver();
+             EngageScreenSaver();
+
+
+
             ////Mouse.OverrideCursor = Cursors.None;
+
+
 
             WindowState = WindowState.Maximized;
             my16_16_0 = new InterfaceKit();
@@ -410,7 +415,9 @@ namespace TrainSimulatorCsharp
             ////  myAnalogOut.outputs[1].Enabled = true;
             ///   myAnalogOut.outputs[0].Voltage = 0;
             ///    myAnalogOut.outputs[1].Voltage = 0;
-            intControlsPosition();
+
+            intControlsPosition();            ///  /take initial reading of throttle and dynamic as they are not read until moved otherwise
+
             my8_8_8.SensorChange += new SensorChangeEventHandler(myPotChanged);
             my8_8_8.InputChange += new InputChangeEventHandler(my8InputChanged);
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
@@ -1280,7 +1287,7 @@ namespace TrainSimulatorCsharp
 
         private void LoadInButtons()
         {
-            //FadeTheMediaElement(1, 0, splashLogo, 300);
+            FadeTheMediaElement(1, 0, splash, 300);
 
             // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
@@ -2210,9 +2217,13 @@ namespace TrainSimulatorCsharp
                 if (iter2 == 0)
                 {
                     ///remove logo
-                    FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);
+                    FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);                   
+                    /// fade fuel bar background
+                    FadeTheMediaElement(1, 0, fuelBarBackground, 500);
+                    //// fade fuel bar
+                    FadeTheMediaElement(0, 1, fuelBar, 500);
                     //// activate pcs light perhaps flashing 
-
+                    //// my16_10_0 outputs[] = true
                     /// display wheel slippage reduce brake setting message
                     instructionsLabel.Content = "Warning Locomotive Wheel Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
@@ -2257,6 +2268,10 @@ namespace TrainSimulatorCsharp
                 {
                     ///replace logo               
                     FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
+                    ///replace fuel bar background
+                    FadeTheMediaElement(0, 1, fuelBarBackground, 500);
+                    ///replace fuel bar
+                    FadeTheMediaElement(0, 1, fuelBar, 500);
                     ///remove instruction labels
                     FadeTheMediaElement(1, 0, instructionsLabel, 500);
                     FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
@@ -2279,8 +2294,10 @@ namespace TrainSimulatorCsharp
                     }
                     instructionState = "";
                     ////turnoff pcs light
+                  ////  my16_16_0.outputs[] = false
 
-                    iter2 = 2;                    
+
+                        iter2 = 2;                   
                 }
 
                 if(iter2 == 2)
@@ -2303,7 +2320,10 @@ namespace TrainSimulatorCsharp
                 {
                     ///remove logo
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);
-                   
+                    /// remove fuel bar background                   
+                    FadeTheMediaElement(1, 0, fuelBarBackground, 500);
+                    //// fade fuel bar
+                    FadeTheMediaElement(1, 0, fuelBar, 500);
                     /// display wheel slippage reduce brake setting message
                     instructionsLabel.Content = "Warning Car Wheel Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
@@ -2339,6 +2359,10 @@ namespace TrainSimulatorCsharp
                 {
                     ///replace logo               
                     FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
+                    /// replace fuel bar background                   
+                    FadeTheMediaElement(0, 1, fuelBarBackground, 500);
+                    //// replace  fuel bar
+                    FadeTheMediaElement(0, 1, fuelBar, 500);
                     ///remove instruction labels
                     FadeTheMediaElement(1, 0, instructionsLabel, 500);
                     FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
