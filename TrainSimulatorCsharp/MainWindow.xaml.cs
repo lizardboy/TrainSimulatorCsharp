@@ -169,7 +169,7 @@ namespace TrainSimulatorCsharp
         static double MinVelocity = 1;                 // Set Minimum Train Velocity (MPH)
         static double trainDrag;
         static double locomotiveWeight = 400000;
-        static double carWeight = 1200000;
+        static double carWeight = 1500000;
         static double trainBrakeForce;
         static double trainTractiveEffort;
         static double velocityMs;
@@ -1287,7 +1287,7 @@ namespace TrainSimulatorCsharp
 
         private void LoadInButtons()
         {
-            FadeTheMediaElement(1, 0, splash, 300);
+           /// FadeTheMediaElement(1, 0, splash, 300);
 
             // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
@@ -1439,7 +1439,7 @@ namespace TrainSimulatorCsharp
             if (my8_8_8.inputs[1] == false && iter == 0)                /// if independant brake position <>0 
             {
                 instructionsLabel.Content = "Release Locomotive Brake!";
-                TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
+                TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indInstructions);
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(1, false); }), TimeSpan.FromMilliseconds(500));
 
@@ -1454,7 +1454,7 @@ namespace TrainSimulatorCsharp
 
             else if (my8_8_8.inputs[1] == true && iter == 1)
             {
-                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, indIstructions);
+                TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, indInstructions);
                 FadeTheMediaElement(1, 0, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(0, false); }), TimeSpan.FromMilliseconds(500));
             }
@@ -1799,10 +1799,10 @@ namespace TrainSimulatorCsharp
         //Game Control
         private void LaunchGame()
         {
-            TimedAction.ExecuteWithDelay(new Action(delegate { TrainSimulatorLogo.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, 0, 500, 0, 1, TrainSimulatorLogo); }), TimeSpan.FromMilliseconds(200));
+            TimedAction.ExecuteWithDelay(new Action(delegate { TrainSimulatorLogo.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, -200, 500, 0, 1, TrainSimulatorLogo); }), TimeSpan.FromMilliseconds(200));
             TimedAction.ExecuteWithDelay(new Action(delegate { fuelBarBackground.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, 0, 500, 0, 1, fuelBarBackground); }), TimeSpan.FromMilliseconds(0));
             TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibility.Visible; updateFuelBar(1500); toggleDisplayLights(false); }), TimeSpan.FromMilliseconds(800));
-            
+            TimedAction.ExecuteWithDelay(new Action(delegate { fuelBarMessage.Visibility = Visibility.Visible; }), TimeSpan.FromMilliseconds(800));
             gameState = "inGame";
 
             if (selectedSegment == "selectGolden")
@@ -1936,15 +1936,28 @@ namespace TrainSimulatorCsharp
             FadeTheMediaElement(0.5, 0, outWindow.CabFootageVideo, 1000);
             TimedAction.ExecuteWithDelay(new Action(delegate { outWindow.CabFootageVideo.Position = new TimeSpan(0); outWindow.CabFootageVideo.Visibility = Visibility.Hidden; }), TimeSpan.FromMilliseconds(1200));
             fuelBar.Visibility = Visibility.Hidden;
+            fuelBarBackground.Visibility = Visibility.Hidden;
+            fuelBarMessage.Visibility = Visibility.Hidden;
+
+
             FadeTheMediaElement(1, 0, continueScreenLabel, 500);
             FadeTheMediaElement(1, 0, outWindow.continueMainScreenLabel, 500);
             FadeTheMediaElement(1, 0, continueCountdownLabel, 500);
             FadeTheMediaElement(1, 0, outWindow.continueMainCountdownLabel, 500);
 
-            TimedAction.ExecuteWithDelay(new Action(delegate { 
+            TimedAction.ExecuteWithDelay(new Action(delegate {
+                instructionsLabel.Visibility = Visibility.Hidden;
+                instructionsSupLabel.Visibility = Visibility.Hidden;
+                throttleInstructionsdown.Visibility = Visibility.Hidden;
+                throttleInstructionsup.Visibility = Visibility.Hidden;
+                dynamicinstructionapply.Visibility = Visibility.Hidden;
+                dynamicinstructionrelease. Visibility = Visibility.Hidden;
+                brakeInstructions.Visibility = Visibility.Hidden;
+                indInstructions.Visibility = Visibility.Hidden;
                 TrainSimulatorLogo.Visibility = Visibility.Hidden; 
-                fuelBarBackground.Visibility = Visibility.Hidden; 
+               
                 toggleExampleVideoVisibility(Visibility.Visible);
+
                 toggleDisplayLights(true); 
                 continueScreenLabel.Visibility = Visibility.Hidden;
                 outWindow.continueMainScreenLabel.Visibility = Visibility.Hidden;
@@ -2022,7 +2035,8 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { 
                     TrainSimulatorLogo.Visibility = Visibility.Hidden; 
                     fuelBarBackground.Visibility = Visibility.Hidden; 
-                    fuelBar.Visibility = Visibility.Hidden; 
+                    fuelBar.Visibility = Visibility.Hidden;
+                    fuelBarMessage.Visibility = Visibility.Hidden;
                     toggleExampleVideoVisibility(Visibility.Visible); }), TimeSpan.FromMilliseconds(1000));
 
             }
@@ -2218,14 +2232,16 @@ namespace TrainSimulatorCsharp
                 {
                     ///remove logo
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);                   
-                    /// fade fuel bar background
+                    /// fade  fuel bar background
                     FadeTheMediaElement(1, 0, fuelBarBackground, 500);
                     //// fade fuel bar
-                    FadeTheMediaElement(0, 1, fuelBar, 500);
+                    FadeTheMediaElement(1, 0, fuelBar, 500);
+                    FadeTheMediaElement(1, 0, fuelBarMessage, 500);
+
                     //// activate pcs light perhaps flashing 
                     //// my16_10_0 outputs[] = true
                     /// display wheel slippage reduce brake setting message
-                    instructionsLabel.Content = "Warning Locomotive Wheel Slippage!";
+                    instructionsLabel.Content = "Warning Locomotive Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
                     if (getMainBrakeState() != 0)
                     {
@@ -2241,7 +2257,7 @@ namespace TrainSimulatorCsharp
                         instructionsSupLabel.Content = "Release locomotive Brake";
                         FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
                         /// put out indbrake 
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indInstructions);
                         instructionState = "indBrake";
                         iter2 = 1;
                     }
@@ -2272,6 +2288,7 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(0, 1, fuelBarBackground, 500);
                     ///replace fuel bar
                     FadeTheMediaElement(0, 1, fuelBar, 500);
+                    FadeTheMediaElement(0, 1, fuelBarMessage, 500);
                     ///remove instruction labels
                     FadeTheMediaElement(1, 0, instructionsLabel, 500);
                     FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
@@ -2285,7 +2302,7 @@ namespace TrainSimulatorCsharp
                     if (instructionState == "indBrake")
                     {
                         /// remove indBrake Instructions
-                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indIstructions);
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indInstructions);
                     }
                     if (instructionState == "dynBrake")
                     {  ///remove DynBrake instructions
@@ -2324,8 +2341,9 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(1, 0, fuelBarBackground, 500);
                     //// fade fuel bar
                     FadeTheMediaElement(1, 0, fuelBar, 500);
+                    FadeTheMediaElement(1, 0, fuelBarMessage, 500);
                     /// display wheel slippage reduce brake setting message
-                    instructionsLabel.Content = "Warning Car Wheel Slippage!";
+                    instructionsLabel.Content = "Warning Car Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
                     if (getMainBrakeState() != 0)
                     {
@@ -2341,7 +2359,7 @@ namespace TrainSimulatorCsharp
                         instructionsSupLabel.Content = "Release locomotive Brake";
                         FadeTheMediaElement(0, 1, instructionsSupLabel, 500);
                         /// put out indbrake 
-                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indIstructions);
+                        TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, indInstructions);
                         instructionState = "indBrake";
                         iter2 = 1;
                     }
@@ -2363,6 +2381,7 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(0, 1, fuelBarBackground, 500);
                     //// replace  fuel bar
                     FadeTheMediaElement(0, 1, fuelBar, 500);
+                    FadeTheMediaElement(0, 1, fuelBarMessage, 500);
                     ///remove instruction labels
                     FadeTheMediaElement(1, 0, instructionsLabel, 500);
                     FadeTheMediaElement(1, 0, instructionsSupLabel, 500);
@@ -2376,7 +2395,7 @@ namespace TrainSimulatorCsharp
                     if (instructionState == "indBrake")
                     {
                         /// remove indBrake Instructions
-                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indIstructions);
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, indInstructions);
                     }
                  
                     instructionState = "";
@@ -2458,12 +2477,18 @@ namespace TrainSimulatorCsharp
                 if (iter3 == 0)
                 { 
                 ///turnon PCS light 
+                //// my16_16_0.Outputs[] = true
                 /// remove logo
                 FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);
+                 //// fade fuel bar background
+                FadeTheMediaElement(1, 0, fuelBarBackground, 500);
+                //// fade fuel bar
+                FadeTheMediaElement(1, 0, fuelBar, 500);
+                FadeTheMediaElement(1, 0, fuelBarMessage, 500);
                 /// bring out throttle DOWN graphic
                 TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
                 /// display wheel slippage message
-                instructionsLabel.Content = "Warning Locomotive Wheel Slippage!";
+                instructionsLabel.Content = "Warning Locomotive Slippage!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 500);
                 /// display reduce throttle setting message
                 instructionsSupLabel.Content = "Reduce Throttle Setting";
@@ -2477,8 +2502,15 @@ namespace TrainSimulatorCsharp
                 if (iter3 == 1)
                 {
                     ///turnoff pcs light
+                    //// my16_16_0.Outputs[] = false
                     /// replace logo
                     FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
+                    //// replace fuel bar background
+                    FadeTheMediaElement(0, 1, fuelBarBackground, 500);
+                    //// replace fuel bar 
+                    FadeTheMediaElement(0, 1, fuelBar, 500);
+                    FadeTheMediaElement(0, 1, fuelBarMessage, 500);
+
                     /// remove wheel slippage message
                     TranslateTheMediaElement(-1196, 0, 0, 0, 500, 0, 1, throttleInstructionsdown);      //remove down
                     FadeTheMediaElement(1, 0, instructionsLabel, 500);
@@ -3167,26 +3199,26 @@ namespace TrainSimulatorCsharp
                     {
                         if (hornPulled == true)
                         {
-                            AudioPlaybackEngine.Instance.PlaySound(horn); 
+                            AudioPlaybackEngine.Instance.PlaySound(horn);
                         }
                         else
                         {
                             hornPlaying = false;
                         }
-                         
+
                     }
 
-                    else if ((cachedSound.Name == "AmbientAudio.wav" || cachedSound.Name == "AmbientAudio1.wav" )&& (gameState == "inGame" || gameState == "continueScreen"))
+                    else if ((cachedSound.Name == "AmbientAudio.wav" || cachedSound.Name == "AmbientAudio1.wav") && (gameState == "inGame" || gameState == "continueScreen"))
                     {
                         if (timeLeft > 48)
                         {
                             AudioPlaybackEngine.Instance.PlaySound(ambient);
                         }
-                        else 
+                        else
                         {
                             AudioPlaybackEngine.Instance.PlaySound(ambient1);
                         }
-                        
+
                     }
                     else if (cachedSound.Name == "BellLoop.wav")
                     {
@@ -3274,8 +3306,8 @@ namespace TrainSimulatorCsharp
                     }
                     else if (cachedSound.Name == "SandingSound.wav")
                     {
-                        if (sandingPressed == true || sandingToggle == true)
-                        {
+                        if (sandingPressed == true )/// || sandingToggle == true)
+                    {
                             AudioPlaybackEngine.Instance.PlaySound(SandingSound);
                         }
                         else
@@ -3432,22 +3464,7 @@ namespace TrainSimulatorCsharp
                {
                    sandingToggle = e.Value;
                    outWindow.sandigLeverStateLabel.Content = "SandingL State: " + Convert.ToString(sandingToggle);
-                   if (gameState == "inGame")
-                   {
-
-                   
-                   if (e.Value == false && sandingPressed == false)
-                   {
-                       my16_16_0.outputs[12] = false;
-                   }
-                   else if (e.Value == true)
-                   {
-                       my16_16_0.outputs[12] = true;
-                       AudioPlaybackEngine.Instance.PlaySound(SandingSound);
-                       sandingPlaying = true;
-                   }
-
-                   }
+                  
                }
                if (e.Index == 8)
                {
@@ -3758,9 +3775,11 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(0, 1, instructionsSupLabel, 300);
                     TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, brakeInstructions);
                     TimedAction.ExecuteWithDelay(new Action(delegate { iter1 = 2; }), TimeSpan.FromMilliseconds(500));
-
                     /// remove fuel bar too
-
+                    
+                    FadeTheMediaElement(0, 1, fuelBarBackground, 300);
+                    FadeTheMediaElement(0, 1, fuelBar, 300);
+                    FadeTheMediaElement(0, 1, fuelBarMessage, 300);
                 }
 
                 if (iter1 == 2)
@@ -3786,7 +3805,13 @@ namespace TrainSimulatorCsharp
                         FadeTheMediaElement(1, 0, instructionsSupLabel, 300);
                         FadeTheMediaElement(1, 0, instructionsLabel, 300);
                         FadeTheMediaElement(1, 0, TrainSimulatorLogo, 200);
-                        iter1 = 0;
+
+                        FadeTheMediaElement(1, 0, fuelBarBackground, 300);
+                        FadeTheMediaElement(1, 0, fuelBar, 300);
+                        FadeTheMediaElement(1, 0, fuelBarMessage, 300);
+
+
+                    iter1 = 0;
                     }
                 }
                 

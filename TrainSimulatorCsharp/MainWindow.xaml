@@ -22,7 +22,7 @@
         <Rectangle x:Name="selectStartBox4" HorizontalAlignment="Left" Height="123" Margin="703,893,467,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
         <Rectangle x:Name="selectStartBox5" HorizontalAlignment="Left" Height="123" Margin="920,893,250,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="102" MouseUp="segmentSelect" Panel.ZIndex="10" Fill="Black" Opacity="0" Grid.Row="1" />
 
-     
+
         <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
         <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
 
@@ -42,7 +42,7 @@
         <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1"/>
 
         <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
-       
+
         <MediaElement x:Name="descriptionScreenFootage"  Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
 
@@ -52,7 +52,7 @@
         <MediaElement x:Name="Stop3Ex" Source="PalliserEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
         <MediaElement x:Name="Stop4Ex" Source="LeanchoilEx.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
         <MediaElement x:Name="Stop5Ex" Source="Ottertail.wmv" Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" Grid.Row="1"/>
-      
+
         <Rectangle x:Name="Stop1Cover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="86,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="33" Opacity="0" Panel.ZIndex="3" Grid.Row="1"/>
         <Rectangle x:Name="Stop2Cover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="306,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
         <Rectangle x:Name="Stop3Cover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="522,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
@@ -60,40 +60,45 @@
         <Rectangle x:Name="Stop5Cover" Fill="#FF83A0A9" HorizontalAlignment="Left" Height="51" Margin="955,936,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="32" Opacity="0" Grid.Row="1"/>
 
 
-       
+
 
 
 
         <Rectangle Fill="#FF83A0A9" HorizontalAlignment="Left" Height="1016" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="-1" Margin="0,0,-8,0" Grid.RowSpan="2"/>
 
         <Image x:Name="TrainSimulatorLogo" Margin="290,552,292,2" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3" Grid.Row="1"/>
-        <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A" HorizontalAlignment="Left" Height="133" Margin="0,863,-8,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden" Grid.Row="1"/>
-        <Rectangle x:Name="fuelBar" Fill="#FF222F32" HorizontalAlignment="Left" Height="133" Margin="0,863,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
+        <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A"   HorizontalAlignment="Left" Height="100" Margin="0,863,-8,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden" Grid.Row="1"/>
+        <Rectangle x:Name="fuelBar" Fill="YellowGreen" HorizontalAlignment="Left" Height="100" Margin="0,863,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
 
         <Grid x:Name="descriptionTextContainer"  HorizontalAlignment="Left" Height="276" VerticalAlignment="Top" Width="514" Margin="699,640,-656,0" ClipToBounds="True" Grid.Row="3">
             <Image x:Name="descriptionText" Margin="0,276,0,-1030"  MouseDown="scrollDescriptionText"/>
 
 
         </Grid>
-        <Label x:Name="continueScreenLabel" Visibility="Hidden" Content="Insert Coin to Continue" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="-415,204,0,0" Width="1262" Height="209"/>
-        <Label x:Name="continueCountdownLabel" Visibility="Hidden" Content="12" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="581,325,-0,0" RenderTransformOrigin="-2.411,-0.78" Width="1280" Height="94" Grid.RowSpan="2"/>
+        <Label x:Name="continueScreenLabel" Visibility="Visible" Content="Insert Coin to Continue" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="14,51,-4,857" Width="1262" Height="108"/>
+        <Label x:Name="continueCountdownLabel" Visibility="Hidden" HorizontalAlignment="Center"  VerticalAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="0,221,-8,609" RenderTransformOrigin="-2.411,-0.78" Width="1280" Height="186">
+
+
+        </Label>
         <Image x:Name="thankyouScreen" Margin="-4,559,-4,-567" Source="ThankyouScreen.png" Visibility="Hidden" Grid.Row="1"/>
-        <Image x:Name="indIstructions" Margin="1350,384,-942,153" Source="LocomotiveBrake (1).png" Grid.RowSpan="2"/>
+        <Image x:Name="indInstructions" Margin="1350,384,-942,153" Source="LocomotiveBrake (1).png" Grid.RowSpan="2"/>
         <Image x:Name="brakeInstructions" Margin="1363,154,-967,0" Source="MainBrake (2).png" Grid.RowSpan="2" />
         <Label x:Name="instructionsLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Margin="10,10,10,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
         <Label x:Name="instructionsSupLabel" Content="ExampleText" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FF27434A" FontFamily="nevis" FontSize="40" Margin="-4,101,24,0" Width="1252" HorizontalContentAlignment="Center" Opacity="0"/>
-       
+
         <Image x:Name="throttleInstructionsup" Margin="1467,191,-882,8" Source="Throttle_UP_label.png" Grid.RowSpan="2" />
         <Image x:Name="throttleInstructionsdown" Margin="1467,191,-882,8" Source="throttle_DOWN_label.png" Grid.RowSpan="2" />
         <Image x:Name="dynamicinstructionapply" Margin="1467,191,-882,8" Source="dynamic_brake_APPLY_label.png" Grid.RowSpan="2" />
         <Image x:Name="dynamicinstructionrelease" Margin="1467,191,-882,8" Source="dynamic_brake_RELEASE_label.png" Grid.RowSpan="2" />
         <Image x:Name="reverserinstructions" Margin="1467,191,-882,8" Source="reverser_label.png" Grid.RowSpan="2" />
-        
+
         <Label x:Name="startLabel" Content="START" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-186,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="147" FontFamily="nevis" d:IsHidden="True"/>
         <Label x:Name="selectLabel" Content="SELECT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1311,369,-202,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
         <Label  x:Name="backLabel" Content="BACK" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-160,369,0,0" Foreground="#FF35B149" FontSize="36" Height="55" Width="163" FontFamily="nevis"/>
+        <TextBlock x:Name="fuelBarMessage" Visibility="Hidden" TextAlignment="Center" FontFamily="Nevis" FontWeight="Bold" FontSize = "30" Foreground="#ff27434a" HorizontalAlignment="Center" Margin="3,975,-8,0" TextWrapping="Wrap" Text="Simulation time remaining" VerticalAlignment="Top" Height="38" Width="1277"/>
+    
 
-        
+
 
 
 
