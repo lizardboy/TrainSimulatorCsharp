@@ -862,7 +862,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -211, 0, 300, 1, 0, startLabel); }), TimeSpan.FromMilliseconds(300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, -909, -46, 300, 0.5, 0.5, exampleVideoContainer); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1173, 0, 0, 0, 300, 1, 0, selectedTextDivider); }), TimeSpan.FromMilliseconds(400));
-                //TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1165, 0, 0, 0, 300, 1, 0, goldenToFieldDescriptionText); }), TimeSpan.FromMilliseconds(0));
+               
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1296, 0, 600, 0, 1, locationSelectionBar); }), TimeSpan.FromMilliseconds(600));
                 TimedAction.ExecuteWithDelay(new Action(delegate { toggleLocationSelectionButtons(Visibility.Visible); }), TimeSpan.FromMilliseconds(1300));
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(-1600, 0, -1296, 0, 500, 0, 1, selectionIndicatorBar); }), TimeSpan.FromMilliseconds(1200));
