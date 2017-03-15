@@ -2194,7 +2194,7 @@ namespace TrainSimulatorCsharp
             ///Drag on train friction wind bearing drag etc
             trainDrag = 2000 + (20 * velocityMs) + (3.5 * (velocityMs * velocityMs));
             ///dynamic brake effort
-            if (dynamicPosition == 0)
+            if (dynamicPosition == 0 && velocity >= 10)
             { dynBrakeEffort = ((maxDynBrakeEffort / 8) * (throttlePosition - 1)); }
             if (dynamicPosition != 0) { dynBrakeEffort = 0; }
 
@@ -2453,7 +2453,7 @@ namespace TrainSimulatorCsharp
 
             trainTractiveEffort = ((maxTractiveEffort / 8) * throttlePosition-1);
 
-            if (dynamicPosition ==0)
+            if (dynamicPosition ==0 )
 
             { trainTractiveEffort = 0;      ///if dynamic braking is active then throttle is at idle and dynamics works on throttle
 
@@ -2477,7 +2477,7 @@ namespace TrainSimulatorCsharp
                 { }
             }
 
-            if (dynamicPosition !=0 && iter4 ==1  )
+            if (dynamicPosition !=0 && iter4 ==1 )
             {
                 ///replace logo               
                 FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);

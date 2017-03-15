@@ -218,7 +218,9 @@
     <Resource Include="leanchoilLabel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ottertailLabel.png" />
+    <Resource Include="ottertailLabel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="fieldLabel.png" />
@@ -315,7 +317,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="NelsonLabel.png" />
+    <Resource Include="NelsonLabel.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
