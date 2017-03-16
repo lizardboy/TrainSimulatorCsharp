@@ -208,11 +208,13 @@ namespace TrainSimulatorCsharp
         static double dynamic_position_2 = 440;
         static double dynamic_position_3 = 341;
         static double dynamic_position_4 = 284;
+       
         // calculate dynamic selector  notch positions based on position 1 value 
         static double dynamic_offset_0 = dynamic_position_0 - dynamic_position_1;
         static double dynamic_offset_1 = dynamic_position_1 - dynamic_position_1;
         static double dynamic_offset_2 = dynamic_position_2 - dynamic_position_1;
         static double dynamic_offset_3 = dynamic_position_3 - dynamic_position_1;
+        static double dynamic_offset_4 = dynamic_position_4 - dynamic_position_1;
 
         static double dynamic_calibration_value = dynamic_position_1 - dynamic_deadzone;  // store what the one position on the throttle is during preflight
 
@@ -2444,9 +2446,9 @@ namespace TrainSimulatorCsharp
 
             trainTractiveEffort = ((maxTractiveEffort / 8) * throttlePosition-1);
 
-            if (dynamicPosition ==0 )
+            if (dynamicPosition ==  Dynamic_On_Position || dynamicPosition == 3 || dynamicPosition == 4 || dynamicPosition == 5)
 
-            { trainTractiveEffort = 0;      ///if dynamic braking is active then throttle is at idle and dynamics works on throttle
+            {
 
                if (iter4 == 0 && instructionState ==""){
                     ///remove logo
@@ -2468,7 +2470,7 @@ namespace TrainSimulatorCsharp
                 { }
             }
 
-            if (dynamicPosition !=0 && iter4 ==1 )
+            if (dynamicPosition != Dynamic_On_Position || dynamicPosition != 3 || dynamicPosition != 4 || dynamicPosition != 5 && iter4 ==1 )
             {
                 ///replace logo               
                 FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
@@ -2882,7 +2884,7 @@ namespace TrainSimulatorCsharp
                 amps = maxMotorAmps;
             }
 
-            if (dynamicPosition == 0)
+            if (dynamicPosition == Dynamic_On_Position || dynamicPosition == 3 || dynamicPosition == 4 || dynamicPosition == 5)
             {
                 amps = amps / 2;
             }
@@ -3714,7 +3716,7 @@ namespace TrainSimulatorCsharp
                        dynamicPosition = 3;
                        
                    }
-                   else
+                   else if (e.Value >= dynamic_calibration_value + dynamic_offset_4)
                    {
                        dynamicPosition = 4;
                        
@@ -4001,7 +4003,7 @@ namespace TrainSimulatorCsharp
             {
                 dynamicPosition = 3;
             }
-            else
+            else if (val >= dynamic_calibration_value + dynamic_offset_4)
             {
                 dynamicPosition = 4;
             }
