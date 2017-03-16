@@ -3882,8 +3882,9 @@ namespace TrainSimulatorCsharp
                 {
 
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 200);
+                    //// turn on Pcs light
+                    ///my16_16_0.outputs[] = true
                     //// display release main brake message
-
                     instructionsLabel.Content = "Emergency Braking Activated!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 300);
                     instructionsSupLabel.Content = "Release Main Brake!";
@@ -3914,6 +3915,8 @@ namespace TrainSimulatorCsharp
                 {
                     if (iter1 == 3)
                     {
+                        /// turn off Pcs light
+                        ///my16_16_0.outputs[] = true
                         ////replace logo
                         FadeTheMediaElement(0, 1, TrainSimulatorLogo, 200);
                         /// remove release main brake message
