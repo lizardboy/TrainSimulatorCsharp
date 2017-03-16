@@ -140,15 +140,15 @@ namespace TrainSimulatorCsharp
         
         // setup throttle sector positions 
         // input actual readings from phidgets app here for all positions 
-        static double throttle_position_0 = 630;
-        static double throttle_position_1 = 588;
-        static double throttle_position_2 = 536;
-        static double throttle_position_3 = 483;
-        static double throttle_position_4 = 434;
+        static double throttle_position_0 = 654;
+        static double throttle_position_1 = 600;
+        static double throttle_position_2 = 550;
+        static double throttle_position_3 = 493;
+        static double throttle_position_4 = 439;
         static double throttle_position_5 = 384;
-        static double throttle_position_6 = 338;
-        static double throttle_position_7 = 293;
-        static double throttle_position_8 = 256;
+        static double throttle_position_6 = 335;
+        static double throttle_position_7 = 283;
+        static double throttle_position_8 = 230;
 
         // calculate throttle notch positions based on position 1 value 
         static double throttle_offset_0 = throttle_position_0 - throttle_position_1;
@@ -192,22 +192,22 @@ namespace TrainSimulatorCsharp
         static double dynBrakeEffort;
         static double maxDynBrakeEffort = 40000;
         static double maxMotorEffort = 52000;
-        static double maxMotorAmps = 1500;
+        static double maxMotorAmps = 1150;
         static double maxTractiveForce;
         static double bendDrag = 0;
         // Dynamic Brake variables
-        static double dynamic_deadzone = 35;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
+        static double dynamic_deadzone = 30;    // acceptance window around dynamic selector notches...roughly half of window _deadzone = 25;    // acceptance window around throttle notches...roughly half of window 
         static double dynamicPosition ;                //
         static double actual_dynamic_1_pos;     // keep track of actual dynamic selector pos 1 value for calibration during preflight
-        static double Dynamic_Off_Position = 1;   /// sets which selector position is the off 
-
+        static double Dynamic_Off_Position = 1;   /// sets which selector position is the off #1 is because the mechanical interlocks wont allow the throttle to move in off arrgh
+        static double Dynamic_On_Position = 2;
         // setup dynamic brake sector positions 
         // input actual readings from phidgets app here for all positions 
-        static double dynamic_position_0 = 658;
-        static double dynamic_position_1 = 582;
-        static double dynamic_position_2 = 504;
-        static double dynamic_position_3 = 428;
-
+        static double dynamic_position_0 = 576;
+        static double dynamic_position_1 = 506;
+        static double dynamic_position_2 = 440;
+        static double dynamic_position_3 = 341;
+        static double dynamic_position_4 = 284;
         // calculate dynamic selector  notch positions based on position 1 value 
         static double dynamic_offset_0 = dynamic_position_0 - dynamic_position_1;
         static double dynamic_offset_1 = dynamic_position_1 - dynamic_position_1;
@@ -384,15 +384,18 @@ namespace TrainSimulatorCsharp
         //Application Startup//////////////////////////////////////////////////////////////////////
 
         public MainWindow()
-        {InitializeComponent();}
-
+        {
+            InitializeComponent();
+            FadeTheMediaElement(0, 1, splashScreen, 1000);
+        }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             startGameTimer();
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-             EngageScreenSaver();
+            FadeTheMediaElement(0, 1, splashScreen, 1000);
+            EngageScreenSaver();
 
 
 
@@ -432,7 +435,7 @@ namespace TrainSimulatorCsharp
             my16_16_0.outputs[7] = true;
             my16_16_0.outputs[8] = true;
             my16_16_0.outputs[9] = true;
-            my16_16_0.outputs[10] = true;
+            my16_16_0.outputs[10] = false;
             my16_16_0.outputs[11] = true;
             my16_16_0.outputs[12] = true;
             my16_16_0.outputs[13] = true;
@@ -1290,7 +1293,7 @@ namespace TrainSimulatorCsharp
 
         private void LoadInButtons()
         {
-           /// FadeTheMediaElement(1, 0, splash, 300);
+            FadeTheMediaElement(0, 1, splashScreen, 300);
 
             // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
@@ -1584,7 +1587,7 @@ namespace TrainSimulatorCsharp
                     DynamicPageRELEASE = true;
                 }
 
-                instructionsLabel.Content = "Set Dynamic Selector to Off!";
+                instructionsLabel.Content = "Set Dynamic Selector to 1!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 300);
                 TimedAction.ExecuteWithDelay(new Action(delegate { preflightChecks(4, true); }), TimeSpan.FromMilliseconds(500));
 
@@ -2194,13 +2197,13 @@ namespace TrainSimulatorCsharp
             ///Drag on train friction wind bearing drag etc
             trainDrag = 2000 + (20 * velocityMs) + (3.5 * (velocityMs * velocityMs));
             ///dynamic brake effort
-            if (dynamicPosition == 0 && velocity >= 10)
-            { dynBrakeEffort = ((maxDynBrakeEffort / 8) * (throttlePosition - 1)); }
-            if (dynamicPosition != 0) { dynBrakeEffort = 0; }
+            if (dynamicPosition == Dynamic_On_Position || dynamicPosition == 3 || dynamicPosition == 4 || dynamicPosition == 5 && velocity >= 10)
+            { dynBrakeEffort = ((maxDynBrakeEffort / 3) * (dynamicPosition - 1)); }
+            if (dynamicPosition != Dynamic_On_Position || dynamicPosition != 3 || dynamicPosition != 4 || dynamicPosition != 5) { dynBrakeEffort = 0; }
 
             //// maximum braking force avaliable based on avaliable traction 
             if (sandingPlaying == true && sandingToggle == true)
-            {
+            { 
                 maxLocoBrakeForce = (tractionFactorDsand * locomotiveWeight) ;
             }
 
@@ -2245,8 +2248,8 @@ namespace TrainSimulatorCsharp
                     FadeTheMediaElement(1, 0, fuelBar, 500);
                     FadeTheMediaElement(1, 0, fuelBarMessage, 500);
 
-                    //// activate pcs light perhaps flashing 
-                    //// my16_10_0 outputs[] = true
+                    //// activate wheel slippagelight perhaps flashing 
+                    my16_16_0.outputs[10] = true;
                     /// display wheel slippage reduce brake setting message
                     instructionsLabel.Content = "Warning Locomotive Slippage!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 500);
@@ -2317,8 +2320,8 @@ namespace TrainSimulatorCsharp
 
                     }
                     instructionState = "";
-                    ////turnoff pcs light
-                  ////  my16_16_0.outputs[] = false
+                    //// turnoff wheel slippage light
+                    my16_16_0.outputs[10] = false;
 
 
                         iter2 = 2;                   
@@ -2527,8 +2530,8 @@ namespace TrainSimulatorCsharp
 
 
 
-                    ///turnon PCS light 
-                    //// my16_16_0.Outputs[] = true
+                    ///turnon wheel slippage light 
+                    my16_16_0.outputs[10] = true;
                     /// remove logo
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 300);
                  //// fade fuel bar background
@@ -2556,8 +2559,8 @@ namespace TrainSimulatorCsharp
             {
                 if (iter3 == 1)
                 {
-                    ///turnoff pcs light
-                    //// my16_16_0.Outputs[] = false
+                    ///turnoff wheel slippage light
+                    my16_16_0.outputs[10] = false;
                     /// replace logo
                     FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
                     //// replace fuel bar background
@@ -3845,7 +3848,7 @@ namespace TrainSimulatorCsharp
 
        private void toggleDisplayLights(bool visisbility)
        {
-           my16_16_0.outputs[10] = visisbility;
+         ///  my16_16_0.outputs[10] = visisbility;
            my16_16_0.outputs[11] = visisbility;
            my16_16_0.outputs[12] = visisbility;
            my16_16_0.outputs[13] = visisbility;

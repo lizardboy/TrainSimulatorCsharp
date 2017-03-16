@@ -6,7 +6,7 @@
         WindowStartupLocation="Manual" Top="10" Left="1930">
 
     <Grid x:Name="splash"  Background ="Black">
-
+        <Image x:Name="splashScreen" Margin="0,0,0,-6" Source="splashScreen.png" Visibility="Visible" Panel.ZIndex="4" VerticalAlignment="Top" Height="1022"/>
         <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
         <Image x:Name="selectATrackText" Margin="-979,494,1312,463" Source="selectATrackText.png" Grid.Row="1" />
         <Image x:Name="selectedTrackText" Margin="1296,496,-962,460" Source="track1Text.png" Grid.Row="1"  />
