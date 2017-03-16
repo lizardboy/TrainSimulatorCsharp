@@ -108,7 +108,7 @@
             <Label x:Name="hornPulleLabel" Content="Horn Pulled: " HorizontalAlignment="Left" Margin="50,568,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
             <Label x:Name="pcsPushed" Content="PCS Pressed: " HorizontalAlignment="Left" Margin="50,642,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
             <Label x:Name="engineRunButtonStateLabel" Content="Engine Run State: " HorizontalAlignment="Left" Margin="50,716,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="attendantCallPressedLabel" Content="Attenant Pressed: " HorizontalAlignment="Left" Margin="50,790,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
+            <Label x:Name="attendantCallPressedLabel" Content="Attendant Pressed: " HorizontalAlignment="Left" Margin="50,790,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
             <Label x:Name="resetButtonPressedLabel" Content="Reset Pressed: " HorizontalAlignment="Left" Margin="50,864,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
             <Label x:Name="throttlePositionLabel" Content="Throttle Position: " HorizontalAlignment="Left" Margin="50,938,0,-12" VerticalAlignment="Top" Foreground="White" FontSize="48" />
             <Label x:Name="dynamicPositionLabel" Content="Dynamic Position: " HorizontalAlignment="Left" Margin="50,1012,0,-86" VerticalAlignment="Top" Foreground="White" FontSize="48" />

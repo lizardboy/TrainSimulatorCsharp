@@ -99,7 +99,7 @@ namespace TrainSimulatorCsharp
 
         //Control stand Input Variables
         static bool engineRunSwitch;
-        static bool foaSwitch;
+        static bool footSwitch;
         static bool attendSwitch;
         static bool resetSwitch;
         static bool pcsPressed;
@@ -2425,18 +2425,6 @@ namespace TrainSimulatorCsharp
 
             ////////////////////////////////////////////////////////////
 
-
-
-
-
-
-
-
-
-
-
-
-
             /// maximum effort from the motors at a given speed hence maximum amps so set max motor amps to this 
             if (velocityMs > 0 && velocityMs < 4.2)
             {
@@ -2886,9 +2874,9 @@ namespace TrainSimulatorCsharp
             {
                 amps = 0;
             }
-            else if (amps > 1448)
+            else if (amps > maxMotorAmps)
             {
-                amps = 1448;
+                amps = maxMotorAmps;
             }
 
             if (dynamicPosition == 0)
@@ -3628,7 +3616,7 @@ namespace TrainSimulatorCsharp
                }
                if (e.Index == 13)
                {
-                   foaSwitch = e.Value;
+                   footSwitch = e.Value;
                }
                if (e.Index == 14)
                {
