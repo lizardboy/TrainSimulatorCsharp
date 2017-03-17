@@ -511,7 +511,8 @@ namespace TrainSimulatorCsharp
             faderTimer.Start();
         }
         /// 
-////        //Track selection screen....what happens after the first track is selected...removing the first screen building the second 
+        ////        //Track selection screen....what happens after the first track is selected...removing the first screen building the second 
+
 
         private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
@@ -1305,7 +1306,7 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
             // display  second track icon Trail to Nelson
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
-            // Change gamestate variable to track sellection
+            // Change gamestate variable to track selection
             gameState = "trackSelection";
             // make the buttons clickable
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));

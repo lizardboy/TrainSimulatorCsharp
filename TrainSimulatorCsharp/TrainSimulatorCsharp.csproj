@@ -228,6 +228,7 @@
   <ItemGroup>
     <Resource Include="splashScreen.png" />
     <Resource Include="SSlocanLabel.png" />
+    <Resource Include="TrailToNelsonIcon.png" />
     <Resource Include="trainIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -261,9 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="START.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="TrailToNelsonIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Throttle_UP_label.png" />
