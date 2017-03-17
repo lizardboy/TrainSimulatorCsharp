@@ -1311,6 +1311,7 @@ namespace TrainSimulatorCsharp
             // make the buttons clickable
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
             System.Diagnostics.Debug.WriteLine("buttons clickable go for it");
+          
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
