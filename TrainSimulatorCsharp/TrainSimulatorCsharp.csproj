@@ -227,7 +227,7 @@
     <Resource Include="fieldLabel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="splashScreen.png" />
+    <SplashScreen Include="splashScreen.png" />
     <Resource Include="SSlocanLabel.png" />
     <Resource Include="TrailToNelsonIcon.png" />
     <Resource Include="trainIcon.png" />
