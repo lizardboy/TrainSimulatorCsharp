@@ -397,7 +397,7 @@ namespace TrainSimulatorCsharp
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
             FadeTheMediaElement(0, 1, splashScreen, 1000);
-            EngageScreenSaver();
+           /// EngageScreenSaver();
 
 
 
@@ -3747,9 +3747,7 @@ namespace TrainSimulatorCsharp
                     my16_16_0.outputs[5] = true;
                     my16_16_0.outputs[13] = true;
                     mainBrakeEffort = 1.0;   ///100%           
-                   
-                    ///CarBrakeEffort = 1.0;  /// 100%
-                   
+                  
                    
                     ebrakeState = true;
                     

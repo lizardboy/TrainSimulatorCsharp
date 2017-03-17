@@ -40,8 +40,7 @@
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
         <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" />
-        <!--<Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1"/>-->
-
+       
         <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
 
         <MediaElement x:Name="descriptionScreenFootage"  Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
