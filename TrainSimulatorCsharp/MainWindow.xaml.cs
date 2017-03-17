@@ -559,7 +559,7 @@ namespace TrainSimulatorCsharp
 
             trackSelect(sender,e);
 
-}
+        }
 
        
 
@@ -1168,7 +1168,7 @@ namespace TrainSimulatorCsharp
         {
             if (UIbuttonsClickable == true)
             {
-               var mySender = sender as Image;
+                var mySender = sender as Image;
                 mySender.Opacity = 0.5;
             }
         }
@@ -1180,7 +1180,7 @@ namespace TrainSimulatorCsharp
 
                 var mySender = sender as Image;
 
-               mySender.Opacity = 1;
+                mySender.Opacity = 1;
             }
         }
 
@@ -1311,7 +1311,7 @@ namespace TrainSimulatorCsharp
             // make the buttons clickable
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
             System.Diagnostics.Debug.WriteLine("buttons clickable go for it");
-          
+            
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

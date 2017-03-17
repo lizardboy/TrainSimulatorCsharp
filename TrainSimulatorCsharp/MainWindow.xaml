@@ -39,7 +39,7 @@
         <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8"/>
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
-        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   MouseUp="selectTrack1" MouseDown="highlightButton" />
+        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   PreviewMouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1" />
        
         <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
 
