@@ -388,7 +388,7 @@ namespace TrainSimulatorCsharp
         public MainWindow()
         {
             InitializeComponent();
-          
+            FadeTheMediaElement(0, 1, splashScreen, 1000);
         }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -515,9 +515,9 @@ namespace TrainSimulatorCsharp
 
         private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
-           
+            System.Diagnostics.Debug.WriteLine("select track 1");
 
-             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
+            Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source=  myUri1; 
             System.Diagnostics.Debug.WriteLine(myUri1);
             Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv", UriKind.Absolute);
@@ -1309,6 +1309,7 @@ namespace TrainSimulatorCsharp
             gameState = "trackSelection";
             // make the buttons clickable
             TimedAction.ExecuteWithDelay(new Action(delegate { UIbuttonsClickable = true; }), TimeSpan.FromMilliseconds(1100));
+            System.Diagnostics.Debug.WriteLine("buttons clickable go for it");
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
