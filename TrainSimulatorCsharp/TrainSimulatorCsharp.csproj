@@ -118,14 +118,14 @@
     <Compile Include="VideoOutputWindow.xaml.cs">
       <DependentUpon>VideoOutputWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VideoOutputWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -227,7 +227,6 @@
     <Resource Include="fieldLabel.png" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="splashScreen.png" />
     <Resource Include="SSlocanLabel.png" />
     <Resource Include="TrailToNelsonIcon.png" />
     <Resource Include="trainIcon.png" />

@@ -377,7 +377,7 @@ namespace TrainSimulatorCsharp
         static int timeLeft =0;
         static int descriptionPosition = 0;
         static int scrollPix = 0;
-        static int iter =0;
+        
         static int iter1 = 0;
         static int iter2 = 0;
         static int iter3 = 0;
@@ -388,7 +388,7 @@ namespace TrainSimulatorCsharp
         public MainWindow()
         {
             InitializeComponent();
-            FadeTheMediaElement(0, 1, splashScreen, 1000);
+          ////  FadeTheMediaElement(0, 1, splashScreen, 1000);
         }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -396,7 +396,7 @@ namespace TrainSimulatorCsharp
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-            FadeTheMediaElement(0, 1, splashScreen, 1000);
+          ////  FadeTheMediaElement(0, 1, splashScreen, 1000);
            /// EngageScreenSaver();
 
 
@@ -1296,7 +1296,7 @@ namespace TrainSimulatorCsharp
 
         private void LoadInButtons()
         {
-            FadeTheMediaElement(1, 0, splashScreen, 300);
+          ////  FadeTheMediaElement(1, 0, splashScreen, 300);
 
             // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
@@ -2286,6 +2286,7 @@ namespace TrainSimulatorCsharp
                         iter2 = 1;
 
                     }
+                    
                 }
               
             }
