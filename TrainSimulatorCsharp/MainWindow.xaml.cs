@@ -23,7 +23,6 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using Phidgets;
 using Phidgets.Events;
-///#include math.h
 
 
 
@@ -388,7 +387,7 @@ namespace TrainSimulatorCsharp
         public MainWindow()
         {
             InitializeComponent();
-          ////  FadeTheMediaElement(0, 1, revySplashScreen, 1000);
+          
         }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -402,7 +401,7 @@ namespace TrainSimulatorCsharp
 
 
 
-            ////Mouse.OverrideCursor = Cursors.None;
+            Mouse.OverrideCursor = Cursors.None;
 
 
 
@@ -412,18 +411,18 @@ namespace TrainSimulatorCsharp
             myAnalogOut = new Analog();
 
             //////////open the interface boards by serial number////////////////////
-            my16_16_0.open(468344);      ////revelstoke //(344671);
-            my8_8_8.open(451950);        ////revelstoke //(327859);
-                                         //// myAnalogOut.open(282774);  ////revelstoke //(282774)
+            my16_16_0.open(344671);      ////revelstoke //(344671);
+            my8_8_8.open(327859);        ////revelstoke //(327859);
+            myAnalogOut.open(282774);  ////revelstoke //(282774)
 
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
 
-            ////  myAnalogOut.waitForAttachment(3000);
-            ////  myAnalogOut.outputs[0].Enabled = true;
-            ////  myAnalogOut.outputs[1].Enabled = true;
-            ///   myAnalogOut.outputs[0].Voltage = 0;
-            ///    myAnalogOut.outputs[1].Voltage = 0;
+            myAnalogOut.waitForAttachment(3000);
+            myAnalogOut.outputs[0].Enabled = true;
+            myAnalogOut.outputs[1].Enabled = true;
+            myAnalogOut.outputs[0].Voltage = 0;
+            myAnalogOut.outputs[1].Voltage = 0;
 
             intControlsPosition();            ///  /take initial reading of throttle and dynamic as they are not read until moved otherwise
 
@@ -432,7 +431,7 @@ namespace TrainSimulatorCsharp
             my16_16_0.InputChange += new InputChangeEventHandler(my16InputChanged);
             
             this.Focus();
-            ////StartupLeverPositions();
+          
 
             my16_16_0.outputs[6] = true;
             my16_16_0.outputs[7] = true;
@@ -469,9 +468,7 @@ namespace TrainSimulatorCsharp
             descriptionScreenFootage.Pause();
 
             AudioPlaybackEngine.Instance.PlaySound(engine0);
-           //  HwndSource hwndSource = PresentationSource.FromVisual(this) as HwndSource;
-          //    HwndTarget hwndTarget = hwndSource.CompositionTarget;
-           ///   hwndTarget.RenderMode = RenderMode.SoftwareOnly;
+        
 
         }
 
@@ -1156,7 +1153,7 @@ namespace TrainSimulatorCsharp
 
         private void toggleExampleVideoVisibility(Visibility myVis)
         {
-          ///  myVis = Visibility.Visible ;
+         
             Stop1Ex.Visibility = myVis;
             Stop2Ex.Visibility = myVis;
             Stop3Ex.Visibility = myVis;
@@ -1425,10 +1422,10 @@ namespace TrainSimulatorCsharp
                 AccelerationRatio = acceleration,
                 DecelerationRatio = deceleration,
             };
-            ////////////////////////////////////////////////////wht is this//////////////////////
+           
 
-            scaleTrans.CenterX = myMediaElement.Width /2;          ////////////////
-            scaleTrans.CenterY = myMediaElement.Height / 2;         ////////////////
+            scaleTrans.CenterX = myMediaElement.Width /2;         
+            scaleTrans.CenterY = myMediaElement.Height / 2;        
 
             myMediaElement.Margin = new Thickness(newMarginX, newMarginY, 0, 0);
 
@@ -1994,8 +1991,8 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { my16_16_0.outputs[0] = false; my16_16_0.outputs[2] = false; }), TimeSpan.FromMilliseconds(30000));
             this.Dispatcher.Invoke(new Action(delegate()
             {
-       /////         myAnalogOut.outputs[1].Voltage = 0;
-       ////         myAnalogOut.outputs[0].Voltage = 0;
+                myAnalogOut.outputs[1].Voltage = 0;
+                myAnalogOut.outputs[0].Voltage = 0;
             }));
             penaltyBrake = false;
             penaltyBrakeCountDown = 0;
@@ -2661,7 +2658,7 @@ namespace TrainSimulatorCsharp
             else
             {
                 AnimateWidthProperty(fuelBar.Width, timeLeft, aniTime, 0.5, 0.5, fuelBar);
-                //TimedAction.ExecuteWithDelay(new Action(delegate {  }), TimeSpan.FromMilliseconds(aniTime + 50));
+               
 
             }
         }
@@ -2873,7 +2870,7 @@ namespace TrainSimulatorCsharp
             
             this.Dispatcher.Invoke(new Action(delegate()
             {
-            ////    myAnalogOut.outputs[0].Voltage = outVoltage;
+                myAnalogOut.outputs[0].Voltage = outVoltage;
             }));
         }
 
@@ -2898,7 +2895,7 @@ namespace TrainSimulatorCsharp
 
             this.Dispatcher.Invoke(new Action(delegate()
             {
-    ////            myAnalogOut.outputs[1].Voltage = outVoltage;
+                myAnalogOut.outputs[1].Voltage = outVoltage;
             }));
         }
 
@@ -3779,7 +3776,7 @@ namespace TrainSimulatorCsharp
                        
                     }
                 }
-                // }
+               
 
                 else
                 {
