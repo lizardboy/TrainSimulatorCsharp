@@ -388,7 +388,7 @@ namespace TrainSimulatorCsharp
         public MainWindow()
         {
             InitializeComponent();
-          ////  FadeTheMediaElement(0, 1, splashScreen, 1000);
+          ////  FadeTheMediaElement(0, 1, revySplashScreen, 1000);
         }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -396,8 +396,9 @@ namespace TrainSimulatorCsharp
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-          ////  FadeTheMediaElement(0, 1, splashScreen, 1000);
-           /// EngageScreenSaver();
+            FadeTheMediaElement(0,1, RevySplashScreen, 1000);
+            RevySplashScreen.Visibility = Visibility.Visible;
+            /// EngageScreenSaver();
 
 
 
@@ -1296,8 +1297,8 @@ namespace TrainSimulatorCsharp
 
         private void LoadInButtons()
         {
-          ////  FadeTheMediaElement(1, 0, splashScreen, 300);
-
+            FadeTheMediaElement(1, 0, RevySplashScreen, 300);
+            RevySplashScreen.Visibility = Visibility.Hidden;
             // display background 
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -564, 800, 0.5, 0.5, selectionScreenBackground); }), TimeSpan.FromMilliseconds(0));
             // display "select a track" text
@@ -2474,7 +2475,7 @@ namespace TrainSimulatorCsharp
                 { }
             }
 
-            if (dynamicPosition != Dynamic_On_Position || dynamicPosition != 3 || dynamicPosition != 4 || dynamicPosition != 5 && iter4 ==1 )
+            if (dynamicPosition != Dynamic_On_Position && iter4 == 1 || dynamicPosition != 3 && iter4 == 1 || dynamicPosition != 4 && iter4 == 1 || dynamicPosition != 5 && iter4 ==1 )
             {
                 ///replace logo               
                 FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
@@ -2485,7 +2486,7 @@ namespace TrainSimulatorCsharp
                 FadeTheMediaElement(0, 1, fuelBarMessage, 500);
                 ///remove instruction labels
                 FadeTheMediaElement(1, 0, instructionsLabel, 500);
-               
+                System.Diagnostics.Debug.WriteLine("slippage message");
                 if (instructionState == "dynBrake")
                 {  ///remove DynBrake instructions
                     TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
@@ -2546,10 +2547,10 @@ namespace TrainSimulatorCsharp
                 FadeTheMediaElement(1, 0, fuelBar, 500);
                 FadeTheMediaElement(1, 0, fuelBarMessage, 500);
 
+                   
 
-
-                /// bring out throttle DOWN graphic
-                TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
+                    /// bring out throttle DOWN graphic
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, throttleInstructionsdown);      //Post down
                 /// display wheel slippage message
                 instructionsLabel.Content = "Warning Locomotive Slippage!";
                 FadeTheMediaElement(0, 1, instructionsLabel, 500);
