@@ -1,4 +1,4 @@
-﻿using System;
+﻿  using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -202,11 +202,11 @@ namespace TrainSimulatorCsharp
         static double Dynamic_On_Position = 2;
         // setup dynamic brake sector positions 
         // input actual readings from phidgets app here for all positions 
-        static double dynamic_position_0 = 576;
-        static double dynamic_position_1 = 506;
-        static double dynamic_position_2 = 440;
-        static double dynamic_position_3 = 341;
-        static double dynamic_position_4 = 284;
+        static double dynamic_position_0 = 628;
+        static double dynamic_position_1 = 552;
+        static double dynamic_position_2 = 478;
+        static double dynamic_position_3 = 386;
+        static double dynamic_position_4 = 314;
        
         // calculate dynamic selector  notch positions based on position 1 value 
         static double dynamic_offset_0 = dynamic_position_0 - dynamic_position_1;
@@ -226,8 +226,8 @@ namespace TrainSimulatorCsharp
         static int indDir = 1; //0 decreasing, 1 steady, 2 ascending
         static bool penaltyBrake;
         static int penaltyBrakeCountDown;
-        
-       
+        static int mainBrakePosition;
+
         //Bend Globals
         static int bendState;
         static int bendIndex = 0;
@@ -395,13 +395,14 @@ namespace TrainSimulatorCsharp
             outWindow.Show();
             outWindow.CabFootageVideo.Stop();
             outWindow.CabFootageVideo.Opacity = 0;
-            FadeTheMediaElement(0,1, RevySplashScreen, 1000);
             RevySplashScreen.Visibility = Visibility.Visible;
+            FadeTheMediaElement(0,1, RevySplashScreen, 1000);
+            
             /// EngageScreenSaver();
 
 
 
-            Mouse.OverrideCursor = Cursors.None;
+          ////  Mouse.OverrideCursor = Cursors.None;
 
 
 
@@ -411,18 +412,18 @@ namespace TrainSimulatorCsharp
             myAnalogOut = new Analog();
 
             //////////open the interface boards by serial number////////////////////
-            my16_16_0.open(344671);      ////revelstoke //(344671);
-            my8_8_8.open(327859);        ////revelstoke //(327859);
-            myAnalogOut.open(282774);  ////revelstoke //(282774)
+            my16_16_0.open(468344);      ////revelstoke //(344671);///dar 468344
+            my8_8_8.open(451950);        ////revelstoke //(327859);///dar 451950 
+            //myAnalogOut.open(282774);  ////revelstoke //(282774)
 
             my16_16_0.waitForAttachment(3000);
             my8_8_8.waitForAttachment(3000);
 
-            myAnalogOut.waitForAttachment(3000);
-            myAnalogOut.outputs[0].Enabled = true;
-            myAnalogOut.outputs[1].Enabled = true;
-            myAnalogOut.outputs[0].Voltage = 0;
-            myAnalogOut.outputs[1].Voltage = 0;
+            //myAnalogOut.waitForAttachment(3000);
+            //myAnalogOut.outputs[0].Enabled = true;
+            //myAnalogOut.outputs[1].Enabled = true;
+            //myAnalogOut.outputs[0].Voltage = 0;
+            //myAnalogOut.outputs[1].Voltage = 0;
 
             intControlsPosition();            ///  /take initial reading of throttle and dynamic as they are not read until moved otherwise
 
@@ -1442,6 +1443,19 @@ namespace TrainSimulatorCsharp
 
         private void preflightChecks(int iter, bool throttlepage)
         {
+            /// make pages and instructions visable
+            instructionsLabel.Visibility = Visibility.Visible;
+            instructionsSupLabel.Visibility = Visibility.Visible;
+            throttleInstructionsdown.Visibility = Visibility.Visible;
+            throttleInstructionsup.Visibility = Visibility.Visible;
+            dynamicinstructionapply.Visibility = Visibility.Visible;
+            dynamicinstructionrelease.Visibility = Visibility.Visible;
+            brakeInstructions.Visibility = Visibility.Visible;
+            indInstructions.Visibility = Visibility.Visible;
+           
+
+            toggleExampleVideoVisibility(Visibility.Visible);
+
 
             //// independant  BRAKE CHECK POSITION
 
@@ -1808,6 +1822,7 @@ namespace TrainSimulatorCsharp
         //Game Control
         private void LaunchGame()
         {
+
             TimedAction.ExecuteWithDelay(new Action(delegate { TrainSimulatorLogo.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, -200, 500, 0, 1, TrainSimulatorLogo); }), TimeSpan.FromMilliseconds(200));
             TimedAction.ExecuteWithDelay(new Action(delegate { fuelBarBackground.Visibility = Visibility.Visible; TranslateTheMediaElement(0, 500, 0, 0, 500, 0, 1, fuelBarBackground); }), TimeSpan.FromMilliseconds(0));
             TimedAction.ExecuteWithDelay(new Action(delegate { fuelBar.Visibility = Visibility.Visible; updateFuelBar(1500); toggleDisplayLights(false); }), TimeSpan.FromMilliseconds(800));
@@ -1991,11 +2006,16 @@ namespace TrainSimulatorCsharp
             TimedAction.ExecuteWithDelay(new Action(delegate { my16_16_0.outputs[0] = false; my16_16_0.outputs[2] = false; }), TimeSpan.FromMilliseconds(30000));
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[1].Voltage = 0;
-                myAnalogOut.outputs[0].Voltage = 0;
+                //myAnalogOut.outputs[1].Voltage = 0;
+                //myAnalogOut.outputs[0].Voltage = 0;
             }));
             penaltyBrake = false;
             penaltyBrakeCountDown = 0;
+            TimedAction.ExecuteWithDelay(new Action(delegate {
+                RevySplashScreen.Visibility = Visibility.Visible;
+                FadeTheMediaElement(0, 1, RevySplashScreen, 1000);
+            }), TimeSpan.FromMilliseconds(6200));
+           
 
         }
 
@@ -2472,7 +2492,7 @@ namespace TrainSimulatorCsharp
                 { }
             }
 
-            if (dynamicPosition != Dynamic_On_Position && iter4 == 1 || dynamicPosition != 3 && iter4 == 1 || dynamicPosition != 4 && iter4 == 1 || dynamicPosition != 5 && iter4 ==1 )
+            if (dynamicPosition == Dynamic_Off_Position && iter4 == 1 )
             {
                 ///replace logo               
                 FadeTheMediaElement(0, 1, TrainSimulatorLogo, 1000);
@@ -2870,7 +2890,7 @@ namespace TrainSimulatorCsharp
             
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[0].Voltage = outVoltage;
+               /// myAnalogOut.outputs[0].Voltage = outVoltage;
             }));
         }
 
@@ -2895,7 +2915,7 @@ namespace TrainSimulatorCsharp
 
             this.Dispatcher.Invoke(new Action(delegate()
             {
-                myAnalogOut.outputs[1].Voltage = outVoltage;
+              ///  myAnalogOut.outputs[1].Voltage = outVoltage;
             }));
         }
 
@@ -2919,23 +2939,24 @@ namespace TrainSimulatorCsharp
                 if (my16_16_0.inputs[0] == true && penaltyBrakeCountDown > 0)
                 {
                     penaltyBrakeCountDown -= 1;
-                    my16_16_0.outputs[4] = true;
-                    /// my16_16_0.outputs[3] = false;
+                   
+                   
                     indBrakePressureRequested = 90;
                     indBrakeEffort = 1.0;
-                    my16_16_0.outputs[5] = false;
-                    my16_16_0.outputs[2] = true;
-                    my16_16_0.outputs[1] = false;
-                    my16_16_0.outputs[4] = false;
+                   
+
+                    my16_16_0.outputs[5] = true;
+                    my16_16_0.outputs[2] = false;
+                    my16_16_0.outputs[3] = true;
+                    my16_16_0.outputs[0] = false;
                 }
                 else if (my16_16_0.inputs[0] == true && penaltyBrakeCountDown == 0)
                 {
                     penaltyBrake = false;
                     my16_16_0.outputs[13] = false;
-                    my16_16_0.outputs[4] = false;
-                    my16_16_0.outputs[2] = false;
-                    indBrakePressureRequested = 0;
-                    indBrakeEffort = 0;
+                    my16_16_0.outputs[5] = false;                   
+                    my16_16_0.outputs[3] = false;
+                   
                 }
             }
             else
@@ -3469,13 +3490,7 @@ namespace TrainSimulatorCsharp
                        {
 
 
-
-                           if (indPosition == 1)
-                           {
-                               indBrakePressureRequested = 25;
-                               indBrakeEffort = 0.30;
-                           }
-                           else if (indPosition == 2)
+                           if (indPosition == 2)
                            {
                                indBrakePressureRequested = 55;
                                indBrakeEffort = 0.70;
@@ -3489,12 +3504,7 @@ namespace TrainSimulatorCsharp
 
                        if (getMainBrakeState() == 2)
                        {
-                            if (indPosition == 1)
-                           {
-                               indBrakePressureRequested = 25;
-                               indBrakeEffort = 0.30;
-                           }
-                           else if (indPosition == 2)
+                           if (indPosition == 2)
                            {
                                indBrakePressureRequested = 55;
                                indBrakeEffort = 0.70;
@@ -3732,8 +3742,8 @@ namespace TrainSimulatorCsharp
 
        private int getMainBrakeState()
        {
-            int mainBrakePosition;
-            if (my16_16_0.inputs[0] == false)
+           
+            if (my16_16_0.inputs[0] == true)
             {
                 if (gameState == "inGame" || gameState == "continueScreen")
                 {
@@ -3741,15 +3751,11 @@ namespace TrainSimulatorCsharp
                     emergencyBrakeMessage(true);
                     ///activate penalty braking
                     penaltyBrake = true;
-                    penaltyBrakeCountDown = 8;
-                    my16_16_0.outputs[1] = true;
-                    my16_16_0.outputs[0] = true;
-                    my16_16_0.outputs[5] = true;
-                    my16_16_0.outputs[13] = true;
+                    penaltyBrakeCountDown = 10;
+                                       
                     mainBrakeEffort = 1.0;   ///100%           
-                  
-                   
-                    ebrakeState = true;
+                                     
+                    //ebrakeState = true;
                     
                 }
                     mainBrakePosition = 5;
@@ -3759,7 +3765,7 @@ namespace TrainSimulatorCsharp
 //////////////////////////////////
                 else
                 {
-                if (my16_16_0.inputs[3] == true)
+                if (my16_16_0.inputs[3] == true && my16_16_0.inputs[4] == false && my16_16_0.inputs[2] == true && my16_16_0.inputs[9] == true)
                 {
 
                     mainBrakeState = "release";
@@ -3771,68 +3777,71 @@ namespace TrainSimulatorCsharp
                     
                     if (ebrakeState == true)
                     {
-                        ebrakeState = false;
-                        emergencyBrakeMessage(false);                                           ///do not have an opinion of ind effort if the main brake is released
-                       
+                        //ebrakeState = false;
+                        emergencyBrakeMessage(false);                                           
                     }
                 }
                
 
                 else
                 {
-                    if (my16_16_0.inputs[4] == true)
+                    if (my16_16_0.inputs[3] == false && my16_16_0.inputs[4] == false && my16_16_0.inputs[2] == true && my16_16_0.inputs[9] == true)
                     {
-                        mainBrakeState = "minimum";
+                        mainBrakeState = "minService";
                         mainBrakePosition = 1;
-                        mainBrakePressureRequested = 85;
-                        mainBrakeEffort = 0.25;                 ///25%
-                        indBrakePressureRequested = 15;
-                        indBrakeEffort = 0.25;
+                        mainBrakePressureRequested = 80;
+                        mainBrakeEffort = 0.30;                 ///25%
+                        indBrakePressureRequested = 25;
+                        indBrakeEffort = 0.30;
+
+                        if (ebrakeState == true)
+                        {
+                            //ebrakeState = false;
+                            emergencyBrakeMessage(false);                                          
+                        }
+
                     }
-                    //  }
+                   
                     else
                     {
-                        if (my16_16_0.inputs[2] == true)
+                        if (my16_16_0.inputs[3] == false && my16_16_0.inputs[4] == false && my16_16_0.inputs[2] == false && my16_16_0.inputs[9] == true)
                         {
-                            mainBrakeState = "minService";
+                            mainBrakeState = "medService";
                             mainBrakePosition = 2;
-                            mainBrakePressureRequested = 80;
+                            mainBrakePressureRequested = 70;
                             mainBrakeEffort = 0.50;                  ///50%
                             indBrakePressureRequested = 30;
-                            indBrakeEffort = .40;
+                            indBrakeEffort = .50;
+
+                            if (ebrakeState == true)
+                            {
+                                //ebrakeState = false;
+                                emergencyBrakeMessage(false);                                         
+                            }
+
                         }
-                        //  }
+                      
                         else
                         {
-                            if (my16_16_0.inputs[9] == true)
+                            if (my16_16_0.inputs[3] == false && my16_16_0.inputs[4] == false && my16_16_0.inputs[2] == false && my16_16_0.inputs[9] == false)
                             {
                                 mainBrakeState = "maxService";
                                 mainBrakePosition = 3;
-                                mainBrakePressureRequested = 65;
+                                mainBrakePressureRequested = 60;
                                 mainBrakeEffort = 0.90;                 ///90%
                                 indBrakePressureRequested = 80;
                                 indBrakeEffort = .90;
+
+                                if (ebrakeState == true)
+                                {
+                                    //ebrakeState = false;
+                                    emergencyBrakeMessage(false);                                           
+                                }
+
+
                             }
-                            //  }
-                            else
-                            {
-                                mainBrakeState = "supression";
-                                mainBrakePosition = 4;
-                                mainBrakePressureRequested = 65;
-                                mainBrakeEffort = 0.91;                 ///91%
-                              
-                                indBrakeEffort = 0.91;
 
-                              ///  if (ebrakeState == true)
-                              //  {
-
-                              ///      ebrakeState = false;                 /// add this to have ebrake cancel during supression 
-                               ///     emergencyBrakeMessage(false);
-                                    
-
-                              ///  }
-
-                             }
+                          
                         }
                     }
                 }          
@@ -3875,7 +3884,7 @@ namespace TrainSimulatorCsharp
         private void emergencyBrakeMessage(bool eState)
         {
 
-            if (eState == true)
+            if (eState == true )
             {
 
                 if (iter1 == 0)
@@ -3883,7 +3892,7 @@ namespace TrainSimulatorCsharp
 
                     FadeTheMediaElement(1, 0, TrainSimulatorLogo, 200);
                     //// turn on Pcs light
-                    ///my16_16_0.outputs[] = true
+                    my16_16_0.outputs[13] = true;
                     //// display release main brake message
                     instructionsLabel.Content = "Emergency Braking Activated!";
                     FadeTheMediaElement(0, 1, instructionsLabel, 300);
@@ -3899,6 +3908,7 @@ namespace TrainSimulatorCsharp
                     mainBrakePressureRequested = 0;
                     indBrakePressureRequested = 90;
                     iter1 = 2;
+                    ebrakeState = true;
                 }
 
                 if (iter1 == 2)
@@ -3915,8 +3925,8 @@ namespace TrainSimulatorCsharp
                 {
                     if (iter1 == 3)
                     {
-                        /// turn off Pcs light
-                        ///my16_16_0.outputs[] = true
+                    /// turn off Pcs light
+                    my16_16_0.outputs[13] = true;
                         ////replace logo
                         FadeTheMediaElement(0, 1, TrainSimulatorLogo, 200);
                         /// remove release main brake message
@@ -3932,7 +3942,7 @@ namespace TrainSimulatorCsharp
                         FadeTheMediaElement(0, 1, fuelBarMessage, 300);
                         mainBrakePressureRequested = 90;
                         indBrakePressureRequested = 0;
-
+                    ebrakeState = false;
                     iter1 = 0;
                     }
                 }
