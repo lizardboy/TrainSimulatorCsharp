@@ -15,7 +15,7 @@
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
 
-        <MediaElement x:Name="CabFootageVideo" LoadedBehavior="Manual" Source="C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\goldenToField.mp4" Volume="0" Opacity="1" MediaEnded="testMediaElement_MediaEnded" Panel.ZIndex="1" ScrubbingEnabled="True" Stretch="None" Grid.ColumnSpan="2"/>
+        <MediaElement x:Name="CabFootageVideo" LoadedBehavior="Manual"  Volume="0" Opacity="1" MediaEnded="testMediaElement_MediaEnded" Panel.ZIndex="1" ScrubbingEnabled="True" Stretch="None" Grid.ColumnSpan="2"/>
 
 
         <Image x:Name="forst1" Margin="0,0,-648,-415" Source="forst1.jpg"  Opacity="0" OpacityMask="Black" Panel.ZIndex="3" Grid.RowSpan="2" Grid.ColumnSpan="2"/>

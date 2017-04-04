@@ -518,10 +518,15 @@ namespace TrainSimulatorCsharp
             System.Diagnostics.Debug.WriteLine("select track 1");
 
             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
-            descriptionScreenFootage.Source=  myUri1; 
-            System.Diagnostics.Debug.WriteLine(myUri1);
+            descriptionScreenFootage.Source=  myUri1;
+
+            Uri myUri11 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\goldenToField.mp4", UriKind.Absolute);
+            outWindow.CabFootageVideo.Source = myUri11;
+
+
+
             Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv", UriKind.Absolute);
-            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\Glenogle.wmv", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv", UriKind.Absolute);
             Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv", UriKind.Absolute);
             Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv", UriKind.Absolute);
             Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv", UriKind.Absolute);
@@ -570,7 +575,9 @@ namespace TrainSimulatorCsharp
 
             Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage2.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri2;
-            System.Diagnostics.Debug.WriteLine(myUri2);
+
+            Uri myUri12 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
+             outWindow.CabFootageVideo.Source = myUri12;
 
             Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.wmv", UriKind.Absolute);
             Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.wmv", UriKind.Absolute);
@@ -661,7 +668,7 @@ namespace TrainSimulatorCsharp
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 0, -260, 400, 0, 1, descriptionText); }), TimeSpan.FromMilliseconds(1000));
                 /// move out golden to field and trail to nelson icons
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(331, 0, 0, 0, 200, 1, 0, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(100));
-                ///TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(775, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
+                TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(775, 0, 0, 0, 200, 1, 0, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(100));
 
                 /// move in  example video container text divider and golden to field text
                 TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, -1183, 0, 300, 0, 1, exampleVideoContainer); }), TimeSpan.FromMilliseconds(500));
@@ -1304,7 +1311,7 @@ namespace TrainSimulatorCsharp
             // Display first track icon Golden to Field
             TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 331, 0, 400, 0, 1, goldenToFieldIcon); }), TimeSpan.FromMilliseconds(1200));
             // display  second track icon Trail to Nelson
-           /// TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
+            TimedAction.ExecuteWithDelay(new Action(delegate { TranslateTheMediaElement(0, 0, 775, 0, 400, 0, 1, TrailToNelsonIcon); }), TimeSpan.FromMilliseconds(1200));
             // Change gamestate variable to track selection
             gameState = "trackSelection";
             // make the buttons clickable
@@ -2631,10 +2638,10 @@ namespace TrainSimulatorCsharp
 
            ///      tempVelocity = (MaxVelocity - velocity) / (MaxVelocity) * (0.09 * (throttlePosition - 1) - ((0.02 * dynamicPosition) + (0.08 * getIndependantBrakeState()) + (0.2 * getMainBrakeState()) + (0.1 * getGrade(Convert.ToInt32(outWindow.CabFootageVideo.Position.TotalSeconds)) + (0.07))));
 
-                    System.Diagnostics.Debug.WriteLine("trainAcceleration");
-                    System.Diagnostics.Debug.WriteLine(trainAcceleration);
-                    System.Diagnostics.Debug.WriteLine(bendDrag);
-                    System.Diagnostics.Debug.WriteLine(dynBrakeEffort);
+                  ///  System.Diagnostics.Debug.WriteLine("trainAcceleration");
+                  ///  System.Diagnostics.Debug.WriteLine(trainAcceleration);
+                  ///  System.Diagnostics.Debug.WriteLine(bendDrag);
+                  ///  System.Diagnostics.Debug.WriteLine(dynBrakeEffort);
 
             /// max calculated speed  = (trainTractiveEffort - trainDrag) / (trainWeight * sinGradient) = 0 ////...no acceleration
             /// 
