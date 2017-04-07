@@ -23,41 +23,6 @@
         <Image x:Name="forst3" Margin="0,-528,-648,0" Source="forst3.jpg"  Opacity="0" Panel.ZIndex="3" Grid.ColumnSpan="2"/>
         <Image x:Name="cpsd402" Margin="0,-528,-648,0" Source="cpsd402.jpg"  Opacity="0" Panel.ZIndex="3" Grid.ColumnSpan="2"/>
 
-        <!--<Grid x:Name="inputDataDisplayGrid" HorizontalAlignment="Left" Height="1100" Margin="50,-40,0,0" VerticalAlignment="Top" Width="782" Panel.ZIndex="2">
-            <Label x:Name="brakePositionLabel" Content="Brake Position: " HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="indPositionLabel" Content="Ind Position: " HorizontalAlignment="Left" Margin="50,124,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="bailStateLabel" Content="Bail State: " HorizontalAlignment="Left" Margin="50,198,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="pedalPressedLabel" Content="Pedal Pressed: " HorizontalAlignment="Left" Margin="50,272,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="bellPulledLabel" Content="Bell Pulled: " HorizontalAlignment="Left" Margin="50,346,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="sandingButtonPressedLabel" Content="SandingB Pressed: " HorizontalAlignment="Left" Margin="50,420,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="sandigLeverStateLabel" Content="SandingL State: " HorizontalAlignment="Left" Margin="50,494,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="hornPulleLabel" Content="Horn Pulled: " HorizontalAlignment="Left" Margin="50,568,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="pcsPushed" Content="PCS Pressed: " HorizontalAlignment="Left" Margin="50,642,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="engineRunButtonStateLabel" Content="Engine Run State: " HorizontalAlignment="Left" Margin="50,716,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="attendantCallPressedLabel" Content="Attenant Pressed: " HorizontalAlignment="Left" Margin="50,790,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="resetButtonPressedLabel" Content="Reset Pressed: " HorizontalAlignment="Left" Margin="50,864,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="throttlePositionLabel" Content="Throttle Position: " HorizontalAlignment="Left" Margin="50,938,0,-12" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="dynamicPositionLabel" Content="Dynamic Position: " HorizontalAlignment="Left" Margin="50,1012,0,-86" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-
-        </Grid>
-        <Grid x:Name="outputDataDisplayGrid" HorizontalAlignment="Left" Height="1100" Margin="540,-40,0,0" VerticalAlignment="Top" Width="782" Panel.ZIndex="2" Grid.ColumnSpan="2">
-            <Label x:Name="bendStateLabel" Content="Bend State: " HorizontalAlignment="Left" Margin="50,50,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="videoPositionLabel" Content="Video Position: " HorizontalAlignment="Left" Margin="50,124,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="playbackSpeedratioLabel" Content="Playback Speed: " HorizontalAlignment="Left" Margin="50,198,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="videoTrackSpeedLabel" Content="Video MPH: " HorizontalAlignment="Left" Margin="50,272,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="gradeLabel" Content="Uphill Grade: " HorizontalAlignment="Left" Margin="50,346,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="MainBrakePressureIndicatedLabel" Content="Main Pressure Ind: " HorizontalAlignment="Left" Margin="50,420,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="MainBrakePressureRequested" Content="Main Pressure Req: " HorizontalAlignment="Left" Margin="50,494,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="IndBrakePressureIndicated" Content="Ind Pressure Ind: " HorizontalAlignment="Left" Margin="50,568,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="IndBrakePressureRequested" Content="Ind Pressure Req: " HorizontalAlignment="Left" Margin="50,642,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="PenaltyBrakeLabel" Content="Penalty Brake: " HorizontalAlignment="Left" Margin="50,716,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="PenaltyCountdownLabel" Content="Penalty Countdown: " HorizontalAlignment="Left" Margin="50,790,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="ThrottleCalibrationpositionlabel" Content="Throttle Cal: " HorizontalAlignment="Left" Margin="50,864,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Label x:Name="DynamicCalibrationpositionlabel" Content="Dynamic Cal: " HorizontalAlignment="Left" Margin="50,938,0,0" VerticalAlignment="Top" Foreground="White" FontSize="48" />
-            <Grid HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100"/>-->
-
-
-
 
         <!--</Grid>-->
         <Label x:Name="continueMainScreenLabel" Visibility="Hidden" Content="Insert Coin to Continue" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,272,0,682" Foreground="#FF27434A" FontFamily="nevis" FontSize="90" Grid.ColumnSpan="2" Width="1912"  />
