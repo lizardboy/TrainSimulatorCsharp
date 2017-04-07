@@ -189,8 +189,8 @@ namespace TrainSimulatorCsharp
         static double trainBrakeEffort;
         static double indBrakeEffort;
         static double dynBrakeEffort;
-        static double maxDynBrakeEffort = 40000;
-        static double maxMotorEffort = 52000;
+        static double maxDynBrakeEffort = 30000;
+        static double maxMotorEffort = 56000;
         static double maxMotorAmps = 1150;
         static double maxTractiveForce;
         static double bendDrag = 0;
@@ -231,7 +231,7 @@ namespace TrainSimulatorCsharp
         //Bend Globals
         static int bendState;
         static int bendIndex = 0;
-        static int[,] bendList = {
+        static int[,] bendList1 = {
             { 0, 0 },
             { 100, 2 },
             { 115, 0 },
@@ -371,6 +371,285 @@ namespace TrainSimulatorCsharp
             { 2771, 0 }
             };
 
+        static int[,] bendList2 = {
+            { 0, 0 },
+            { 100, 2 },
+            { 115, 0 },
+            { 135, 3 },
+            { 154, 0 },
+            { 162, 2 },
+            { 169, 0 },
+            { 173, 3 },
+            { 192, 0 },
+            { 198, 2 },
+            { 219, 0 },
+            { 223, 2 },
+            { 247, 0 },
+            { 260, 2 },
+            { 273, 0 },
+            { 278, 1 },
+            { 293, 0 },
+            { 308, 2 },
+            { 317, 0 },
+            { 341, 1 },
+            { 366, 0 },
+            { 373, 1 },
+            { 386, 0 },
+            { 417, 2 },
+            { 433, 0 },
+            { 437, 2 },
+            { 445, 0 },
+            { 472, 1 },
+            { 496, 0 },
+            { 565, 2 },
+            { 581, 0 },
+            { 589, 1 },
+            { 606, 0 },
+            { 625, 2 },
+            { 637, 0 },
+            { 677, 1 },
+            { 692, 0 },
+            { 702, 1 },
+            { 716, 0 },
+            { 760, 1 },
+            { 764, 0 },
+            { 781, 2 },
+            { 789, 0 },
+            { 805, 3 },
+            { 830, 0 },
+            { 838, 2 },
+            { 851, 0 },
+            { 856, 1 },
+            { 866, 0 },
+            { 872, 2 },
+            { 895, 0 },
+            { 900, 3 },
+            { 908, 0 },
+            { 925, 2 },
+            { 943, 0 },
+            { 949, 2 },
+            { 980, 0 },
+            { 995, 1 },
+            { 1015, 0 },
+            { 1019, 1 },
+            { 1028, 0 },
+            { 1035, 1 },
+            { 1056, 0 },
+            { 1095, 1 },
+            { 1106, 0 },
+            { 1128, 1 },
+            { 1134, 0 },
+            { 1146, 1 },
+            { 1166, 0 },
+            { 1174, 1 },
+            { 1188, 0 },
+            { 1193, 1 },
+            { 1218, 0 },
+            { 1243, 2 },
+            { 1248, 0 },
+            { 1265, 1 },
+            { 1281, 0 },
+            { 1378, 1 },
+            { 1407, 0 },
+            { 1450, 1 },
+            { 1490, 0 },
+            { 1520, 2 },
+            { 1540, 0 },
+            { 1779, 1 },
+            { 1816, 0 },
+            { 1999, 1 },
+            { 2006, 0 },
+            { 2022, 1 },
+            { 2026, 0 },
+            { 2034, 1 },
+            { 2040, 0 },
+            { 2092, 1 },
+            { 2098, 0 },
+            { 2119, 2 },
+            { 2138, 0 },
+            { 2144, 3 },
+            { 2155, 0 },
+            { 2173, 2 },
+            { 2187, 0 },
+            { 2217, 2 },
+            { 2232, 0 },
+            { 2238, 2 },
+            { 2279, 0 },
+            { 2288, 2 },
+            { 2298, 0 },
+            { 2308, 1 },
+            { 2318, 0 },
+            { 2360, 3 },
+            { 2369, 0 },
+            { 2380, 1 },
+            { 2397, 0 },
+            { 2420, 1 },
+            { 2433, 0 },
+            { 2439, 2 },
+            { 2458, 0 },
+            { 2465, 3 },
+            { 2474, 0 },
+            { 2492, 2 },
+            { 2502, 0 },
+            { 2509, 1 },
+            { 2519, 0 },
+            { 2520, 2 },
+            { 2534, 0 },
+            { 2540, 1 },
+            { 2549, 0 },
+            { 2555, 1 },
+            { 2563, 0 },
+            { 2573, 2 },
+            { 2590, 0 },
+            { 2601, 1 },
+            { 2607, 0 },
+            { 2647, 1 },
+            { 2662, 0 },
+            { 2678, 2 },
+            { 2690, 0 },
+            { 2764, 1 },
+            { 2771, 0 }
+            };
+
+        static int[,] bendList3 = {
+            { 0, 0 },
+            { 100, 2 },
+            { 115, 0 },
+            { 135, 3 },
+            { 154, 0 },
+            { 162, 2 },
+            { 169, 0 },
+            { 173, 3 },
+            { 192, 0 },
+            { 198, 2 },
+            { 219, 0 },
+            { 223, 2 },
+            { 247, 0 },
+            { 260, 2 },
+            { 273, 0 },
+            { 278, 1 },
+            { 293, 0 },
+            { 308, 2 },
+            { 317, 0 },
+            { 341, 1 },
+            { 366, 0 },
+            { 373, 1 },
+            { 386, 0 },
+            { 417, 2 },
+            { 433, 0 },
+            { 437, 2 },
+            { 445, 0 },
+            { 472, 1 },
+            { 496, 0 },
+            { 565, 2 },
+            { 581, 0 },
+            { 589, 1 },
+            { 606, 0 },
+            { 625, 2 },
+            { 637, 0 },
+            { 677, 1 },
+            { 692, 0 },
+            { 702, 1 },
+            { 716, 0 },
+            { 760, 1 },
+            { 764, 0 },
+            { 781, 2 },
+            { 789, 0 },
+            { 805, 3 },
+            { 830, 0 },
+            { 838, 2 },
+            { 851, 0 },
+            { 856, 1 },
+            { 866, 0 },
+            { 872, 2 },
+            { 895, 0 },
+            { 900, 3 },
+            { 908, 0 },
+            { 925, 2 },
+            { 943, 0 },
+            { 949, 2 },
+            { 980, 0 },
+            { 995, 1 },
+            { 1015, 0 },
+            { 1019, 1 },
+            { 1028, 0 },
+            { 1035, 1 },
+            { 1056, 0 },
+            { 1095, 1 },
+            { 1106, 0 },
+            { 1128, 1 },
+            { 1134, 0 },
+            { 1146, 1 },
+            { 1166, 0 },
+            { 1174, 1 },
+            { 1188, 0 },
+            { 1193, 1 },
+            { 1218, 0 },
+            { 1243, 2 },
+            { 1248, 0 },
+            { 1265, 1 },
+            { 1281, 0 },
+            { 1378, 1 },
+            { 1407, 0 },
+            { 1450, 1 },
+            { 1490, 0 },
+            { 1520, 2 },
+            { 1540, 0 },
+            { 1779, 1 },
+            { 1816, 0 },
+            { 1999, 1 },
+            { 2006, 0 },
+            { 2022, 1 },
+            { 2026, 0 },
+            { 2034, 1 },
+            { 2040, 0 },
+            { 2092, 1 },
+            { 2098, 0 },
+            { 2119, 2 },
+            { 2138, 0 },
+            { 2144, 3 },
+            { 2155, 0 },
+            { 2173, 2 },
+            { 2187, 0 },
+            { 2217, 2 },
+            { 2232, 0 },
+            { 2238, 2 },
+            { 2279, 0 },
+            { 2288, 2 },
+            { 2298, 0 },
+            { 2308, 1 },
+            { 2318, 0 },
+            { 2360, 3 },
+            { 2369, 0 },
+            { 2380, 1 },
+            { 2397, 0 },
+            { 2420, 1 },
+            { 2433, 0 },
+            { 2439, 2 },
+            { 2458, 0 },
+            { 2465, 3 },
+            { 2474, 0 },
+            { 2492, 2 },
+            { 2502, 0 },
+            { 2509, 1 },
+            { 2519, 0 },
+            { 2520, 2 },
+            { 2534, 0 },
+            { 2540, 1 },
+            { 2549, 0 },
+            { 2555, 1 },
+            { 2563, 0 },
+            { 2573, 2 },
+            { 2590, 0 },
+            { 2601, 1 },
+            { 2607, 0 },
+            { 2647, 1 },
+            { 2662, 0 },
+            { 2678, 2 },
+            { 2690, 0 },
+            { 2764, 1 },
+            { 2771, 0 }
+            };
         ///     / game time left
         static int continueTimeLeft = 0;
         static int timeLeft =0;
@@ -381,6 +660,9 @@ namespace TrainSimulatorCsharp
         static int iter2 = 0;
         static int iter3 = 0;
         static int iter4 = 0;
+        static double VideoLengthSec;
+        
+        
         /// ///////////////////////////////////////////////////////////////////////////////////////
         //Application Startup//////////////////////////////////////////////////////////////////////
 
@@ -515,7 +797,8 @@ namespace TrainSimulatorCsharp
 
         private void selectTrack1(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("select track 1");
+            selectedTrack = "track1";
+            VideoLengthSec = 2884;
 
             Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source=  myUri1;
@@ -570,8 +853,8 @@ namespace TrainSimulatorCsharp
 
         private void selectTrack2(object sender, MouseButtonEventArgs e)
         {
-           
-               
+            selectedTrack = "track2";
+            VideoLengthSec = 3250;   
 
             Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage2.mp4", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri2;
@@ -624,7 +907,8 @@ namespace TrainSimulatorCsharp
         private void selectTrack3(object sender, MouseButtonEventArgs e)
         {
 
-
+            selectedTrack = "track3";
+            VideoLengthSec = 3250;
 
             Uri myUri3 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri3;
@@ -1892,8 +2176,8 @@ namespace TrainSimulatorCsharp
                 outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(0);
-                velocity = 20;
-                bendIndex = 18;
+                velocity = 8;
+                bendIndex = 0;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
@@ -1903,21 +2187,21 @@ namespace TrainSimulatorCsharp
             {
                 outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
-                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(324);
-                velocity = 20;
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(789);
+                velocity = 9;
                 bendIndex = 18;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
-
+               
             }
 
             else if (selectedSegment == "selectThrums")
             {
                 outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
-                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(896);
-                velocity = 26;
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(1305);
+                velocity = 8;
                 bendIndex = 50;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
@@ -1927,9 +2211,9 @@ namespace TrainSimulatorCsharp
             {
                 outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
-                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(1408);
-                velocity = 26;
-                bendIndex = 50;
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2104);
+                velocity = 8;
+                bendIndex = 78;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
@@ -1939,9 +2223,9 @@ namespace TrainSimulatorCsharp
             {
                 outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
-                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2206);
-                velocity = 26;
-                bendIndex = 50;
+                outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2665);
+                velocity = 8;
+                bendIndex = 98;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
@@ -2041,7 +2325,7 @@ namespace TrainSimulatorCsharp
 
 
 
-            double displayMPH = velocity - (Convert.ToDouble(outWindow.CabFootageVideo.Position.TotalSeconds) - 2750) * velocityDec;
+            double displayMPH = velocity - (Convert.ToDouble(outWindow.CabFootageVideo.Position.TotalSeconds) - VideoLengthSec-125) * velocityDec;
             if (displayMPH >= 0)
             {
                 updateSpeedometer(displayMPH);
@@ -2054,7 +2338,7 @@ namespace TrainSimulatorCsharp
             playbackSpeedratioLabel.Content = "Playback Speed: " + outWindow.CabFootageVideo.SpeedRatio;
             videoTrackSpeedLabel.Content = "Video MPH: " + displayMPH;
 
-            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(2875))
+            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(VideoLengthSec))
             {
                 gameTimer.Tick -= new EventHandler(reachedFieldLoop);
                 updateSpeedometer(0);
@@ -2155,7 +2439,7 @@ namespace TrainSimulatorCsharp
             {
                 if (bendStateTemp == 1 && velocity > 40)
                 {
-                    AudioPlaybackEngine.Instance.PlaySound(CornerSqueal4);
+                    AudioPlaybackEngine.Instance.PlaySound(CornerSqueal5);
                 }
                 else if (bendStateTemp == 2 && velocity > 30)
                 {
@@ -2163,7 +2447,7 @@ namespace TrainSimulatorCsharp
                 }
                 else if (bendStateTemp == 3 && velocity > 20)
                 {
-                    AudioPlaybackEngine.Instance.PlaySound(CornerSqueal4);
+                    AudioPlaybackEngine.Instance.PlaySound(CornerSqueal3);
                 }
                 
             }
@@ -2656,14 +2940,52 @@ namespace TrainSimulatorCsharp
 
         private int getBendState(double videoPosition)
         {
-            if (videoPosition >= bendList[bendIndex + 1, 0])
-            {
-                bendIndex++;
-                return bendList[bendIndex, 1];
+
+            if (selectedTrack == "track1") {
+
+                if (videoPosition >= bendList1[bendIndex + 1, 0])
+                {
+                    bendIndex++;
+                    return bendList1[bendIndex, 1];
+                }
+
+                return bendList1[bendIndex, 1];
             }
 
-            return bendList[bendIndex,1];
+            if (selectedTrack == "track2")
+            {
+
+                if (videoPosition >= bendList2[bendIndex + 1, 0])
+                {
+                    bendIndex++;
+                    return bendList2[bendIndex, 1];
+                }
+
+                return bendList2[bendIndex, 1];
+            }
+
+            if (selectedTrack == "track3")
+            {
+
+                if (videoPosition >= bendList3[bendIndex + 1, 0])
+                {
+                    bendIndex++;
+                    return bendList3[bendIndex, 1];
+                }
+
+                return bendList3[bendIndex, 1];
+            }
+
+
+            if (videoPosition >= bendList1[bendIndex + 1, 0])
+            {
+                bendIndex++;
+                return bendList1[bendIndex, 1];
+            }
+
+            return bendList1[bendIndex, 1];
         }
+
 
         private void updateFuelBar(int aniTime)
         {
