@@ -8,7 +8,7 @@
     <Grid x:Name="splash"  Background ="Black">
         <Image x:Name="RevySplashScreen" Margin="0,0,0,-6" Source="RevySplashScreen.png" Visibility="Visible" Panel.ZIndex="4" VerticalAlignment="Top" Height="1022" HorizontalAlignment="Left" Width="1272"/>
         <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
-        <Image x:Name="selectATrackText" Margin="-894,466,1227,491" Source="selectATrackText.png" />
+        <Image x:Name="selectATrackText" Margin="-946,492,1279,465" Source="selectATrackText.png" />
         <Image x:Name="selectedTrackText" Margin="1296,496,-962,460" Source="track1Text.png" Grid.Row="1"  />
         <Image x:Name="TrailToNelsonText" Margin="1296,496,-962,460" Source="TrailToNelsonText.png" Grid.Row="1" />
 
@@ -26,12 +26,12 @@
         <Image Margin="-171,384,1312,609" Source="BackButton.png"/>
         <Image  Margin="1296,384,-190,609" Source="SelectButton.png"/>
 
-        <Image x:Name="StopLabel1" Margin="1363,913,-163,90" Source="goldenLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel2" Margin="1571,913,-389,90" Source="glenogleLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel3" Margin="1795,912,-598,90" Source="PalliserLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel4" Margin="2002,912,-826,90" Source="leanchoilLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel5" Margin="2224,912,-1039,90" Source="ottertailLabel.png" Grid.Row="1" />
-        <Image x:Name="StopLabel6" Margin="2460,912,-1237,90" Source="FieldLabel.png" Grid.Row="1"/>
+        <Image x:Name="StopLabel1" Margin="1363,912,-195,90"  HorizontalAlignment="Center" Source="goldenLabel.png"  Width="100" Grid.Row="1" />
+        <Image x:Name="StopLabel2" Margin="1575,912,-408,90"  HorizontalAlignment="Center" Source="glenogleLabel.png"  Width="100" Grid.Row="1" />
+        <Image x:Name="StopLabel3" Margin="1795,914,-608,90"  HorizontalAlignment="Center" Source="palliserLabel.png"  Width="100" Grid.Row="1" />
+        <Image x:Name="StopLabel4" Margin="2002,912,-826,90" HorizontalAlignment="Center" Source="leanchoilLabel.png" Width="100" Grid.Row="1"  />
+        <Image x:Name="StopLabel5" Margin="2215,912,-1038,90"  HorizontalAlignment="Center" Source="ottertailLabel.png" Width="95" Grid.Row="1" />
+        <Image x:Name="StopLabel6" Margin="2435,912,-1249,90" HorizontalAlignment  ="Center"  Source="FieldLabel.png" Width="95" Grid.Row="1" />
 
         <Rectangle x:Name="selectButton" HorizontalAlignment="Left" Height="141" Margin="960,325,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseUp="nextSelect" MouseDown="highlightRectangle" MouseLeave="unhighlightRectangle" />
         <Rectangle x:Name="backButton" HorizontalAlignment="Left" Height="152" Margin="10,314,0,0" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="302" Panel.ZIndex="10" Fill="Black" Opacity="0" MouseLeave="unhighlightRectangle" MouseDown="highlightRectangle" MouseUp="backSelect"/>
