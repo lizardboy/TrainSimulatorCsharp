@@ -853,6 +853,8 @@ namespace TrainSimulatorCsharp
 
         private void selectTrack2(object sender, MouseButtonEventArgs e)
         {
+           
+
             selectedTrack = "track2";
             VideoLengthSec = 3250;   
 
@@ -900,10 +902,12 @@ namespace TrainSimulatorCsharp
 
             trackSelect(sender, e);
 
-           
+            outWindow.CabFootageVideo.ScrubbingEnabled = true;
+            outWindow.CabFootageVideo.Play();
+            outWindow.CabFootageVideo.Pause();
 
         }
-
+        
         private void selectTrack3(object sender, MouseButtonEventArgs e)
         {
 
@@ -2158,7 +2162,7 @@ namespace TrainSimulatorCsharp
                 bendIndex = 78;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                //outWindow.CabFootageVideo.Play();
+               
             }
             else if (selectedSegment == "selectOttertail")
             {
@@ -2180,19 +2184,19 @@ namespace TrainSimulatorCsharp
                 bendIndex = 0;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.CabFootageVideo.Play();
+               // outWindow.CabFootageVideo.Play();
 
             }
             else if (selectedSegment == "selectBrilliant")
             {
-                outWindow.CabFootageVideo.Play();
+               outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(789);
                 velocity = 9;
                 bendIndex = 18;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.CabFootageVideo.Play();
+               // outWindow.CabFootageVideo.Play();
                
             }
 
@@ -2205,11 +2209,11 @@ namespace TrainSimulatorCsharp
                 bendIndex = 50;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
-                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Play();
             }
             else if (selectedSegment == "selectSSlocan")
             {
-                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2104);
                 velocity = 8;
@@ -2221,7 +2225,7 @@ namespace TrainSimulatorCsharp
 
             else if (selectedSegment == "selectGranite")
             {
-                outWindow.CabFootageVideo.Play();
+                //outWindow.CabFootageVideo.Play();
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2665);
                 velocity = 8;
