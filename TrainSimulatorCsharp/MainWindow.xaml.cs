@@ -373,142 +373,103 @@ namespace TrainSimulatorCsharp
 
         static int[,] bendList2 = {
             { 0, 0 },
-            { 100, 2 },
-            { 115, 0 },
-            { 135, 3 },
-            { 154, 0 },
-            { 162, 2 },
-            { 169, 0 },
-            { 173, 3 },
-            { 192, 0 },
-            { 198, 2 },
-            { 219, 0 },
-            { 223, 2 },
-            { 247, 0 },
-            { 260, 2 },
-            { 273, 0 },
-            { 278, 1 },
-            { 293, 0 },
-            { 308, 2 },
-            { 317, 0 },
-            { 341, 1 },
-            { 366, 0 },
-            { 373, 1 },
-            { 386, 0 },
-            { 417, 2 },
-            { 433, 0 },
-            { 437, 2 },
-            { 445, 0 },
-            { 472, 1 },
+            { 89, 2 },
+            { 109, 0 },
+            { 124, 1 },
+            { 148, 0 },
+            { 168, 2 },
+            { 213, 0 },
+            { 218, 1 },
+            { 233, 0 },
+            { 297, 1 },
+            { 312, 0 },
+            { 402, 2 },
+            { 441, 0 },
+            { 456, 2 },
             { 496, 0 },
-            { 565, 2 },
-            { 581, 0 },
-            { 589, 1 },
-            { 606, 0 },
-            { 625, 2 },
-            { 637, 0 },
-            { 677, 1 },
-            { 692, 0 },
-            { 702, 1 },
-            { 716, 0 },
-            { 760, 1 },
-            { 764, 0 },
-            { 781, 2 },
-            { 789, 0 },
-            { 805, 3 },
-            { 830, 0 },
-            { 838, 2 },
-            { 851, 0 },
-            { 856, 1 },
-            { 866, 0 },
-            { 872, 2 },
-            { 895, 0 },
-            { 900, 3 },
-            { 908, 0 },
-            { 925, 2 },
-            { 943, 0 },
-            { 949, 2 },
-            { 980, 0 },
-            { 995, 1 },
-            { 1015, 0 },
-            { 1019, 1 },
-            { 1028, 0 },
-            { 1035, 1 },
-            { 1056, 0 },
-            { 1095, 1 },
-            { 1106, 0 },
-            { 1128, 1 },
-            { 1134, 0 },
-            { 1146, 1 },
-            { 1166, 0 },
-            { 1174, 1 },
-            { 1188, 0 },
-            { 1193, 1 },
-            { 1218, 0 },
-            { 1243, 2 },
-            { 1248, 0 },
-            { 1265, 1 },
-            { 1281, 0 },
-            { 1378, 1 },
-            { 1407, 0 },
-            { 1450, 1 },
-            { 1490, 0 },
-            { 1520, 2 },
-            { 1540, 0 },
-            { 1779, 1 },
-            { 1816, 0 },
-            { 1999, 1 },
-            { 2006, 0 },
-            { 2022, 1 },
-            { 2026, 0 },
-            { 2034, 1 },
-            { 2040, 0 },
-            { 2092, 1 },
-            { 2098, 0 },
-            { 2119, 2 },
-            { 2138, 0 },
-            { 2144, 3 },
-            { 2155, 0 },
-            { 2173, 2 },
-            { 2187, 0 },
+            { 506, 2 },
+            { 541, 0 },
+            { 580, 1 },
+            { 605, 0 },
+            { 625, 3 },
+            { 684, 0 },
+            { 689, 2 },
+            { 704, 0 },
+            { 724, 2 },
+            { 759, 0 },
+            { 843, 2 },
+            { 878, 0 },
+            { 950, 1 },
+            { 1047, 0 },
+            { 1156, 1 },
+            { 1171, 0 },
+            { 1195, 1 },
+            { 1325, 0 },
+            { 1344, 1 },
+            { 1364, 0 },
+            { 1394, 1 },
+            { 1414, 0 },
+            { 1454, 1 },
+            { 1469, 0 },
+            { 1488, 3 },
+            { 1513, 1 },
+            { 1548, 0 },
+            { 1583, 2 },
+            { 1612, 3 },
+            { 1632, 2 },
+            { 1647, 0 },            
+            { 1672, 1 },
+            { 1677, 0 },
+            { 1697, 1 },
+            { 1702, 0 },
+            { 1732, 1 },
+            { 1741, 0 },
+            { 1786, 1 },
+            { 1791, 0 },
+            { 1841, 1 },
+            { 1876, 2 },
+            { 1880, 0 },
+            { 1970, 1 },
+            { 2014, 0 },
+            { 2139, 3 },
+            { 2188, 0 },
+            { 2220, 3 },
+            { 2250, 0 },
+            { 2268, 3 },
+            { 2292, 0 },
+            { 2302, 2 },
+            { 2322, 0 },
+            { 2352, 1 },
+            { 2367, 0 },
+            { 2382, 1 },
+            { 2392, 0 },
+            { 2412, 2 },
+            { 2326, 0 },
+            { 2436, 2 },
+            { 2451, 0 },
+            { 2461, 2 },
+            { 2476, 0 },
+            { 2511, 1 },
+            { 2521, 0 },
+            { 2536, 1 },
+            { 2560, 2 },
+            { 2635, 0 },
+            { 2656, 1 },
+            { 2665, 1 },
+            { 2679, 0 },
+            { 2700, 2 },
+            { 2898, 0 },
+            { 2947, 1 },
+            { 2957, 0 },
+            { 2967, 2 },
+            { 3111, 0 },
+            { 3121, 1 },
+            { 3331, 0 },
+            { 3151, 2 },
+            { 3285, 0 },
             { 2217, 2 },
             { 2232, 0 },
-            { 2238, 2 },
-            { 2279, 0 },
-            { 2288, 2 },
-            { 2298, 0 },
-            { 2308, 1 },
-            { 2318, 0 },
-            { 2360, 3 },
-            { 2369, 0 },
-            { 2380, 1 },
-            { 2397, 0 },
-            { 2420, 1 },
-            { 2433, 0 },
-            { 2439, 2 },
-            { 2458, 0 },
-            { 2465, 3 },
-            { 2474, 0 },
-            { 2492, 2 },
-            { 2502, 0 },
-            { 2509, 1 },
-            { 2519, 0 },
-            { 2520, 2 },
-            { 2534, 0 },
-            { 2540, 1 },
-            { 2549, 0 },
-            { 2555, 1 },
-            { 2563, 0 },
-            { 2573, 2 },
-            { 2590, 0 },
-            { 2601, 1 },
-            { 2607, 0 },
-            { 2647, 1 },
-            { 2662, 0 },
-            { 2678, 2 },
-            { 2690, 0 },
-            { 2764, 1 },
-            { 2771, 0 }
+           
             };
 
         static int[,] bendList3 = {
@@ -917,7 +878,7 @@ namespace TrainSimulatorCsharp
             Uri myUri3 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri3;
             Uri myUri13 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
-            outWindow.CabFootageVideo.Source = myUri12;
+            outWindow.CabFootageVideo.Source = myUri13;
 
             Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
             Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
@@ -1888,27 +1849,27 @@ namespace TrainSimulatorCsharp
 
             else if (dynamicPosition != Dynamic_Off_Position && iter == 0)
             {
-                if (dynamicPosition > Dynamic_Off_Position && DynamicPageAPPLY != true)
-                {
-                    if (DynamicPageRELEASE == true)
-                    { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
-                        DynamicPageRELEASE = false;
-
-                    }
-                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionapply);
-                    DynamicPageAPPLY = true;
-                }
-
-                if (dynamicPosition < Dynamic_Off_Position && DynamicPageRELEASE != true)
-
+                if (dynamicPosition > Dynamic_Off_Position && DynamicPageRELEASE != true)
                 {
                     if (DynamicPageAPPLY == true)
-                    {
-                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
+                    { TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionapply);
                         DynamicPageAPPLY = false;
+
                     }
                     TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionrelease);
                     DynamicPageRELEASE = true;
+                }
+
+                if (dynamicPosition < Dynamic_Off_Position && DynamicPageAPPLY != true)
+
+                {
+                    if (DynamicPageRELEASE == true)
+                    {
+                        TranslateTheMediaElement(-1196, 0, 0, 0, 500, 1, 0, dynamicinstructionrelease);
+                        DynamicPageRELEASE = false;
+                    }
+                    TranslateTheMediaElement(0, 0, -1196, 0, 500, 0, 1, dynamicinstructionapply);
+                    DynamicPageAPPLY = true;
                 }
 
                 instructionsLabel.Content = "Set Dynamic Selector to 1!";
@@ -2478,7 +2439,7 @@ namespace TrainSimulatorCsharp
             updateFuelBar(0);
             updateSpeedometer(velocity);
             updatePneumatics();
-            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(2750))
+            if (outWindow.CabFootageVideo.Position >= System.TimeSpan.FromSeconds(VideoLengthSec))
             {
                 velocityDec = velocity / 122;
                 gameTimer.Tick -= new EventHandler(gameLoop);
