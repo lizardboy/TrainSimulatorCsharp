@@ -916,6 +916,21 @@ namespace TrainSimulatorCsharp
 
             Uri myUri3 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri3;
+            Uri myUri13 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
+            outWindow.CabFootageVideo.Source = myUri12;
+
+            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.mp4", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.mp4", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.mp4", UriKind.Absolute);
+
+            StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("TrailLabel.png"));
+            StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("BrilliantLabel.png"));
+            StopLabel3.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("ThrumsLabel.png"));
+            StopLabel4.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("SSlocanLabel.png"));
+            StopLabel5.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("GraniteLabel.png"));
+            StopLabel6.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("NelsonLabel.png"));
 
 
             selectedTrackText.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("track3Text.png"));
