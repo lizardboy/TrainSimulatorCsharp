@@ -712,7 +712,7 @@ namespace TrainSimulatorCsharp
             descriptionScreenFootage.Pause();
 
             AudioPlaybackEngine.Instance.PlaySound(engine0);
-        
+
 
         }
 
@@ -761,19 +761,19 @@ namespace TrainSimulatorCsharp
             selectedTrack = "track1";
             VideoLengthSec = 2884;
 
-            Uri myUri1 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
+            Uri myUri1 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage1.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source=  myUri1;
 
-            Uri myUri11 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\goldenToField.mp4", UriKind.Absolute);
+            Uri myUri11 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\goldenToField.mp4", UriKind.Absolute);
             outWindow.CabFootageVideo.Source = myUri11;
 
 
 
-            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv", UriKind.Absolute);
-            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv", UriKind.Absolute);
-            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv", UriKind.Absolute);
-            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv", UriKind.Absolute);
-            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv", UriKind.Absolute);
+            Stop1Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GoldenEx.wmv", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GlenogleEx.wmv", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\PalliserEx.wmv", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\LeanchoilEx.wmv", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\OttertailEx.wmv", UriKind.Absolute);
 
             StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("goldenLabel.png"));
             StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("glenogleLabel.png"));
@@ -819,17 +819,17 @@ namespace TrainSimulatorCsharp
             selectedTrack = "track2";
             VideoLengthSec = 3250;   
 
-            Uri myUri2 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage2.mp4", UriKind.Absolute);
+            Uri myUri2 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage2.mp4", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri2;
 
-            Uri myUri12 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
+            Uri myUri12 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
              outWindow.CabFootageVideo.Source = myUri12;
 
-            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
-            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
-            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.mp4", UriKind.Absolute);
-            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.mp4", UriKind.Absolute);
-            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.mp4", UriKind.Absolute);
+            Stop1Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.mp4", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.mp4", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.mp4", UriKind.Absolute);
 
             StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("TrailLabel.png"));
             StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("BrilliantLabel.png"));
@@ -875,16 +875,16 @@ namespace TrainSimulatorCsharp
             selectedTrack = "track3";
             VideoLengthSec = 3250;
 
-            Uri myUri3 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
+            Uri myUri3 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\descriptionScreenFootage3.wmv", UriKind.Absolute);
             descriptionScreenFootage.Source = myUri3;
-            Uri myUri13 = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
+            Uri myUri13 = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailtoNelson_noaudio.mp4", UriKind.Absolute);
             outWindow.CabFootageVideo.Source = myUri13;
 
-            Stop1Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
-            Stop2Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
-            Stop3Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.mp4", UriKind.Absolute);
-            Stop4Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.mp4", UriKind.Absolute);
-            Stop5Ex.Source = new Uri(@"C:\Users\Dar\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.mp4", UriKind.Absolute);
+            Stop1Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\TrailEx.mp4", UriKind.Absolute);
+            Stop2Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\BrilliantEx.mp4", UriKind.Absolute);
+            Stop3Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\ThrumsEx.mp4", UriKind.Absolute);
+            Stop4Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\SSlocanEx.mp4", UriKind.Absolute);
+            Stop5Ex.Source = new Uri(@"C:\Users\Darrin\Desktop\TrainSimulatorCsharp - Copy\TrainSimulatorCsharp\TrainSimulatorCsharp\bin\Debug\GraniteEx.mp4", UriKind.Absolute);
 
             StopLabel1.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("TrailLabel.png"));
             StopLabel2.Source = ((ImageSource)new ImageSourceConverter().ConvertFrom("BrilliantLabel.png"));
@@ -4079,7 +4079,7 @@ namespace TrainSimulatorCsharp
                     
                     if (ebrakeState == true)
                     {
-                        //ebrakeState = false;
+                        iter1 = 3;
                         emergencyBrakeMessage(false);                                           
                     }
                 }
@@ -4098,7 +4098,7 @@ namespace TrainSimulatorCsharp
 
                         if (ebrakeState == true)
                         {
-                            //ebrakeState = false;
+                            iter1 = 3;
                             emergencyBrakeMessage(false);                                          
                         }
 
@@ -4117,7 +4117,7 @@ namespace TrainSimulatorCsharp
 
                             if (ebrakeState == true)
                             {
-                                //ebrakeState = false;
+                                iter1 = 3;
                                 emergencyBrakeMessage(false);                                         
                             }
 
@@ -4136,7 +4136,7 @@ namespace TrainSimulatorCsharp
 
                                 if (ebrakeState == true)
                                 {
-                                    //ebrakeState = false;
+                                    iter1 = 3;
                                     emergencyBrakeMessage(false);                                           
                                 }
 
