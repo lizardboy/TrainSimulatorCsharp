@@ -467,9 +467,10 @@ namespace TrainSimulatorCsharp
             { 3331, 0 },
             { 3151, 2 },
             { 3285, 0 },
-            { 2217, 2 },
-            { 2232, 0 },
-           
+            { 3397, 2 },
+            { 3450, 0 },
+            {  3559, 0 },
+            { 3659, 0 },
             };
 
         static int[,] bendList3 = {
@@ -2169,7 +2170,7 @@ namespace TrainSimulatorCsharp
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(789);
                 velocity = 9;
-                bendIndex = 18;
+                bendIndex = 23;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                // outWindow.CabFootageVideo.Play();
@@ -2182,7 +2183,7 @@ namespace TrainSimulatorCsharp
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(1305);
                 velocity = 8;
-                bendIndex = 50;
+                bendIndex = 30;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 //outWindow.CabFootageVideo.Play();
@@ -2193,7 +2194,7 @@ namespace TrainSimulatorCsharp
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2104);
                 velocity = 8;
-                bendIndex = 78;
+                bendIndex = 57;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
@@ -2205,7 +2206,7 @@ namespace TrainSimulatorCsharp
                 //outWindow.CabFootageVideo.Pause();
                 outWindow.CabFootageVideo.Position = TimeSpan.FromSeconds(2665);
                 velocity = 8;
-                bendIndex = 98;
+                bendIndex = 84;
                 TimedAction.ExecuteWithDelay(new Action(delegate { gameTimer.Tick += new EventHandler(gameLoop); }), TimeSpan.FromMilliseconds(3000));
                 TimedAction.ExecuteWithDelay(new Action(delegate { FadeTheMediaElement(0, 1, outWindow.CabFootageVideo, 3000); }), TimeSpan.FromMilliseconds(3000));
                 outWindow.CabFootageVideo.Play();
