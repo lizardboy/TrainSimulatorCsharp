@@ -6,7 +6,7 @@
         WindowStartupLocation="Manual" Top="10" Left="1930">
 
     <Grid x:Name="splash"  Background ="Black">
-        <Image x:Name="RevySplashScreen" Margin="0,0,0,-6" Source="RevySplashScreen.png" Visibility="Visible" Panel.ZIndex="4" VerticalAlignment="Top" Height="1022" HorizontalAlignment="Left" Width="1272"/>
+        <Image x:Name="RevySplashScreen" Margin="0,0,0,-6" Source="RevySplashScreen.png" Panel.ZIndex="4" VerticalAlignment="Top" Height="1022" HorizontalAlignment="Center" Width="1272"/>
         <Image x:Name="selectionScreenBackground" Margin="0,4,0,-569" Source="SelectionBackground.png"  />
         <Image x:Name="selectATrackText" Margin="-946,492,1279,465" Source="selectATrackText.png" />
         <Image x:Name="selectedTrackText" Margin="1296,496,-962,460" Source="track1Text.png" Grid.Row="1"  />
@@ -39,9 +39,17 @@
         <Image x:Name="selectionIndicatorBar" Margin="1360,928,-190,29" Source="trainIcon.png" Stretch="Fill" Panel.ZIndex="8"/>
 
         <Rectangle x:Name="exampleVideoContainer" Fill="#FF231F20" HorizontalAlignment="Left" Height="290" Margin="1293,641,-529,0" Stroke="#FF83A0A9" VerticalAlignment="Top" Width="508" StrokeThickness="4" Grid.Row="1"/>
-        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   PreviewMouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1" />
+        <Image x:Name="goldenToFieldIcon" Margin="-279,682,1279,124" Source="GoldenToFieldIcon.png"   PreviewMouseUp="selectTrack1" MouseDown="highlightButton" Grid.Row="1" >
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+        </Image>
 
-        <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1"/>
+        <Image x:Name="TrailToNelsonIcon" Margin="-279,682,1279,124" Source="TrailToNelsonIcon.png"   MouseUp="selectTrack2" MouseDown="highlightButton" Grid.Row="1">
+            <Image.Effect>
+                <DropShadowEffect/>
+            </Image.Effect>
+        </Image>
 
         <MediaElement x:Name="descriptionScreenFootage"  Margin="1269,1013,-489,-273" Opacity="0.01" LoadedBehavior="Manual" Panel.ZIndex="2" ScrubbingEnabled="True" MediaEnded="ThumbnailMediaEnded" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
@@ -66,7 +74,7 @@
 
         <Rectangle Fill="#FF83A0A9" HorizontalAlignment="Left" Height="1016" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="-1" Margin="0,0,-8,0" Grid.RowSpan="2"/>
 
-        <Image x:Name="TrainSimulatorLogo" Margin="290,552,292,2" Source="trainSimulatorLogo.png" Visibility="Hidden" Panel.ZIndex="3" Grid.Row="1"/>
+        <Image x:Name="TrainSimulatorLogo" Margin="290,552,292,2" Source="trainSimulatorLogo.png" Panel.ZIndex="3" Grid.Row="1" Visibility="Hidden"/>
         <Rectangle x:Name="fuelBarBackground" Fill="#FF27434A"   HorizontalAlignment="Left" Height="100" Margin="0,863,-8,0" StrokeThickness="0" VerticalAlignment="Top" Width="1280" Panel.ZIndex="1" Visibility="Hidden" Grid.Row="1"/>
         <Rectangle x:Name="fuelBar" Fill="YellowGreen" HorizontalAlignment="Left" Height="100" Margin="0,863,0,0" StrokeThickness="0" VerticalAlignment="Top" Width="2" Panel.ZIndex="2" Visibility="Hidden" Grid.Row="1"/>
 
